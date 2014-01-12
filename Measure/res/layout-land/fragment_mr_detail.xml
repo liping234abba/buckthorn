@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/conn_param"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp" >
+
+        <include layout="@layout/measure_param" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/conn_operation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/conn_param"
+        android:layout_marginLeft="60dp"
+        android:gravity="left"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/save_data"
+            style="@style/app_button"
+            android:text="@string/save_data" />
+
+        <Button
+            android:id="@+id/conn_start"
+            style="@style/app_button"
+            android:text="@string/conn_start" />
+
+        <Button
+            android:id="@+id/conn_pause"
+            style="@style/app_button"
+            android:text="@string/conn_pause" />
+
+        <Button
+            android:id="@+id/conn_stop"
+            style="@style/app_button"
+            android:text="@string/conn_stop" />
+
+        <Button
+            android:id="@+id/immediately_measure"
+            style="@style/app_button"
+            android:text="@string/immediately_measure" />
+
+        <TextView
+            android:id="@+id/show_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:textColor="#ffff4444"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/mr_slist_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/conn_operation"
+        android:layout_marginLeft="30dp"
+        android:orientation="vertical" >
+
+        <include layout="@layout/report_listview" />
+    </LinearLayout>
+
+</RelativeLayout>

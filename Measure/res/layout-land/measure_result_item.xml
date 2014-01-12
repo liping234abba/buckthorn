@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="20dp"
+    android:orientation="horizontal" >
+
+    <TextView
+        android:id="@+id/travel_distance"
+        style="@style/list_textview" />
+
+    <TextView
+        android:id="@+id/dip_angle"
+        style="@style/list_textview" 
+        android:layout_width="40dp"
+        />
+
+    <TextView
+        android:id="@+id/rainshed_high"
+        style="@style/list_textview" />
+
+    <TextView
+        android:id="@+id/platform_high"
+        style="@style/list_textview" />
+
+    <TextView
+        android:id="@+id/platform_distance"
+        style="@style/list_textview" />
+
+    <TextView
+        android:id="@+id/outlimit_value"
+        style="@style/list_textview"
+        android:layout_width="60dp" />
+
+    <TextView
+        android:id="@+id/outlimited"
+        style="@style/list_textview" />
+
+</LinearLayout>

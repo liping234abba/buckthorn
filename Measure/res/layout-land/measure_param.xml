@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" >
+
+        <LinearLayout
+            android:id="@+id/layout_linenum"
+            style="@style/main_layout" >
+
+            <TextView
+                style="@style/app_textview"
+                android:text="@string/line_number" />
+
+            <EditText
+                android:id="@+id/line_number"
+                style="@style/app_editview" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_linename"
+            style="@style/main_layout"
+            android:layout_below="@id/layout_linenum" >
+
+            <TextView
+                style="@style/app_textview"
+                android:text="@string/line_name" />
+
+            <EditText
+                android:id="@+id/line_name"
+                style="@style/app_editview"
+                android:inputType="text"
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_radius"
+            style="@style/main_layout"
+            android:layout_below="@id/layout_linename" >
+
+            <TextView
+                style="@style/app_textview"
+                android:text="@string/radius" />
+
+            <EditText
+                android:id="@+id/radius"
+                style="@style/app_editview" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" >
+
+        <LinearLayout
+            android:id="@+id/layout_outerrail"
+            style="@style/main_layout" >
+
+            <TextView
+                style="@style/app_textview"
+                android:text="@string/outerrail_high" />
+
+            <EditText
+                android:id="@+id/outerrail_high"
+                style="@style/app_editview" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_interval"
+            style="@style/main_layout"
+            android:layout_below="@id/layout_outerrail" >
+
+            <TextView
+                style="@style/app_textview"
+                android:text="@string/sample_interval" />
+
+            <EditText
+                android:id="@+id/sample_interval"
+                style="@style/app_editview" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_measure_startposition"
+            style="@style/main_layout"
+            android:layout_below="@id/layout_interval" >
+
+            <TextView
+                style="@style/app_textview"
+                android:text="@string/measure_startposition" />
+
+            <EditText
+                android:id="@+id/measure_startposition"
+                style="@style/app_editview" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" >
+
+        <LinearLayout
+            android:id="@+id/layout_track"
+            style="@style/main_layout" >
+
+            <TextView
+                style="@style/app_textview"
+                android:minWidth="80dp"
+                android:text="@string/track" />
+
+            <CheckBox
+                android:id="@+id/track"
+                style="@style/app_editview"
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_innerside"
+            style="@style/main_layout"
+            android:layout_below="@id/layout_track" >
+
+            <TextView
+                style="@style/app_textview"
+                android:minWidth="80dp"
+                android:text="@string/inner_side" />
+
+            <CheckBox
+                android:id="@+id/inner_side"
+                style="@style/app_editview"
+                android:text="" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</merge>

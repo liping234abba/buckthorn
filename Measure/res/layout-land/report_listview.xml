@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="5dp"
+        >
+
+        <TextView
+            style="@style/list_textview"
+            android:text="@string/report_index6" />
+
+        <TextView
+            style="@style/list_textview"
+            android:layout_width="40dp"
+            android:text="@string/report_index4" />
+
+        <TextView
+            style="@style/list_textview"
+            android:text="@string/report_index5" />
+
+        <TextView
+            style="@style/list_textview"
+            android:text="@string/report_index7" />
+
+        <TextView
+            style="@style/list_textview"
+            android:text="@string/report_index8" />
+
+        <TextView
+            style="@style/list_textview"
+            android:layout_width="60dp"
+            android:text="@string/report_index9" />
+
+        <TextView
+            style="@style/list_textview"
+            android:text="@string/report_index10" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp" >
+    </ListView>
+
+</merge>
