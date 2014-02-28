@@ -101,15 +101,7 @@ public class JxlExcelUtil {
 		} else {
 			inputStream = new FileInputStream(new File(srcfilePath));
 		}
-/*		OutputStream outputStream = new FileOutputStream(new File(desfilePath));
-		int len = 1024 ;
-		byte[] buffer = new byte[1024] ;
-		while( (len = inputStream.read(buffer))!= -1){
-			outputStream.write(buffer,0,len);
-		}
-		outputStream.close();
-		inputStream.close();
-*/		try {
+		try {
 			Workbook rwb = Workbook.getWorkbook(inputStream);
 			WritableWorkbook wwb = Workbook.createWorkbook(new File(desfilePath), rwb);// copy
 			operateExcel.updateExcel(wwb); //修改Excel文件内容

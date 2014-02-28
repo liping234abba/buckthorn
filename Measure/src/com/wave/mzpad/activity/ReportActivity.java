@@ -2,7 +2,9 @@ package com.wave.mzpad.activity;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import jxl.write.WritableWorkbook;
 import jxl.write.WriteException;
@@ -21,6 +23,9 @@ import android.widget.EditText;
 import com.wave.mzpad.R;
 import com.wave.mzpad.common.Utility;
 import com.wave.mzpad.model.CellElement;
+import com.wave.mzpad.model.MeasureParam;
+import com.wave.mzpad.model.MeasureResult;
+import com.wave.mzpad.service.BusinessDataBase;
 import com.wave.mzpad.service.JxlExcelUtil;
 import com.wave.mzpad.service.JxlExcelUtil.OperateExcel;
 
@@ -35,10 +40,14 @@ public class ReportActivity extends Activity implements View.OnClickListener,Ope
 	private String TAG = "ReportActivity";
 	
 	private JxlExcelUtil excelUtil = null ;
+	
+	private BusinessDataBase businessDataBase;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		businessDataBase = new BusinessDataBase(getApplicationContext());
 		setContentView(R.layout.activity_report);
 		dir_path = (EditText)findViewById(R.id.dir_path);
 		export = (Button)findViewById(R.id.export);
@@ -135,6 +144,25 @@ public class ReportActivity extends Activity implements View.OnClickListener,Ope
 		} catch (WriteException e) {
 			Log.i(TAG, "updateExcel WriteException :" + e.getMessage());
 		}
+	}
+	
+	
+	/**
+	 * 输入参数
+	 */
+	private MeasureParam measureParam ; 
+	
+	/**
+	 * 读取报表数据
+	 * @return
+	 */
+	private List<MeasureResult> getReportData(){
+		String paramSql =  "" ;
+	    measureParam  =	businessDataBase.getMeasureParadmDao().getMeasureParam(paramSql).get(0) ;
+	    if(Utility.isEmpty(measureParam)){
+	    	return new ArrayList<MeasureResult>();
+	    }
+	    return businessDataBase.getMeasureResult(measureParam.getId()) ;
 	}
 	
 }
