@@ -1,11 +1,18 @@
 package com.wave.mzpad.activity;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.Date;
 
+import jxl.write.WritableWorkbook;
+import jxl.write.WriteException;
+import jxl.write.biff.RowsExceededException;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -13,8 +20,11 @@ import android.widget.EditText;
 
 import com.wave.mzpad.R;
 import com.wave.mzpad.common.Utility;
+import com.wave.mzpad.model.CellElement;
+import com.wave.mzpad.service.JxlExcelUtil;
+import com.wave.mzpad.service.JxlExcelUtil.OperateExcel;
 
-public class ReportActivity extends Activity implements View.OnClickListener {
+public class ReportActivity extends Activity implements View.OnClickListener,OperateExcel {
 
 	private EditText dir_path ;//导出文件夹路径
 	
@@ -24,6 +34,7 @@ public class ReportActivity extends Activity implements View.OnClickListener {
 
 	private String TAG = "ReportActivity";
 	
+	private JxlExcelUtil excelUtil = null ;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -33,6 +44,8 @@ public class ReportActivity extends Activity implements View.OnClickListener {
 		export = (Button)findViewById(R.id.export);
 		dir_path.setOnClickListener(this);
 		export.setOnClickListener(this);
+		excelUtil = new JxlExcelUtil(getApplicationContext()) ;
+		excelUtil.setOperateExcel(this);
 	}
 	
 	
@@ -53,6 +66,23 @@ public class ReportActivity extends Activity implements View.OnClickListener {
 		intent.putExtra("browser_list_layout", "2");
 		startActivityForResult(intent, PICK_REQUEST_CODE);
 	}
+	
+	/**
+	 * 转出Excel
+	 */
+	private void exportExcel() {
+		new Thread(){
+			public void run() {
+				String fileName = "测量结果-" + new DateFormat().format("yyyy-MM-dd-hhmmss", new Date()) + ".xls";
+				String desFile = Environment.getExternalStorageDirectory() + File.separator + fileName ;
+				try {
+				  excelUtil.copyAndupdateExcel(null, desFile);
+				} catch (IOException e) {
+					Log.i(TAG, "exportExcel :Exception" + e.getMessage());
+				}	
+			};
+		}.start();
+	}
 
 
 	@Override
@@ -62,6 +92,7 @@ public class ReportActivity extends Activity implements View.OnClickListener {
 			selectDirPath();
 			break;
 		case R.id.export:
+			exportExcel();
 			break;
 		default:
 			break;
@@ -88,6 +119,21 @@ public class ReportActivity extends Activity implements View.OnClickListener {
 			}
 			tempStr = tempStr.replace("file://", "");
 			dir_path.setText(tempStr);
+		}
+	}
+
+
+	@Override
+	public void updateExcel(WritableWorkbook wwb) {
+		try {
+			CellElement cell = new CellElement(10, 20, "欢迎创建Excel");
+			excelUtil.updateLabelCell(wwb, cell);
+		} catch (IOException e) {
+			Log.i(TAG, "updateExcel IOException :" + e.getMessage());
+		} catch (RowsExceededException e) {
+			Log.i(TAG, "updateExcel RowsExceededException :" + e.getMessage());
+		} catch (WriteException e) {
+			Log.i(TAG, "updateExcel WriteException :" + e.getMessage());
 		}
 	}
 	
