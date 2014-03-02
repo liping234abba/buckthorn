@@ -15,14 +15,4 @@
         android:background="#d7d7d7"
          />
 
-    <!-- 
- <TextView
-        android:id="@id/android:empty"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="No data" />
-     -->
-
 </LinearLayout>

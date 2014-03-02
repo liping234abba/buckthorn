@@ -20,8 +20,8 @@
     <string name="immediately_measure">立即测量</string>
     <string name="report_index0">测量点序号</string>
     <string name="report_index1">测量点</string>
-    <string name="report_index2">距轨顶面断面\n测量高度</string>
-    <string name="report_index3">距轨中心线\n距离</string>
+    <string name="report_index2">距轨顶面断面测量高度</string>
+    <string name="report_index3">距轨中心线距离</string>
     <string name="report_index4">倾角</string>
     <string name="report_index5">雨棚高度</string>
     <string name="report_index6">行进距离</string>

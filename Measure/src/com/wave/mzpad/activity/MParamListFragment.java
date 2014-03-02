@@ -13,6 +13,7 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ListFragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,6 +42,8 @@ public class MParamListFragment extends ListFragment implements OnItemLongClickL
 	
 	private UpdateListBroadcastReceiver updateListBroadcastReceiver = new UpdateListBroadcastReceiver();
 	
+	private String TAG = "MParamListFragment";
+	
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
@@ -50,6 +53,7 @@ public class MParamListFragment extends ListFragment implements OnItemLongClickL
 		initMeasureParamList();
 		paramListAapter = new ParamListAdapter(context,mpLists);
 		setListAdapter(paramListAapter);
+		getListView().setOnItemLongClickListener(this);
 		if (savedInstanceState != null) {
 			mCurCheckPosition = savedInstanceState.getInt("curChoice", 0);
 			mShownCheckPosition = savedInstanceState.getInt("shownChoice", -1);
@@ -128,6 +132,7 @@ public class MParamListFragment extends ListFragment implements OnItemLongClickL
 
 	@Override
 	public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+		Log.i(TAG, "onItemLongClick + id" + arg2) ;
 		if(arg2>0){
 			showDialog(arg2);
 		}

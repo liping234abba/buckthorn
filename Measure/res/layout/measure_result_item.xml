@@ -20,11 +20,14 @@
 
     <TextView
         android:id="@+id/platform_high"
-        style="@style/list_textview" />
+        style="@style/list_textview" 
+        android:layout_width="200dp"
+        />
 
     <TextView
         android:id="@+id/platform_distance"
-        style="@style/list_textview" />
+        style="@style/list_textview" 
+        android:layout_width="150dp"/>
 
     <TextView
         android:id="@+id/outlimit_value"

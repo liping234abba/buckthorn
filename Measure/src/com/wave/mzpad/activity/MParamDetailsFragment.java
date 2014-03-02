@@ -243,6 +243,7 @@ public class MParamDetailsFragment extends Fragment {
 			switch (arg0.getId()) {
 				case R.id.save_data :
 					saveMeasureParam();
+					server.firstStart = 0 ;
 					break;
 				case R.id.conn_start :
 					if(!Utility.isEmpty(measureParam) && measureParam.getId()>0){
@@ -295,19 +296,31 @@ public class MParamDetailsFragment extends Fragment {
 		MeasureResult _result = new MeasureResult() ;
 		_result.setParamId(measureParam.getId());
 		//返回数据顺序：行进距离,、月台高度、月台距离、倾角、雨棚高度
-		_result.setTravelDistance(Utility.strToInt(data[0]));
-		_result.setPlatformHigh(Utility.strToInt(data[1]));
-		_result.setPlatformDistance(Utility.strToInt(data[2]));
-		_result.setDipAngle(Utility.strToInt(data[3]));
-		_result.setRainshedHigh(Utility.strToInt(data[4]));
-		_result = businessDataBase.getMeasureResultDao().insertMeasureResult(_result);
+		try{
+			_result.setTravelDistance(Utility.strToInt(data[0]));
+			_result.setPlatformHigh(Utility.strToInt(data[1]));
+			_result.setPlatformDistance(Utility.strToInt(data[2]));
+			_result.setDipAngle(Utility.strToInt(data[3]));
+			_result.setRainshedHigh(Utility.strToInt(data[4]));
+			_result = businessDataBase.getMeasureResultDao().insertMeasureResult(_result);
+		}catch(Exception exp){
+			Log.i(TAG, "整型转换出错  :data:"+ exp.getMessage());	
+			mHandler.sendMessage(mHandler.obtainMessage(Contants.TOAST_MSG, "整型转换出错"));
+		}
 		if(Utility.isEmpty(_result)){
 			Log.i(TAG, "插入失败  :data:"+ data);
 		}else{
 		    Log.i(TAG, "results size():"+ results.size() + ",_result:"+_result);
 		    measureResultAdapter.updateData(_result);
 		}
-		mHandler.sendMessage(mHandler.obtainMessage(Contants.SHOW_MSG, "测量点: "+(Utility.strToInt(data[0])/1000)+" 接收成功"));
+		int measurePoint = 0;
+		try{
+		  measurePoint  =  (Utility.strToInt(data[0])/1000) ;
+	    }catch(Exception exp){
+		  Log.i(TAG, "整型转换出错  :data:"+ exp.getMessage());	
+		  mHandler.sendMessage(mHandler.obtainMessage(Contants.TOAST_MSG, "整型转换出错"));
+	    }
+		mHandler.sendMessage(mHandler.obtainMessage(Contants.SHOW_MSG, "测量点: "+measurePoint+" 接收成功"));
 	}
 	
 	/**

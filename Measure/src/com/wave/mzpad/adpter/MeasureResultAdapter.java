@@ -86,7 +86,7 @@ public class MeasureResultAdapter extends BaseAdapter {
         	   int[] result = businessDataBase.calWarningLevelLimited(standardData, mr, measureParam) ;
         	   hv.outlimitValue.setText(result[1]+"");
                if(result[0]>0){
-            	   hv.outlimited.setText("(%S)".replace("%S", result[0]>1?"二级":"一级"));
+            	   hv.outlimited.setText("(%S)".replace("%S", result[0]>1?"严重超限":"一般超限"));
             	   hv.outlimited.setTextSize(20);
             	   convertView.setBackgroundColor(Color.RED);
                }else{

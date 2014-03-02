@@ -20,7 +20,6 @@ import android.hardware.usb.UsbDeviceConnection;
 import android.hardware.usb.UsbManager;
 import android.os.Handler;
 import com.wave.mzpad.common.Log;
-import android.widget.Toast;
 
 public class CommunicateServer {
 
@@ -69,6 +68,8 @@ public class CommunicateServer {
 	private final ExecutorService mExecutor = Executors.newSingleThreadExecutor();
 	
 	private HeartBeatThread heartBeatThread = null ;
+	
+	public  int firstStart = 0 ;
 
 	private final SerialInputOutputManager.Listener mListener = new SerialInputOutputManager.Listener() {
 
@@ -205,6 +206,10 @@ public class CommunicateServer {
 	 * @return
 	 */
 	public void sendStart() {
+		if(firstStart<1){
+		   sendStop();	
+		   firstStart = 1 ;
+		}
 		String cmd = Contants.COMMAND_FORMAT.replaceFirst("%S", Utility.toHexString(Contants.COMMAND_START));
 		cmd = cmd.replace("%S", Utility.getCheckCodeHexByString(cmd));
 		if(sendCommand(cmd)){
