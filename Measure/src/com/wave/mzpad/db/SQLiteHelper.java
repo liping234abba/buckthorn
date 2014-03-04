@@ -23,7 +23,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     /**
      * 数据库名称
      */
-    private static String dataBaseName = "wave_mzpad";
+    private static String dataBaseName = "wave_mzpad.db";
 
     /**
      * 数据库版本

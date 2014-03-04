@@ -135,7 +135,7 @@ public class BusinessDataBase {
 		int isLimited = -1 ;
 		int limitValue = 0 ;
 		int diffResult = 0;
-		int trainLimit = sd.getTrainLimit() ;
+		int secondLimit = sd.getSecondLevel() ;// 在二级超限到建筑界限之间属于一般超限，小于二级超限属于严重超限
 		//计算是否正线对应的超限差别
 		if(measureParam.getInnerSide()>0){
 			limitValue = calInnerSideLimit(measureResult, measureParam) ;
@@ -155,7 +155,7 @@ public class BusinessDataBase {
 		}
 		//根据不同差别计算级别
 		if(diffResult<0){
-			if(limitValue-trainLimit<0){
+			if(limitValue-secondLimit<0){
 				isLimited = 2 ;
 			}else{
 				isLimited = 1 ;
