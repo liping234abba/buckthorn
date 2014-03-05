@@ -22,14 +22,16 @@ import android.widget.EditText;
 
 import com.wave.mzpad.R;
 import com.wave.mzpad.common.Utility;
+import com.wave.mzpad.model.AbstractObject;
 import com.wave.mzpad.model.CellElement;
 import com.wave.mzpad.model.MeasureParam;
 import com.wave.mzpad.model.MeasureResult;
 import com.wave.mzpad.service.BusinessDataBase;
 import com.wave.mzpad.service.JxlExcelUtil;
 import com.wave.mzpad.service.JxlExcelUtil.OperateExcel;
+import com.wave.mzpad.service.ServiceExportReport;
 
-public class ReportActivity extends Activity implements View.OnClickListener,OperateExcel {
+public class ReportActivity extends Activity implements View.OnClickListener{
 
 	private EditText dir_path ;//导出文件夹路径
 	
@@ -39,24 +41,24 @@ public class ReportActivity extends Activity implements View.OnClickListener,Ope
 
 	private String TAG = "ReportActivity";
 	
-	private JxlExcelUtil excelUtil = null ;
+	private ServiceExportReport serviceReport ;
 	
 	private BusinessDataBase businessDataBase;
+	
+	private int paramIndex ;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		paramIndex = getIntent().getIntExtra("paramId", 1);
 		businessDataBase = new BusinessDataBase(getApplicationContext());
 		setContentView(R.layout.activity_report);
 		dir_path = (EditText)findViewById(R.id.dir_path);
 		export = (Button)findViewById(R.id.export);
 		dir_path.setOnClickListener(this);
 		export.setOnClickListener(this);
-		excelUtil = new JxlExcelUtil(getApplicationContext()) ;
-		excelUtil.setOperateExcel(this);
 	}
-	
 	
 	/**
 	 * 选择文件夹路径
@@ -82,13 +84,18 @@ public class ReportActivity extends Activity implements View.OnClickListener,Ope
 	private void exportExcel() {
 		new Thread(){
 			public void run() {
-				String fileName = "测量结果-" + new DateFormat().format("yyyy-MM-dd-hhmmss", new Date()) + ".xls";
-				String desFile = Environment.getExternalStorageDirectory() + File.separator + fileName ;
-				try {
-				  excelUtil.copyAndupdateExcel(null, desFile);
-				} catch (IOException e) {
-					Log.i(TAG, "exportExcel :Exception" + e.getMessage());
-				}	
+				String sql = " id=" + paramIndex;
+				MeasureParam measureParam  = businessDataBase.getMeasureParadmDao().getMeasureParam(sql).get(0) ;
+				if(Utility.isEmpty(measureParam)){
+					Log.i(TAG, "measureParam is null ");
+					return;
+				}
+				Log.i(TAG, "measureParam:" + measureParam.toString());
+				List<MeasureResult> listMeasureResult = new ArrayList<MeasureResult>();
+				listMeasureResult = businessDataBase.getMeasureResult(measureParam.getId()) ;
+				Log.i(TAG, "measureResult:" + listMeasureResult.size()) ;
+				serviceReport = new ServiceExportReport(ReportActivity.this, measureParam, listMeasureResult);
+				serviceReport.exportExcel();
 			};
 		}.start();
 	}
@@ -131,22 +138,6 @@ public class ReportActivity extends Activity implements View.OnClickListener,Ope
 		}
 	}
 
-
-	@Override
-	public void updateExcel(WritableWorkbook wwb) {
-		try {
-			CellElement cell = new CellElement(10, 20, "欢迎创建Excel");
-			excelUtil.updateLabelCell(wwb, cell);
-		} catch (IOException e) {
-			Log.i(TAG, "updateExcel IOException :" + e.getMessage());
-		} catch (RowsExceededException e) {
-			Log.i(TAG, "updateExcel RowsExceededException :" + e.getMessage());
-		} catch (WriteException e) {
-			Log.i(TAG, "updateExcel WriteException :" + e.getMessage());
-		}
-	}
-	
-	
 	/**
 	 * 输入参数
 	 */

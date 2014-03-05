@@ -45,12 +45,12 @@ public class ServiceExportReport implements OperateExcel {
 	private BusinessDataBase businessDataBase ;
 	
 	
-	public ServiceExportReport(Context ctx ,AbstractObject abstractObject ,List<AbstractObject> listObject){
+	public ServiceExportReport(Context ctx ,AbstractObject abstractObject ,List<?> listObject){
 		businessDataBase = new BusinessDataBase(ctx);
 		excelUtil = new JxlExcelUtil(ctx);
 		excelUtil.setOperateExcel(this);
 		this.abstractObject = (MeasureParam) abstractObject ;
-		this.listAbstractObject = listObject ;
+		this.listAbstractObject = (List<AbstractObject>) listObject ;
 	}
 	
 	public void exportExcel(){
