@@ -13,6 +13,7 @@ import android.os.Environment;
 import android.text.format.DateFormat;
 import android.util.Log;
 
+import com.wave.mzpad.common.Contants;
 import com.wave.mzpad.model.AbstractObject;
 import com.wave.mzpad.model.CellElement;
 import com.wave.mzpad.model.MeasureParam;
@@ -40,7 +41,7 @@ public class ServiceExportReport implements OperateExcel {
 	private JxlExcelUtil excelUtil ;
 	
 	//写入开始值Point(x,y) 和第某列最大值
-	private int startX = 6,startY = 13 ,colMax = 16;
+	private int startX = 6,startY = 13 ,colMax = 15;
 	
 	private BusinessDataBase businessDataBase ;
 	
@@ -60,8 +61,13 @@ public class ServiceExportReport implements OperateExcel {
 				if(abstractObject instanceof MeasureParam){
 					prefix = ((MeasureParam)abstractObject).getLineName() + "-" + ((MeasureParam)abstractObject).getLineNumber() ;
 				}
-				String fileName = "测量结果-" + prefix + new DateFormat().format("yyyy-MM-dd-hhmmss", new Date()) + ".xls";
-				String desFile = Environment.getExternalStorageDirectory() + File.separator + fileName ;
+				String fileName = new DateFormat().format("yyyyMM-dd", new Date()) +"("+ prefix + ").xls" ; // new DateFormat().format("yyyy-MM-dd-hhmmss", new Date()) + ".xls";
+				String desFile = Environment.getExternalStorageDirectory() + File.separator + Contants.EXPORT_EXCEL_FILEPATH ;
+				File desFileDir = new File(desFile);
+				if(!desFileDir.exists()){
+					desFileDir.mkdirs();
+				}
+				desFile = desFile + File.separator + fileName ;
 				try {
 				  excelUtil.copyAndupdateExcel(null, desFile);
 				} catch (IOException e) {
@@ -76,7 +82,7 @@ public class ServiceExportReport implements OperateExcel {
 		try {
 			int resultSize = listAbstractObject.size() ; 
 				 for(int index = 0 ; index<resultSize ; index++){
-					 if(index>31){
+					 if(index>30){
 						 break;
 					 }
 						//测量点序号
@@ -114,6 +120,7 @@ public class ServiceExportReport implements OperateExcel {
 			WriteException {
 		MeasureResult measureResult;
 		measureResult = (MeasureResult) listAbstractObject.get(index);
+		//测量序列号
 		String cellValue = index + "" ;
 		insertExcelLabel(wwb, pointY, pointX, cellValue);
 		//测量点
@@ -125,18 +132,18 @@ public class ServiceExportReport implements OperateExcel {
 		//距轨顶面断面测量高度
 		cellValue = measureResult.getPlatformHigh() +  "" ;
 		insertExcelLabel(wwb, pointY, pointX + 4, cellValue);
-		//距轨中心线距离
+		//距轨中心线距
 		cellValue = measureResult.getPlatformDistance() +  "" ;
 		insertExcelLabel(wwb, pointY, pointX + 5, cellValue);
 		//超限值
 		int result =  0 ;
-		 try{
-			 result = businessDataBase.calLimitValue(measureResult, abstractObject) ; 
-		 }catch(Exception epx){
-			 Log.i(TAG, "updateExcel 计算限制失败 epx"+ epx.getMessage());
-		 }
+		try{
+			result = businessDataBase.calLimitValue(measureResult, abstractObject) ; 
+		}catch(Exception epx){
+			Log.i(TAG, "updateExcel 计算限制失败 epx"+ epx.getMessage());
+		}
 		 cellValue = result+ "";
-		 insertExcelLabel(wwb, pointY, startX + 6, cellValue);
+		 insertExcelLabel(wwb, pointY, pointX + 6, cellValue);
 	}
 
 	/**

@@ -33,5 +33,6 @@
     <string name="label_export">导出Excel报表</string>
     <string name="label_select_dir">存放的文件夹:</string>
     <string name="label_dir">/sdcard</string>
+    <string name="export_excel">导出报表</string>
     
 </resources>

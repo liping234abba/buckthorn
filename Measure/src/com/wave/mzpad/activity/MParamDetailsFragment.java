@@ -1,6 +1,8 @@
 package com.wave.mzpad.activity;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import android.app.Activity;
@@ -12,7 +14,9 @@ import android.hardware.usb.UsbManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
+
 import com.wave.mzpad.common.Log;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -32,6 +36,7 @@ import com.wave.mzpad.model.MeasureParam;
 import com.wave.mzpad.model.MeasureResult;
 import com.wave.mzpad.service.BusinessDataBase;
 import com.wave.mzpad.service.CommunicateServer;
+import com.wave.mzpad.service.ServiceExportReport;
 
 public class MParamDetailsFragment extends Fragment {
 
@@ -42,7 +47,7 @@ public class MParamDetailsFragment extends Fragment {
 	private CheckBox track, inner_side;
 
 	// 开始,暂停,停止,保存数据
-	private Button conn_start, conn_pause, conn_stop, save_data,immediately_measure;
+	private Button conn_start, conn_pause, conn_stop, save_data,immediately_measure,export_excel;
 
 	public static MeasureParam measureParam; // 输入参数
 
@@ -139,6 +144,7 @@ public class MParamDetailsFragment extends Fragment {
 		conn_stop.setOnClickListener(clickListener);
 		save_data.setOnClickListener(clickListener);
 		immediately_measure.setOnClickListener(clickListener);
+		export_excel.setOnClickListener(clickListener);
 	}
 
 	private void initWidget(View view) {
@@ -157,6 +163,7 @@ public class MParamDetailsFragment extends Fragment {
 		conn_stop = (Button) view.findViewById(R.id.conn_stop);
 		save_data = (Button) view.findViewById(R.id.save_data);
 		immediately_measure = (Button)view.findViewById(R.id.immediately_measure);
+		export_excel = (Button)view.findViewById(R.id.export_excel);
 		showMsg = (TextView)view.findViewById(R.id.show_msg);
 		listView = (ListView) view.findViewById(android.R.id.list);
 	}
@@ -225,12 +232,12 @@ public class MParamDetailsFragment extends Fragment {
 	private boolean validateForm() {
 
 		if (Utility.isEmpty(line_number.getText().toString())) {
-			Toast.makeText(mActivity, "编号不能为空！", 0).show();
+			sendMessage(Contants.TOAST_MSG,"编号不能为空！");
 			return false;
 		}
 
 		if (Utility.isEmpty(line_name.getText().toString())) {
-			Toast.makeText(mActivity, "线路名称不能为空！", 0).show();
+			sendMessage(Contants.TOAST_MSG,"线路名称不能为空！");
 			return false;
 		}
 		return true;
@@ -249,7 +256,7 @@ public class MParamDetailsFragment extends Fragment {
 					if(!Utility.isEmpty(measureParam) && measureParam.getId()>0){
 						server.sendStart();	
 					}else{
-					  mHandler.sendMessage(mHandler.obtainMessage(Contants.SHOW_MSG, "请保存当前数据，再开始!"));
+						sendMessage(Contants.SHOW_MSG, "请保存当前数据，再开始!");
 					}
 					break;
 				case R.id.conn_pause :
@@ -261,6 +268,8 @@ public class MParamDetailsFragment extends Fragment {
 				case R.id.immediately_measure :
 					server.sendImmediately();
 					break;
+				case R.id.export_excel:
+					exportExcel();
 				default :
 					break;
 			}
@@ -286,11 +295,11 @@ public class MParamDetailsFragment extends Fragment {
 	private void dealwithMeasureResult(String[] data){
 		Log.i(TAG, "dealwithMeasureResult: data[]"+data);
 		if(measureParam.getId()<0){
-			mHandler.sendMessage(mHandler.obtainMessage(Contants.SHOW_MSG, "请先保存当前记录！"));
+			sendMessage(Contants.SHOW_MSG, "请先保存当前记录！");
 			return ;
 		}
 		if(measureParam.getRadius()<=0){
-			mHandler.sendMessage(mHandler.obtainMessage(Contants.SHOW_MSG, "设置参数不合法，请检查半径值！"));
+			sendMessage(Contants.SHOW_MSG, "设置参数不合法，请检查半径值！");
 			return ;
 		}
 		MeasureResult _result = new MeasureResult() ;
@@ -305,7 +314,7 @@ public class MParamDetailsFragment extends Fragment {
 			_result = businessDataBase.getMeasureResultDao().insertMeasureResult(_result);
 		}catch(Exception exp){
 			Log.i(TAG, "整型转换出错  :data:"+ exp.getMessage());	
-			mHandler.sendMessage(mHandler.obtainMessage(Contants.TOAST_MSG, "整型转换出错"));
+			sendMessage(Contants.TOAST_MSG, "整型转换出错!");
 		}
 		if(Utility.isEmpty(_result)){
 			Log.i(TAG, "插入失败  :data:"+ data);
@@ -318,9 +327,9 @@ public class MParamDetailsFragment extends Fragment {
 		  measurePoint  =  (Utility.strToInt(data[0])/1000) ;
 	    }catch(Exception exp){
 		  Log.i(TAG, "整型转换出错  :data:"+ exp.getMessage());	
-		  mHandler.sendMessage(mHandler.obtainMessage(Contants.TOAST_MSG, "整型转换出错"));
+		  sendMessage(Contants.TOAST_MSG, "整型转换出错");
 	    }
-		mHandler.sendMessage(mHandler.obtainMessage(Contants.SHOW_MSG, "测量点: "+measurePoint+" 接收成功"));
+		sendMessage(Contants.SHOW_MSG, "测量点: "+measurePoint+" 接收成功");
 	}
 	
 	/**
@@ -344,18 +353,41 @@ public class MParamDetailsFragment extends Fragment {
 			}*/
 			//USB设备插入
 			if(ACTION_CUSTOMIZE_INSERT.equals(action)){
-				mHandler.sendMessage(mHandler.obtainMessage(Contants.SHOW_MSG, "前端设备连上！"));
+				sendMessage(Contants.SHOW_MSG, "前端设备连上！");
 				server.initSerialDevice(mActivity,mHandler);
 				return;
 			}
 			//USB设备拔出
 			if (UsbManager.ACTION_USB_DEVICE_DETACHED.equals(action)) {
 				Log.e(TAG, "前端设备拔出！");
-				mHandler.sendMessage(mHandler.obtainMessage(Contants.SHOW_MSG, "前端设备拔出！"));
+				sendMessage(Contants.SHOW_MSG, "前端设备拔出！");
 				server.resetSerialDevice();
 				return;
 			}
 		}
+	}
+	
+	private void exportExcel(){
+		if(Utility.isEmpty(measureParam)){
+			sendMessage(Contants.TOAST_MSG, "输入参数为空！");
+		}
+		List<MeasureResult> listResults = measureResultAdapter.getMrLists() ;
+		if(Utility.isEmpty(listResults)){
+			sendMessage(Contants.TOAST_MSG,"输出结果为空！");
+		}
+		//导出Excel
+		Collections.reverse(listResults);//反序列
+		ServiceExportReport exportReport = new ServiceExportReport(mActivity, measureParam,listResults);
+		exportReport.exportExcel();
+	}
+	
+	/**
+	 * 向Handler里面发送数据
+	 * @param what:发送种类
+	 * @param text：发送内容
+	 */
+	public void sendMessage(int what,String text){
+		mHandler.sendMessage(mHandler.obtainMessage(what, text));
 	}
 	
 }

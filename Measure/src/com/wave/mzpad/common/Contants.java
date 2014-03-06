@@ -40,5 +40,7 @@ public class Contants {
 	public final static byte COMMAND_NASK =0x09 ;//校验失败回答NAK
 	
     public static String COMMAND_FORMAT = "0x55,%S,0xff,%S,0xaa"; //命令格式
+    
+    public static String EXPORT_EXCEL_FILEPATH = "wave" ;
 	
 }

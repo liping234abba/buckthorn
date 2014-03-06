@@ -125,5 +125,9 @@ public class MeasureResultAdapter extends BaseAdapter {
 			notifyDataSetChanged();
 		}
 	}
+
+	public List<MeasureResult> getMrLists() {
+		return mrLists;
+	}
 	
 }

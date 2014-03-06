@@ -6,7 +6,7 @@ package com.wave.mzpad.model;
  * @date   Dec 3, 2013
  *
  */
-public class MeasureResult extends AbstractObject {
+public class MeasureResult extends AbstractObject implements Comparable {
 
 	public  String COLUMN_TRAVEL_DISTANCE = "travel_distance";
 	public  String COLUMN_PLATFORM_HIGH = "platform_high";
@@ -73,5 +73,16 @@ public class MeasureResult extends AbstractObject {
 	public String toString() {
 		return "MeasureResult [travelDistance=" + travelDistance + ", platformHigh=" + platformHigh + ", platformDistance=" + platformDistance + ", dipAngle=" + dipAngle + ", rainshedHigh=" + rainshedHigh + ", paramId=" + paramId + ", id=" + id + "]";
 	}
+	@Override
+	public int compareTo(Object another) {
+		MeasureResult measureResult = (MeasureResult)another ;
+		if(this.getId()>measureResult.getId()){
+			return 1;
+		}else if(this.getId()<measureResult.getId()){
+			return -1;
+		}
+		return 0;
+	}
+	
 	
 }

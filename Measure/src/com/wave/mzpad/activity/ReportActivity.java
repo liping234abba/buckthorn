@@ -1,20 +1,13 @@
 package com.wave.mzpad.activity;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import jxl.write.WritableWorkbook;
-import jxl.write.WriteException;
-import jxl.write.biff.RowsExceededException;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -22,13 +15,9 @@ import android.widget.EditText;
 
 import com.wave.mzpad.R;
 import com.wave.mzpad.common.Utility;
-import com.wave.mzpad.model.AbstractObject;
-import com.wave.mzpad.model.CellElement;
 import com.wave.mzpad.model.MeasureParam;
 import com.wave.mzpad.model.MeasureResult;
 import com.wave.mzpad.service.BusinessDataBase;
-import com.wave.mzpad.service.JxlExcelUtil;
-import com.wave.mzpad.service.JxlExcelUtil.OperateExcel;
 import com.wave.mzpad.service.ServiceExportReport;
 
 public class ReportActivity extends Activity implements View.OnClickListener{
@@ -51,7 +40,7 @@ public class ReportActivity extends Activity implements View.OnClickListener{
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		paramIndex = getIntent().getIntExtra("paramId", 1);
+		paramIndex = 1;
 		businessDataBase = new BusinessDataBase(getApplicationContext());
 		setContentView(R.layout.activity_report);
 		dir_path = (EditText)findViewById(R.id.dir_path);
@@ -84,7 +73,7 @@ public class ReportActivity extends Activity implements View.OnClickListener{
 	private void exportExcel() {
 		new Thread(){
 			public void run() {
-				String sql = " id=" + paramIndex;
+				String sql = " where id=" + paramIndex;
 				MeasureParam measureParam  = businessDataBase.getMeasureParadmDao().getMeasureParam(sql).get(0) ;
 				if(Utility.isEmpty(measureParam)){
 					Log.i(TAG, "measureParam is null ");
@@ -94,6 +83,10 @@ public class ReportActivity extends Activity implements View.OnClickListener{
 				List<MeasureResult> listMeasureResult = new ArrayList<MeasureResult>();
 				listMeasureResult = businessDataBase.getMeasureResult(measureParam.getId()) ;
 				Log.i(TAG, "measureResult:" + listMeasureResult.size()) ;
+				if(Utility.isEmpty(listMeasureResult)){
+					Log.i(TAG, "measureResult:" + listMeasureResult.size()) ;	
+					return;
+				}
 				serviceReport = new ServiceExportReport(ReportActivity.this, measureParam, listMeasureResult);
 				serviceReport.exportExcel();
 			};
