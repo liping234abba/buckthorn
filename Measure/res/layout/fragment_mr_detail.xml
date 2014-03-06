@@ -49,6 +49,11 @@
             android:id="@+id/immediately_measure"
             style="@style/app_button"
             android:text="@string/immediately_measure" />
+        
+        <Button
+            android:id="@+id/export_excel"
+            style="@style/app_button"
+            android:text="@string/export_excel" />
 
         <TextView
             android:id="@+id/show_msg"
