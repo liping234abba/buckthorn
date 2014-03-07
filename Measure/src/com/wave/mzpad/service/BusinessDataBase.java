@@ -8,7 +8,9 @@ import java.util.List;
 
 import android.content.Context;
 import android.content.res.AssetManager;
+import android.util.Log;
 
+import com.wave.mzpad.common.Utility;
 import com.wave.mzpad.db.MeasureParamDAO;
 import com.wave.mzpad.db.MeasureResultDAO;
 import com.wave.mzpad.db.SQLiteHelper;
@@ -26,6 +28,8 @@ public class BusinessDataBase {
 	private MeasureParamDAO measureParadmDao ;
 	
 	private StandardDataDAO standardDataDAO ;
+
+	private String TAG = "BusinessDataBase";
 	
 	public BusinessDataBase(Context _ctx){
 		this.ctx =_ctx ;
@@ -70,14 +74,14 @@ public class BusinessDataBase {
 	}
 	
 	/**
-	 *  内侧计算超限：月台距离+W1 与限界比较
-	 */
+	 *  内侧计算超限真实月台距离：前端月台距离+W1
+	 */ 
 	public int calInnerSideLimit(MeasureResult measureResult,MeasureParam measureParam){
 		return measureResult.getPlatformDistance() + calInnerSideCoeft(measureParam.getRadius(), measureResult.getPlatformHigh(), measureParam.getOuterrailHigh()) ;
 	}
 	
 	/**
-	 * 外侧计算超限：月台距离+W2 与限界比较
+	 * 外侧计算超限真实月台距离：前端月台距离+W2
 	 */
 	public int calOuterSideLimit(MeasureResult measureResult,MeasureParam measureParam){
 		return measureResult.getPlatformDistance() + calOuterSideCoeft(measureParam.getRadius()) ;
@@ -130,11 +134,16 @@ public class BusinessDataBase {
 	/**
 	 *  计算超限是否超限
 	 */
-	public int[] calWarningLevelLimited(StandardData sd, MeasureResult measureResult,MeasureParam measureParam){
+	public int[] calWarningLevelLimited(MeasureResult measureResult,MeasureParam measureParam){
 		int[] result = new int[2];//[0]:是否超限，[1]侵限值
 		int isLimited = -1 ;
 		int limitValue = 0 ;
 		int diffResult = 0;
+		StandardData sd = getStandardData(measureResult);
+		if(Utility.isEmpty(sd)){
+			Log.i(TAG, "StandardData is null") ;
+			return result;
+		}
 		int secondLimit = sd.getSecondLevel() ;// 在二级超限到建筑界限之间属于一般超限，小于二级超限属于严重超限
 		//计算是否正线对应的超限差别
 		if(measureParam.getInnerSide()>0){
@@ -168,5 +177,21 @@ public class BusinessDataBase {
 		return result ;
 	}
 	
+	
+	public StandardData getStandardData(MeasureResult measureResult) {
+		if(Utility.isEmpty(measureResult)){
+			Log.i(TAG, " measureResult 为空");
+			return null;
+		}
+		int height = measureResult.getPlatformHigh();// 把月台高度与数据库中什么进行比较
+		height = height / 10 * 10;
+		if (height <= 150) {
+			height = 150;
+		} else if (height >= 1240) {
+			height = 1240;
+		}
+		String sql = " where " + StandardData.COLUMN_TRACK_HIGH + "=" + height;
+		return getStandardDataDAO().getStandardData(sql).get(0);
+	}
 
 }

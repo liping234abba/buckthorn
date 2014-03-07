@@ -219,12 +219,12 @@ public class MParamDetailsFragment extends Fragment {
 			MeasureParam result = businessDataBase.getMeasureParadmDao().insertMeasureParam(measureParam);
 			if (!Utility.isEmpty(result)) {
 				measureParam = result ;
-				Log.i(TAG, "插入成功");
-				mHandler.sendMessage(mHandler.obtainMessage(Contants.SHOW_MSG, "插入成功"));
+				Log.i(TAG, "添加成功");
+				mHandler.sendMessage(mHandler.obtainMessage(Contants.SHOW_MSG, "添加成功"));
 				Intent intent = new Intent(MParamListFragment.UPDATE_LIST);
 				mActivity.sendBroadcast(intent);
 			} else {
-				mHandler.sendMessage(mHandler.obtainMessage(Contants.SHOW_MSG, "插入失败"));
+				mHandler.sendMessage(mHandler.obtainMessage(Contants.SHOW_MSG, "添加失败"));
 			}
 		}
 	}
@@ -368,17 +368,26 @@ public class MParamDetailsFragment extends Fragment {
 	}
 	
 	private void exportExcel(){
-		if(Utility.isEmpty(measureParam)){
-			sendMessage(Contants.TOAST_MSG, "输入参数为空！");
-		}
-		List<MeasureResult> listResults = measureResultAdapter.getMrLists() ;
-		if(Utility.isEmpty(listResults)){
-			sendMessage(Contants.TOAST_MSG,"输出结果为空！");
-		}
-		//导出Excel
-		Collections.reverse(listResults);//反序列
-		ServiceExportReport exportReport = new ServiceExportReport(mActivity, measureParam,listResults);
-		exportReport.exportExcel();
+		new Thread(){
+			public void run() {
+				if(Utility.isEmpty(measureParam) || Utility.isEmpty(measureParam.getLineName())){
+					sendMessage(Contants.TOAST_MSG, "输入参数为空！");
+					return;
+				}
+				List<MeasureResult> listResults = measureResultAdapter.getMrLists() ;
+				if(Utility.isEmpty(listResults)){
+					sendMessage(Contants.TOAST_MSG,"没有将要导出的数据！");
+					return;
+				}
+				//导出Excel
+				sendMessage(Contants.SHOW_MSG, "正在导出Excel数据……");
+				Collections.reverse(listResults);//反序列
+				ServiceExportReport exportReport = new ServiceExportReport(mActivity, measureParam,listResults);
+				exportReport.exportExcel();	
+				sendMessage(Contants.SHOW_MSG, "导出数据完成！");
+			};
+		}.start();
+		
 	}
 	
 	/**

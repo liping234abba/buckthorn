@@ -23,12 +23,10 @@
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden" 
             >
-            <!-- 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-             -->
         </activity>
         <activity android:name=".activity.USBSerialActivity" >
               <intent-filter>
@@ -39,10 +37,12 @@
                 android:resource="@xml/device_filter" />
         </activity>
         <activity android:name=".activity.ReportActivity" android:screenOrientation="landscape">
+           <!-- 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            -->
         </activity>
     </application>
 	<instrumentation android:name="android.test.InstrumentationTestRunner" android:targetPackage="com.wave.mzpad" />

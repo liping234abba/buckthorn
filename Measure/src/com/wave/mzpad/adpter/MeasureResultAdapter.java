@@ -74,16 +74,15 @@ public class MeasureResultAdapter extends BaseAdapter {
            }else{
         	   hv = (HodlerView) convertView.getTag();
            }
-           StandardData standardData = getStandardData(mr);
            hv.travelDistance.setText(mr.getTravelDistance()/1000+"");
            hv.platformHigh.setText(mr.getPlatformHigh()+"");
            hv.platformDistance.setText(mr.getPlatformDistance()+"");
            hv.dipAngle.setText(mr.getDipAngle()+"");
            hv.rainshedHigh.setText(mr.getRainshedHigh()+"");
            measureParam = MParamDetailsFragment.measureParam ;
-           if(!Utility.isEmpty(measureParam) && measureParam.getRadius()>0 && !Utility.isEmpty(standardData)){
+           if(!Utility.isEmpty(measureParam) && measureParam.getRadius()>0){
         	   Log.i(TAG, "MeasureResultAdapter:"+measureParam.toString());
-        	   int[] result = businessDataBase.calWarningLevelLimited(standardData, mr, measureParam) ;
+        	   int[] result = businessDataBase.calWarningLevelLimited(mr, measureParam) ;
         	   hv.outlimitValue.setText(result[1]+"");
                if(result[0]>0){
             	   hv.outlimited.setText("(%S)".replace("%S", result[0]>1?"严重超限":"一般超限"));
@@ -106,18 +105,6 @@ public class MeasureResultAdapter extends BaseAdapter {
         TextView outlimitValue;//超限值
     }
     
-	private StandardData getStandardData(MeasureResult measureResult) {
-		int height = measureResult.getPlatformHigh();// 把月台高度与数据库中什么进行比较
-		height = height / 10 * 10;
-		if (height <= 150) {
-			height = 150;
-		} else if (height >= 1240) {
-			height = 1240;
-		}
-		String sql = " where " + StandardData.COLUMN_TRACK_HIGH + "=" + height;
-		return businessDataBase.getStandardDataDAO().getStandardData(sql).get(0);
-	}
-	
 	public void updateData(MeasureResult mr){
 		if(!Utility.isEmpty(mr)){
 			Log.i("wave", "updateData");
