@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
+import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
 import jxl.write.WriteException;
 import jxl.write.biff.RowsExceededException;
@@ -55,30 +56,26 @@ public class ServiceExportReport implements OperateExcel {
 	}
 	
 	public void exportExcel(){
-		new Thread(){
-			public void run() {
-				String prefix = "" ;
-				if(abstractObject instanceof MeasureParam){
-					prefix = ((MeasureParam)abstractObject).getLineName() + "-" + ((MeasureParam)abstractObject).getLineNumber() ;
-				}
-				String fileName = new DateFormat().format("yyyyMM-dd", new Date()) +"("+ prefix + ").xls" ; // new DateFormat().format("yyyy-MM-dd-hhmmss", new Date()) + ".xls";
-				String desFile = Environment.getExternalStorageDirectory() + File.separator + Contants.EXPORT_EXCEL_FILEPATH ;
-				File desFileDir = new File(desFile);
-				if(!desFileDir.exists()){
-					desFileDir.mkdirs();
-				}
-				desFile = desFile + File.separator + fileName ;
-				try {
-				  excelUtil.copyAndupdateExcel(null, desFile);
-				} catch (IOException e) {
-					Log.i(TAG, "exportExcel :Exception" + e.getMessage());
-				}	
-			};
-		}.start();
+		String prefix = "" ;
+		if(abstractObject instanceof MeasureParam){
+			prefix = ((MeasureParam)abstractObject).getLineName() + "-" + ((MeasureParam)abstractObject).getLineNumber() ;
+		}
+		String fileName = new DateFormat().format("yyyy-MM-dd", new Date()) +"("+ prefix + ").xls" ; // new DateFormat().format("yyyy-MM-dd-hhmmss", new Date()) + ".xls";
+		String desFile = Environment.getExternalStorageDirectory() + File.separator + Contants.EXPORT_EXCEL_FILEPATH ;
+		File desFileDir = new File(desFile);
+		if(!desFileDir.exists()){
+			desFileDir.mkdirs();
+		}
+		desFile = desFile + File.separator + fileName ;
+		try {
+		  excelUtil.copyAndupdateExcel(null, desFile);
+		} catch (IOException e) {
+			Log.i(TAG, "exportExcel :Exception" + e.getMessage());
+		}	
 	}
 	
 	@Override
-	public void updateExcel(WritableWorkbook wwb) {
+	public void updateExcel(WritableSheet ws) {
 		try {
 			int resultSize = listAbstractObject.size() ; 
 				 for(int index = 0 ; index<resultSize ; index++){
@@ -89,11 +86,11 @@ public class ServiceExportReport implements OperateExcel {
 					 if(index <colMax){//当结果15时， 根据报表中可以看出
 						 int pointY = startY + index ;
 						 int pointX = startX ;
-						 insertColumnArray(wwb, index, pointY, pointX); 
+						 insertColumnArray(ws, index, pointY, pointX); 
 					 }else{
 						 int pointY = (startY-1) + (index - colMax);
 						 int pointX = startX + 7 ;
-						 insertColumnArray(wwb, index, pointY, pointX);
+						 insertColumnArray(ws, index, pointY, pointX);
 					 }
 				 }
 		} catch (IOException e) {
@@ -107,7 +104,7 @@ public class ServiceExportReport implements OperateExcel {
 
 	/**
 	 * 向Excel表中插入n行
-	 * @param wwb Excel流程
+	 * @param ws Excel流程
 	 * @param index:
 	 * @param pointY
 	 * @param pointX
@@ -115,26 +112,26 @@ public class ServiceExportReport implements OperateExcel {
 	 * @throws RowsExceededException
 	 * @throws WriteException
 	 */
-	private void insertColumnArray(WritableWorkbook wwb, int index, int pointY,
+	private void insertColumnArray(WritableSheet ws, int index, int pointY,
 			int pointX) throws IOException, RowsExceededException,
 			WriteException {
 		MeasureResult measureResult;
 		measureResult = (MeasureResult) listAbstractObject.get(index);
 		//测量序列号
 		String cellValue = index + "" ;
-		insertExcelLabel(wwb, pointY, pointX, cellValue);
+		insertExcelLabel(ws, pointY, pointX, cellValue);
 		//测量点
 		cellValue = measureResult.getTravelDistance() +  "" ;
-		insertExcelLabel(wwb, pointY, pointX + 1, cellValue);
+		insertExcelLabel(ws, pointY, pointX + 1, cellValue);
 		//外轨超高
 		cellValue = abstractObject.getOuterrailHigh() +  "" ;
-		insertExcelLabel(wwb, pointY, pointX + 3, cellValue);
+		insertExcelLabel(ws, pointY, pointX + 3, cellValue);
 		//距轨顶面断面测量高度
 		cellValue = measureResult.getPlatformHigh() +  "" ;
-		insertExcelLabel(wwb, pointY, pointX + 4, cellValue);
+		insertExcelLabel(ws, pointY, pointX + 4, cellValue);
 		//距轨中心线距
 		cellValue = measureResult.getPlatformDistance() +  "" ;
-		insertExcelLabel(wwb, pointY, pointX + 5, cellValue);
+		insertExcelLabel(ws, pointY, pointX + 5, cellValue);
 		//超限值
 		int result =  0 ;
 		try{
@@ -143,7 +140,7 @@ public class ServiceExportReport implements OperateExcel {
 			Log.i(TAG, "updateExcel 计算限制失败 epx"+ epx.getMessage());
 		}
 		 cellValue = result+ "";
-		 insertExcelLabel(wwb, pointY, pointX + 6, cellValue);
+		 insertExcelLabel(ws, pointY, pointX + 6, cellValue);
 	}
 
 	/**
@@ -156,10 +153,10 @@ public class ServiceExportReport implements OperateExcel {
 	 * @throws RowsExceededException
 	 * @throws WriteException
 	 */
-	private void insertExcelLabel(WritableWorkbook wwb, int pointY, int pointX,
+	private void insertExcelLabel(WritableSheet ws, int pointY, int pointX,
 			String cellValue) throws IOException, RowsExceededException,
 			WriteException {
 		CellElement cell = new CellElement(pointX, pointY, cellValue);
-		excelUtil.updateLabelCell(wwb, cell);
+		excelUtil.updateLabelCell(ws, cell);
 	}
 }

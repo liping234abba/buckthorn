@@ -9,6 +9,8 @@ import jxl.CellType;
 import jxl.Workbook;
 import jxl.write.Label;
 import jxl.write.WritableCell;
+import jxl.write.WritableCellFormat;
+import jxl.write.WritableFont;
 import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
 import jxl.write.WriteException;
@@ -40,7 +42,7 @@ public class JxlExcelUtil {
 	 * 
 	 */
 	public interface OperateExcel {
-		public void updateExcel(WritableWorkbook wwb);
+		public void updateExcel(WritableSheet ws);
 	}
 
 	/**
@@ -101,10 +103,21 @@ public class JxlExcelUtil {
 		} else {
 			inputStream = new FileInputStream(new File(srcfilePath));
 		}
+		
+		/*拷贝Excel文件
+		FileOutputStream fileOutputStream = new FileOutputStream(desfilePath);
+		byte[] buffer = new byte[1024];
+		int length = 0 ;
+		while(  (length = inputStream.read(buffer) ) != -1){
+			fileOutputStream.write(buffer,0,length);
+		}
+		fileOutputStream.flush();
+		fileOutputStream.close();
+		inputStream.close();*/
 		try {
 			Workbook rwb = Workbook.getWorkbook(inputStream);
 			WritableWorkbook wwb = Workbook.createWorkbook(new File(desfilePath), rwb);// copy
-			operateExcel.updateExcel(wwb); //修改Excel文件内容
+			operateExcel.updateExcel(wwb.getSheet(0)); //修改Excel文件内容
 			wwb.write();
 			wwb.close();
 			rwb.close();
@@ -121,12 +134,17 @@ public class JxlExcelUtil {
 	 * @throws WriteException 
 	 * @throws RowsExceededException 
 	 */
-	public void updateLabelCell(WritableWorkbook wwb, CellElement cell)
+	public void updateLabelCell(WritableSheet ws, CellElement cell)
 			throws IOException, RowsExceededException, WriteException {
-		WritableSheet ws = wwb.getSheet(0);
 		WritableCell wc = ws.getWritableCell(cell.x, cell.y); // 判断单元格的类型,做出相应的转换
+		Log.i(TAG, "wc : cell.x"+cell.x + " cell.y:"+cell.y + "type:"+ wc.getType());
 		if(wc.getType() == CellType.EMPTY){
+		   WritableCellFormat wcfF = new WritableCellFormat();
+		   wcfF.setBorder(jxl.format.Border.ALL,jxl.format.BorderLineStyle.THIN);
+		   wcfF.setVerticalAlignment(jxl.format.VerticalAlignment.CENTRE);
+		   wcfF.setAlignment(jxl.format.Alignment.CENTRE);
 		   wc = new Label(cell.x, cell.y, cell.value); 
+		   wc.setCellFormat(wcfF);
 		}else if(wc.getType() == CellType.LABEL){
 		  ((Label)wc).setString(cell.value);
 		}
