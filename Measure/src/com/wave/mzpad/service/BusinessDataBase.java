@@ -147,14 +147,14 @@ public class BusinessDataBase {
 		int secondLimit = sd.getSecondLevel() ;// 在二级超限到建筑界限之间属于一般超限，小于二级超限属于严重超限
 		//计算是否正线对应的超限差别
 		if(measureParam.getInnerSide()>0){
-			limitValue = calInnerSideLimit(measureResult, measureParam) ;
+			limitValue = measureParam.getRadius()>0?calInnerSideLimit(measureResult, measureParam):measureResult.getPlatformDistance() ;//直线测量值就是准确值，曲线需要加系数
 			if(measureParam.getTrack()>0){
 				diffResult = limitValue -  sd.getBuildRight() ;
 			}else{
 				diffResult = limitValue - sd.getBuildDevious();
 			}
 		}else{
-			limitValue = calOuterSideLimit(measureResult, measureParam) ;
+			limitValue = measureParam.getRadius()>0?calOuterSideLimit(measureResult, measureParam):measureResult.getPlatformDistance() ;
 			if(measureParam.getTrack()>0){
 				diffResult = limitValue -  sd.getBuildRight() ;
 			}else{
@@ -177,7 +177,11 @@ public class BusinessDataBase {
 		return result ;
 	}
 	
-	
+	/**
+	 * 获取月台高度标准对象
+	 * @param measureResult
+	 * @return
+	 */
 	public StandardData getStandardData(MeasureResult measureResult) {
 		if(Utility.isEmpty(measureResult)){
 			Log.i(TAG, " measureResult 为空");
@@ -192,6 +196,19 @@ public class BusinessDataBase {
 		}
 		String sql = " where " + StandardData.COLUMN_TRACK_HIGH + "=" + height;
 		return getStandardDataDAO().getStandardData(sql).get(0);
+	}
+	
+	/**
+	 * 获取曲线加宽量
+	 */
+	public int getCurveWidenValue(MeasureParam measureParam,MeasureResult mResult){
+		int result = 0 ;
+		if(measureParam.getInnerSide()>0){
+		   result = calInnerSideCoeft(measureParam.getRadius(), mResult.getPlatformHigh(), measureParam.getOuterrailHigh());
+		}else{
+			result = calOuterSideCoeft(measureParam.getRadius());
+		}
+		return result;
 	}
 
 }

@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.test.AndroidTestCase;
-import android.util.Log;
 
+import com.wave.mzpad.common.Log;
 import com.wave.mzpad.db.SQLiteHelper;
 import com.wave.mzpad.model.MeasureParam;
 import com.wave.mzpad.model.MeasureResult;
@@ -23,6 +23,7 @@ public class TestAndroid extends AndroidTestCase {
 	}
 
 	public void testSelect(){
+		businessDataBase.initData();
 		System.out.println();
 	}
 	
@@ -44,11 +45,11 @@ public class TestAndroid extends AndroidTestCase {
 	public void testMeasureResult(){
 		MeasureResult measureResult = new MeasureResult() ;
 		for(int i = 0 ; i < 20 ; i++){
-			measureResult.setParamId(1);
-			measureResult.setPlatformDistance(300+i);
-			measureResult.setPlatformHigh(200+i);
-			measureResult.setRainshedHigh(300+i);
-			measureResult.setTravelDistance(500+i);
+			measureResult.setParamId(2);
+			measureResult.setPlatformDistance(1745);
+			measureResult.setPlatformHigh(310);
+			measureResult.setRainshedHigh(30);
+			measureResult.setTravelDistance(100);
 			measureResult.setDipAngle(0);
 			businessDataBase.getMeasureResultDao().insertMeasureResult(measureResult);
 		}
@@ -64,8 +65,26 @@ public class TestAndroid extends AndroidTestCase {
 		}
 	}
 	
-	public void testReport(){
+	public void testcurvlReportData(){
+		MeasureParam measureParam = new MeasureParam() ;
+		measureParam.setOuterrailHigh(75);
+		measureParam.setRadius(1020);
+		measureParam.setInnerSide(0);
+		measureParam.setTrack(0);
+		measureParam.setMeasureStartposition(20);
+		measureParam.setSampleInterval(2);
+		measureParam.setLineNumber(1);
+		measureParam.setLineName("怀化");
 		
+		MeasureResult measureResult = new MeasureResult();
+		measureResult.setDipAngle(0);
+		measureResult.setParamId(1);
+		measureResult.setPlatformDistance(1745);
+		measureResult.setPlatformHigh(310);
+		measureResult.setRainshedHigh(30);
+		measureResult.setTravelDistance(100);
+		int[] result = businessDataBase.calWarningLevelLimited(measureResult, measureParam);
+		Log.i(TAG, "result :0"+ result[0] + " 1:"+result[1]);
 	}
 	
 }

@@ -91,7 +91,7 @@ public class MParamListFragment extends ListFragment implements OnItemLongClickL
 		measureParam.setLineNumber(1);
 		measureParam.setMeasureStartposition(1);
 		measureParam.setOuterrailHigh(1);
-		measureParam.setRadius(1);
+		measureParam.setRadius(0);
 		measureParam.setSampleInterval(1);
 		measureParam.setTrack(0);
 		return measureParam ;

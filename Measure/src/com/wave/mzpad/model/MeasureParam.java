@@ -19,11 +19,11 @@ public class MeasureParam extends AbstractObject {
 	
 	private int lineNumber = 0; // 线路编号
 	private String lineName = ""; // 线路名称
-	private int track = 0; // 是否正线
+	private int track = 0; // 是否正线 0:否；1：是
 	private int radius = 0; // 半径(m)
 	private int outerrailHigh = 0; // 外轨超高(mm)
 	private int sampleInterval = 0; // 采样间隔(m)
-	private int innerSide = 0; // 是否内侧
+	private int innerSide = 0; // 是否内侧  0:否；1：是
 	private int measureStartposition = 0; // 测试起始位置
 	
 	

@@ -23,6 +23,8 @@
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden" 
             >
+        </activity>
+        <activity android:name=".activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

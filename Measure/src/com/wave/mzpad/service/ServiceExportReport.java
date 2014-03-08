@@ -56,10 +56,7 @@ public class ServiceExportReport implements OperateExcel {
 	}
 	
 	public void exportExcel(){
-		String prefix = "" ;
-		if(abstractObject instanceof MeasureParam){
-			prefix = ((MeasureParam)abstractObject).getLineName() + "-" + ((MeasureParam)abstractObject).getLineNumber() ;
-		}
+		String prefix = abstractObject.getLineName() + "-" + abstractObject.getLineNumber() ;
 		String fileName = new DateFormat().format("yyyy-MM-dd", new Date()) +"("+ prefix + ").xls" ; // new DateFormat().format("yyyy-MM-dd-hhmmss", new Date()) + ".xls";
 		String desFile = Environment.getExternalStorageDirectory() + File.separator + Contants.EXPORT_EXCEL_FILEPATH ;
 		File desFileDir = new File(desFile);
@@ -67,8 +64,9 @@ public class ServiceExportReport implements OperateExcel {
 			desFileDir.mkdirs();
 		}
 		desFile = desFile + File.separator + fileName ;
+		String srcfileName = abstractObject.getRadius()>0?"template_curviline.xls":"template_stratline.xls";
 		try {
-		  excelUtil.copyAndupdateExcel(null, desFile);
+		  excelUtil.copyAndupdateExcel(null,srcfileName, desFile);
 		} catch (IOException e) {
 			Log.i(TAG, "exportExcel :Exception" + e.getMessage());
 		}	
@@ -123,9 +121,15 @@ public class ServiceExportReport implements OperateExcel {
 		//测量点
 		cellValue = measureResult.getTravelDistance() +  "" ;
 		insertExcelLabel(ws, pointY, pointX + 1, cellValue);
-		//外轨超高
+		//曲线内侧加宽量:只有曲线才需要填写
+		if(abstractObject.getRadius()>0){
+			cellValue = businessDataBase.getCurveWidenValue(abstractObject, measureResult)+  "" ;
+			insertExcelLabel(ws, pointY, pointX + 2, cellValue);
+		}
+		
+		/*//外轨超高
 		cellValue = abstractObject.getOuterrailHigh() +  "" ;
-		insertExcelLabel(ws, pointY, pointX + 3, cellValue);
+		insertExcelLabel(ws, pointY, pointX + 3, cellValue);*/
 		//距轨顶面断面测量高度
 		cellValue = measureResult.getPlatformHigh() +  "" ;
 		insertExcelLabel(ws, pointY, pointX + 4, cellValue);

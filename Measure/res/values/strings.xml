@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <resources>
-    <string name="app_name">超限测量</string>
+    <string name="app_name">限界测量仪</string>
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
     <string name="save_data">保存</string>
@@ -15,8 +15,6 @@
     <string name="sample_interval">采样间隔(m)</string>
     <string name="inner_side">是否内侧</string>
     <string name="measure_startposition">起始位置</string>
-    <string name="app_title">USB Serial Example</string>
-    <string name="refreshing">Refreshing...</string>
     <string name="immediately_measure">立即测量</string>
     <string name="report_index0">测量点序号</string>
     <string name="report_index1">测量点</string>

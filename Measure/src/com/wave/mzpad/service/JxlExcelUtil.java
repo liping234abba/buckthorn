@@ -89,7 +89,7 @@ public class JxlExcelUtil {
 	 *            ：目标文件路径
 	 * @throws IOException
 	 */
-	public void copyAndupdateExcel(String srcfilePath, String desfilePath)
+	public void copyAndupdateExcel(String srcfilePath,String fileName, String desfilePath)
 			throws IOException {
 		if (Utility.isEmpty(desfilePath)) {
 			Log.i(TAG, "目标文件名称不能为空!");
@@ -99,7 +99,7 @@ public class JxlExcelUtil {
 		InputStream inputStream = null;
 		if (Utility.isEmpty(srcfilePath)) {
 			Log.i(TAG, "源文件名称为空!");
-			inputStream = ctx.getAssets().open("template.xls");
+			inputStream = ctx.getAssets().open(fileName);
 		} else {
 			inputStream = new FileInputStream(new File(srcfilePath));
 		}
