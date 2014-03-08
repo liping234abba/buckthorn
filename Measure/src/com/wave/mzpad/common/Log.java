@@ -18,7 +18,7 @@ public class Log {
     /**
      * true 代表开发所用
      */
-    private static boolean mLogGrade = true;
+    private static boolean mLogGrade = false;
 
     public static void e(String tag, String msg, Exception e) {
         if (mLogGrade) {
