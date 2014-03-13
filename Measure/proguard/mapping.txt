@@ -5374,106 +5374,124 @@ com.wave.mzpad.model.StandardData -> com.wave.mzpad.d.e:
     void setBuildRight(int) -> e
     int getBuildDevious() -> f
     void setBuildDevious(int) -> f
-com.wave.mzpad.service.BusinessDataBase -> com.wave.mzpad.e.a:
-    android.content.Context ctx -> a
-    com.wave.mzpad.db.MeasureResultDAO measureResultDao -> b
-    com.wave.mzpad.db.MeasureParamDAO measureParadmDao -> c
-    com.wave.mzpad.db.StandardDataDAO standardDataDAO -> d
-    java.lang.String TAG -> e
-    com.wave.mzpad.db.MeasureParamDAO getMeasureParadmDao() -> a
-    com.wave.mzpad.db.MeasureResultDAO getMeasureResultDao() -> b
-    java.util.List getMeasureResult(int) -> a
-    int calInnerSideCoeft(int,int,int) -> a
-    void initData() -> c
-    int[] calWarningLevelLimited(com.wave.mzpad.model.MeasureResult,com.wave.mzpad.model.MeasureParam) -> a
-com.wave.mzpad.service.CommunicateServer -> com.wave.mzpad.e.b:
-    java.lang.String TAG -> b
-    android.os.Handler mHandler -> c
-    int currStatus -> d
-    android.app.Activity context -> e
-    com.wave.mzpad.service.CommunicateServer commServer -> f
-    android.hardware.usb.UsbManager mUsbManager -> g
-    com.wave.mzpad.usbserial.UsbSerialPort sPort -> h
-    com.wave.mzpad.usbserial.SerialInputOutputManager mSerialIoManager -> i
-    java.util.concurrent.ExecutorService mExecutor -> j
-    com.wave.mzpad.service.HeartBeatThread heartBeatThread -> k
-    int firstStart -> a
-    com.wave.mzpad.usbserial.SerialInputOutputManager$Listener mListener -> l
-    com.wave.mzpad.service.CommunicateServer getInstance(android.app.Activity,android.os.Handler) -> a
-    void initSerialDevice(android.content.Context,android.os.Handler) -> a
-    void resetSerialDevice() -> a
-    void sendStart() -> b
-    void sendPause() -> c
-    void sendStop() -> d
-    void sendImmediately() -> e
-    void sendHeartBeat() -> f
-    boolean sendCommand(java.lang.String) -> b
-    void stopIoManager() -> g
-    void startIoManager() -> j
-    java.lang.String[] checkData(java.lang.String) -> a
-    java.lang.String access$0() -> h
-    android.app.Activity access$1(com.wave.mzpad.service.CommunicateServer) -> a
-    com.wave.mzpad.service.HeartBeatThread access$2(com.wave.mzpad.service.CommunicateServer) -> b
-    com.wave.mzpad.service.CommunicateServer access$3() -> i
-    android.os.Handler access$4(com.wave.mzpad.service.CommunicateServer) -> c
-    void access$5(com.wave.mzpad.service.CommunicateServer,com.wave.mzpad.service.HeartBeatThread) -> a
-com.wave.mzpad.service.CommunicateServer$1 -> com.wave.mzpad.e.c:
-    com.wave.mzpad.service.CommunicateServer this$0 -> a
+com.wave.mzpad.service.BusinessDataBase -> com.wave.mzpad.service.BusinessDataBase:
+    android.content.Context ctx -> ctx
+    com.wave.mzpad.db.MeasureResultDAO measureResultDao -> measureResultDao
+    com.wave.mzpad.db.MeasureParamDAO measureParadmDao -> measureParadmDao
+    com.wave.mzpad.db.StandardDataDAO standardDataDAO -> standardDataDAO
+    java.lang.String TAG -> TAG
+    com.wave.mzpad.db.MeasureParamDAO getMeasureParadmDao() -> getMeasureParadmDao
+    com.wave.mzpad.db.MeasureResultDAO getMeasureResultDao() -> getMeasureResultDao
+    com.wave.mzpad.db.StandardDataDAO getStandardDataDAO() -> getStandardDataDAO
+    java.util.List getMeasureResult(int) -> getMeasureResult
+    int calInnerSideCoeft(int,int,int) -> calInnerSideCoeft
+    int calOuterSideCoeft(int) -> calOuterSideCoeft
+    int calInnerSideLimit(com.wave.mzpad.model.MeasureResult,com.wave.mzpad.model.MeasureParam) -> calInnerSideLimit
+    int calOuterSideLimit(com.wave.mzpad.model.MeasureResult,com.wave.mzpad.model.MeasureParam) -> calOuterSideLimit
+    void initData() -> initData
+    int calLimitValue(com.wave.mzpad.model.MeasureResult,com.wave.mzpad.model.MeasureParam) -> calLimitValue
+    int[] calWarningLevelLimited(com.wave.mzpad.model.MeasureResult,com.wave.mzpad.model.MeasureParam) -> calWarningLevelLimited
+    com.wave.mzpad.model.StandardData getStandardData(com.wave.mzpad.model.MeasureResult) -> getStandardData
+    int getCurveWidenValue(com.wave.mzpad.model.MeasureParam,com.wave.mzpad.model.MeasureResult) -> getCurveWidenValue
+com.wave.mzpad.service.CommunicateServer -> com.wave.mzpad.service.CommunicateServer:
+    java.lang.String TAG -> TAG
+    android.os.Handler mHandler -> mHandler
+    int currStatus -> currStatus
+    android.app.Activity context -> context
+    int START -> START
+    int PAUSE -> PAUSE
+    int STOP -> STOP
+    int CONNECTED -> CONNECTED
+    com.wave.mzpad.service.CommunicateServer commServer -> commServer
+    android.hardware.usb.UsbManager mUsbManager -> mUsbManager
+    com.wave.mzpad.usbserial.UsbSerialPort sPort -> sPort
+    com.wave.mzpad.usbserial.SerialInputOutputManager mSerialIoManager -> mSerialIoManager
+    java.util.concurrent.ExecutorService mExecutor -> mExecutor
+    com.wave.mzpad.service.HeartBeatThread heartBeatThread -> heartBeatThread
+    int firstStart -> firstStart
+    com.wave.mzpad.usbserial.SerialInputOutputManager$Listener mListener -> mListener
+    com.wave.mzpad.service.CommunicateServer getInstance(android.app.Activity,android.os.Handler) -> getInstance
+    void initSerialDevice(android.content.Context,android.os.Handler) -> initSerialDevice
+    void resetSerialDevice() -> resetSerialDevice
+    void sendStart() -> sendStart
+    void sendPause() -> sendPause
+    void sendStop() -> sendStop
+    void sendImmediately() -> sendImmediately
+    void sendHeartBeat() -> sendHeartBeat
+    boolean sendCommand(java.lang.String) -> sendCommand
+    int getCurrStatus() -> getCurrStatus
+    void stopIoManager() -> stopIoManager
+    void startIoManager() -> startIoManager
+    java.lang.String[] checkData(java.lang.String) -> checkData
+    void sendASK(java.lang.String) -> sendASK
+    void sendNoASK(java.lang.String) -> sendNoASK
+    java.lang.String access$0() -> access$0
+    android.app.Activity access$1(com.wave.mzpad.service.CommunicateServer) -> access$1
+    com.wave.mzpad.service.HeartBeatThread access$2(com.wave.mzpad.service.CommunicateServer) -> access$2
+    com.wave.mzpad.service.CommunicateServer access$3() -> access$3
+    android.os.Handler access$4(com.wave.mzpad.service.CommunicateServer) -> access$4
+    void access$5(com.wave.mzpad.service.CommunicateServer,com.wave.mzpad.service.HeartBeatThread) -> access$5
+com.wave.mzpad.service.CommunicateServer$1 -> com.wave.mzpad.service.CommunicateServer$1:
+    com.wave.mzpad.service.CommunicateServer this$0 -> this$0
     void onRunError(java.lang.Exception) -> onRunError
     void onNewData(byte[]) -> onNewData
-    com.wave.mzpad.service.CommunicateServer access$0(com.wave.mzpad.service.CommunicateServer$1) -> a
-com.wave.mzpad.service.CommunicateServer$1$1 -> com.wave.mzpad.e.d:
-    com.wave.mzpad.service.CommunicateServer$1 this$1 -> a
-    byte[] val$data -> b
+    com.wave.mzpad.service.CommunicateServer access$0(com.wave.mzpad.service.CommunicateServer$1) -> access$0
+com.wave.mzpad.service.CommunicateServer$1$1 -> com.wave.mzpad.service.CommunicateServer$1$1:
+    com.wave.mzpad.service.CommunicateServer$1 this$1 -> this$1
+    byte[] val$data -> val$data
     void run() -> run
-com.wave.mzpad.service.DataUtils -> com.wave.mzpad.e.e:
-    java.lang.String app_filename -> a
-    void setfirst(android.content.Context) -> a
-    boolean isFirst(android.content.Context) -> b
-com.wave.mzpad.service.HeartBeatThread -> com.wave.mzpad.e.f:
-    long startTime -> c
-    java.util.Timer timer -> d
-    java.util.TimerTask timerTask -> e
-    com.wave.mzpad.service.CommunicateServer communicateServer -> f
-    android.os.Handler handler -> g
-    int status -> h
-    int START -> a
-    int STOP -> b
-    java.lang.String TAG -> i
+com.wave.mzpad.service.DataUtils -> com.wave.mzpad.service.DataUtils:
+    java.lang.String app_filename -> app_filename
+    void setfirst(android.content.Context) -> setfirst
+    boolean isFirst(android.content.Context) -> isFirst
+com.wave.mzpad.service.HeartBeatThread -> com.wave.mzpad.service.HeartBeatThread:
+    long startTime -> startTime
+    java.util.Timer timer -> timer
+    java.util.TimerTask timerTask -> timerTask
+    com.wave.mzpad.service.CommunicateServer communicateServer -> communicateServer
+    android.os.Handler handler -> handler
+    int status -> status
+    int START -> START
+    int STOP -> STOP
+    java.lang.String TAG -> TAG
     void run() -> run
-    void setStartTime(long) -> a
-    void startTime() -> a
-    void stopTime() -> b
-    int access$0(com.wave.mzpad.service.HeartBeatThread) -> a
-    long access$1(com.wave.mzpad.service.HeartBeatThread) -> b
-    java.lang.String access$2(com.wave.mzpad.service.HeartBeatThread) -> c
-    android.os.Handler access$3(com.wave.mzpad.service.HeartBeatThread) -> d
-    com.wave.mzpad.service.CommunicateServer access$4(com.wave.mzpad.service.HeartBeatThread) -> e
-com.wave.mzpad.service.HeartBeatThread$1 -> com.wave.mzpad.e.g:
-    com.wave.mzpad.service.HeartBeatThread this$0 -> a
+    void setStartTime(long) -> setStartTime
+    void setStatus(int) -> setStatus
+    void startTime() -> startTime
+    void stopTime() -> stopTime
+    void init() -> init
+    int access$0(com.wave.mzpad.service.HeartBeatThread) -> access$0
+    long access$1(com.wave.mzpad.service.HeartBeatThread) -> access$1
+    java.lang.String access$2(com.wave.mzpad.service.HeartBeatThread) -> access$2
+    android.os.Handler access$3(com.wave.mzpad.service.HeartBeatThread) -> access$3
+    com.wave.mzpad.service.CommunicateServer access$4(com.wave.mzpad.service.HeartBeatThread) -> access$4
+com.wave.mzpad.service.HeartBeatThread$1 -> com.wave.mzpad.service.HeartBeatThread$1:
+    com.wave.mzpad.service.HeartBeatThread this$0 -> this$0
     void run() -> run
-com.wave.mzpad.service.JxlExcelUtil -> com.wave.mzpad.e.h:
-    java.lang.String TAG -> a
-    android.content.Context ctx -> b
-    com.wave.mzpad.service.JxlExcelUtil$OperateExcel operateExcel -> c
-    void setOperateExcel(com.wave.mzpad.service.JxlExcelUtil$OperateExcel) -> a
-    void copyAndupdateExcel(java.lang.String,java.lang.String,java.lang.String) -> a
-    void updateLabelCell(jxl.write.WritableSheet,com.wave.mzpad.model.CellElement) -> a
-com.wave.mzpad.service.JxlExcelUtil$OperateExcel -> com.wave.mzpad.e.i:
-    void updateExcel(jxl.write.WritableSheet) -> a
-com.wave.mzpad.service.ServiceExportReport -> com.wave.mzpad.e.j:
-    java.lang.String TAG -> a
-    com.wave.mzpad.model.MeasureParam abstractObject -> b
-    java.util.List listAbstractObject -> c
-    com.wave.mzpad.service.JxlExcelUtil excelUtil -> d
-    int startX -> e
-    int startY -> f
-    int colMax -> g
-    com.wave.mzpad.service.BusinessDataBase businessDataBase -> h
-    void exportExcel() -> a
-    void updateExcel(jxl.write.WritableSheet) -> a
-    void insertColumnArray(jxl.write.WritableSheet,int,int,int) -> a
-    void insertExcelLabel(jxl.write.WritableSheet,int,int,java.lang.String) -> a
+com.wave.mzpad.service.JxlExcelUtil -> com.wave.mzpad.service.JxlExcelUtil:
+    java.lang.String TAG -> TAG
+    android.content.Context ctx -> ctx
+    com.wave.mzpad.service.JxlExcelUtil$OperateExcel operateExcel -> operateExcel
+    void setOperateExcel(com.wave.mzpad.service.JxlExcelUtil$OperateExcel) -> setOperateExcel
+    void createExcel(java.lang.String,java.lang.String) -> createExcel
+    void copyAndupdateExcel(java.lang.String,java.lang.String,java.lang.String) -> copyAndupdateExcel
+    void updateLabelCell(jxl.write.WritableSheet,com.wave.mzpad.model.CellElement) -> updateLabelCell
+    void colseWritableWorkbook(jxl.write.WritableWorkbook) -> colseWritableWorkbook
+com.wave.mzpad.service.JxlExcelUtil$OperateExcel -> com.wave.mzpad.service.JxlExcelUtil$OperateExcel:
+    void updateExcel(jxl.write.WritableSheet) -> updateExcel
+com.wave.mzpad.service.ServiceExportReport -> com.wave.mzpad.service.ServiceExportReport:
+    java.lang.String TAG -> TAG
+    com.wave.mzpad.model.MeasureParam abstractObject -> abstractObject
+    java.util.List listAbstractObject -> listAbstractObject
+    com.wave.mzpad.service.JxlExcelUtil excelUtil -> excelUtil
+    int startX -> startX
+    int startY -> startY
+    int colMax -> colMax
+    com.wave.mzpad.service.BusinessDataBase businessDataBase -> businessDataBase
+    void exportExcel() -> exportExcel
+    void updateExcel(jxl.write.WritableSheet) -> updateExcel
+    void insertColumnArray(jxl.write.WritableSheet,int,int,int) -> insertColumnArray
+    void insertExcelLabel(jxl.write.WritableSheet,int,int,java.lang.String) -> insertExcelLabel
 com.wave.mzpad.usbserial.CdcAcmSerialDriver -> com.wave.mzpad.usbserial.CdcAcmSerialDriver:
     java.lang.String TAG -> TAG
     android.hardware.usb.UsbDevice mDevice -> mDevice
@@ -6789,6 +6807,8 @@ jxl.biff.XFRecord -> a.a.bd:
     boolean isDate() -> f
     boolean isNumber() -> g
     byte[] getData() -> a
+    void setXFLocked(boolean) -> a
+    void setXFCellOptions(int) -> a
     void setXFAlignment(jxl.format.Alignment) -> a
     void setXFVerticalAlignment(jxl.format.VerticalAlignment) -> a
     void setXFBorder(jxl.format.Border,jxl.format.BorderLineStyle,jxl.format.Colour) -> a
@@ -6804,9 +6824,9 @@ jxl.biff.XFRecord -> a.a.bd:
     void initializeFormatInformation() -> q
     int hashCode() -> hashCode
     boolean equals(java.lang.Object) -> equals
-    void setFormatIndex(int) -> a
+    void setFormatIndex(int) -> b
     int getFontIndex() -> p
-    void setFontIndex(int) -> b
+    void setFontIndex(int) -> c
     void setXFDetails(jxl.biff.XFRecord$XFType,int) -> a
     void rationalize(jxl.biff.IndexMapping) -> a
     void setFont(jxl.biff.FontRecord) -> a
@@ -9430,6 +9450,7 @@ jxl.write.WritableWorkbook -> a.e.t:
     jxl.write.WritableCellFormat HIDDEN_STYLE -> e
     jxl.write.WritableSheet getSheet(int) -> a
     void close() -> a
+    jxl.write.WritableSheet createSheet(java.lang.String,int) -> a
     void write() -> b
 jxl.write.WriteException -> a.e.u:
 jxl.write.biff.BOFRecord -> a.e.a.a:
@@ -9641,6 +9662,7 @@ jxl.write.biff.ExternalSheetRecord -> a.e.a.aj:
     byte[] getData() -> a
     int getSupbookIndex(int) -> a
     int getFirstTabIndex(int) -> b
+    void sheetInserted(int) -> c
 jxl.write.biff.ExternalSheetRecord$XTI -> a.e.a.ak:
     int supbookIndex -> a
     int firstTab -> b
@@ -10098,7 +10120,10 @@ jxl.write.biff.SheetWriter -> a.e.a.cv:
 jxl.write.biff.StringRecord -> a.e.a.cw:
     java.lang.String value -> a
     byte[] getData() -> a
-jxl.write.biff.Styles -> a.e.a.cx:
+jxl.write.biff.StyleXFRecord -> a.e.a.cx:
+    void setCellOptions(int) -> d
+    void setLocked(boolean) -> b
+jxl.write.biff.Styles -> a.e.a.cy:
     jxl.common.Logger logger -> a
     jxl.write.WritableFont arial10pt -> b
     jxl.write.WritableFont hyperlinkFont -> c
@@ -10106,18 +10131,18 @@ jxl.write.biff.Styles -> a.e.a.cx:
     jxl.write.WritableCellFormat hyperlinkStyle -> e
     jxl.write.WritableCellFormat hiddenStyle -> f
     jxl.write.WritableCellFormat defaultDateFormat -> g
-    void initNormalStyle() -> c
+    void initNormalStyle() -> d
     jxl.write.WritableCellFormat getNormalStyle() -> a
-    void initHiddenStyle() -> d
-    void initHyperlinkStyle() -> e
-    void initArial10Pt() -> f
-    jxl.write.WritableFont getArial10Pt() -> g
+    void initHiddenStyle() -> e
+    void initHyperlinkStyle() -> f
+    void initArial10Pt() -> g
+    jxl.write.WritableFont getArial10Pt() -> b
     void initHyperlinkFont() -> h
     jxl.write.WritableFont getHyperlinkFont() -> i
     void initDefaultDateFormat() -> j
-    jxl.write.WritableCellFormat getDefaultDateFormat() -> b
+    jxl.write.WritableCellFormat getDefaultDateFormat() -> c
     jxl.biff.XFRecord getFormat(jxl.biff.XFRecord) -> a
-jxl.write.biff.SupbookRecord -> a.e.a.cy:
+jxl.write.biff.SupbookRecord -> a.e.a.cz:
     jxl.common.Logger logger -> f
     jxl.write.biff.SupbookRecord$SupbookType type -> g
     byte[] data -> h
@@ -10138,39 +10163,41 @@ jxl.write.biff.SupbookRecord -> a.e.a.cy:
     java.lang.String getFileName() -> e
     int getSheetIndex(java.lang.String) -> a
     java.lang.String getSheetName(int) -> b
-jxl.write.biff.SupbookRecord$SupbookType -> a.e.a.cz:
-jxl.write.biff.TabIdRecord -> a.e.a.da:
+jxl.write.biff.SupbookRecord$SupbookType -> a.e.a.da:
+jxl.write.biff.TabIdRecord -> a.e.a.db:
     byte[] data -> a
     byte[] getData() -> a
-jxl.write.biff.TemplateRecord -> a.e.a.db:
+jxl.write.biff.TemplateRecord -> a.e.a.dc:
     byte[] getData() -> a
-jxl.write.biff.TopMarginRecord -> a.e.a.dc:
-jxl.write.biff.UsesElfsRecord -> a.e.a.dd:
+jxl.write.biff.TopMarginRecord -> a.e.a.dd:
+jxl.write.biff.UsesElfsRecord -> a.e.a.de:
     byte[] data -> a
     boolean usesElfs -> b
     byte[] getData() -> a
-jxl.write.biff.VerticalCentreRecord -> a.e.a.de:
+jxl.write.biff.VerticalCentreRecord -> a.e.a.df:
     byte[] data -> a
     boolean centre -> b
     byte[] getData() -> a
-jxl.write.biff.VerticalPageBreaksRecord -> a.e.a.df:
+jxl.write.biff.VerticalPageBreaksRecord -> a.e.a.dg:
     int[] columnBreaks -> a
     byte[] getData() -> a
-jxl.write.biff.Weird1Record -> a.e.a.dg:
+jxl.write.biff.Weird1Record -> a.e.a.dh:
     byte[] getData() -> a
-jxl.write.biff.Window1Record -> a.e.a.dh:
+jxl.write.biff.Window1Record -> a.e.a.di:
     byte[] data -> a
     int selectedSheet -> b
     byte[] getData() -> a
-jxl.write.biff.Window2Record -> a.e.a.di:
+jxl.write.biff.Window2Record -> a.e.a.dj:
     byte[] data -> a
     byte[] getData() -> a
-jxl.write.biff.WindowProtectRecord -> a.e.a.dj:
+jxl.write.biff.WindowProtectRecord -> a.e.a.dk:
     boolean protection -> a
     byte[] data -> b
     byte[] getData() -> a
-jxl.write.biff.WritableFontRecord -> a.e.a.dk:
-jxl.write.biff.WritableSheetImpl -> a.e.a.dl:
+jxl.write.biff.WritableFontRecord -> a.e.a.dl:
+jxl.write.biff.WritableFonts -> a.e.a.dm:
+jxl.write.biff.WritableFormattingRecords -> a.e.a.dn:
+jxl.write.biff.WritableSheetImpl -> a.e.a.do:
     jxl.common.Logger logger -> a
     java.lang.String name -> b
     jxl.write.biff.File outputFile -> c
@@ -10226,10 +10253,10 @@ jxl.write.biff.WritableSheetImpl -> a.e.a.dl:
     void addValidationCell(jxl.write.biff.CellValue) -> b
     jxl.biff.drawing.ComboBox getComboBox() -> j
     void setComboBox(jxl.biff.drawing.ComboBox) -> a
-jxl.write.biff.WritableSheetImpl$ColumnInfoComparator -> a.e.a.dm:
+jxl.write.biff.WritableSheetImpl$ColumnInfoComparator -> a.e.a.dp:
     boolean equals(java.lang.Object) -> equals
     int compare(java.lang.Object,java.lang.Object) -> compare
-jxl.write.biff.WritableWorkbookImpl -> a.e.a.dn:
+jxl.write.biff.WritableWorkbookImpl -> a.e.a.dq:
     jxl.common.Logger logger -> f
     jxl.biff.FormattingRecords formatRecords -> g
     jxl.write.biff.File outputFile -> h
@@ -10254,6 +10281,8 @@ jxl.write.biff.WritableWorkbookImpl -> a.e.a.dn:
     jxl.biff.XCTRecord[] xctRecords -> A
     jxl.write.WritableSheet getSheet(int) -> a
     void close() -> a
+    jxl.write.WritableSheet createSheet(java.lang.String,int,boolean) -> a
+    jxl.write.WritableSheet createSheet(java.lang.String,int) -> a
     void write() -> b
     void copyWorkbook(jxl.Workbook) -> a
     void rationalize() -> g
@@ -10269,6 +10298,6 @@ jxl.write.biff.WritableWorkbookImpl -> a.e.a.dn:
     jxl.write.biff.Styles getStyles() -> d
     void addNameArea(jxl.biff.BuiltInName,jxl.write.WritableSheet,int,int,int,int,boolean) -> a
     jxl.WorkbookSettings getSettings() -> f
-jxl.write.biff.WriteAccessRecord -> a.e.a.do:
+jxl.write.biff.WriteAccessRecord -> a.e.a.dr:
     byte[] data -> a
     byte[] getData() -> a

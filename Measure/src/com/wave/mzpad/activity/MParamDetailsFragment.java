@@ -298,7 +298,7 @@ public class MParamDetailsFragment extends Fragment {
 			sendMessage(Contants.SHOW_MSG, "请先保存当前记录！");
 			return ;
 		}
-		if(measureParam.getRadius()<=0){
+		if(measureParam.getRadius()<0){
 			sendMessage(Contants.SHOW_MSG, "设置参数不合法，请检查半径值！");
 			return ;
 		}
