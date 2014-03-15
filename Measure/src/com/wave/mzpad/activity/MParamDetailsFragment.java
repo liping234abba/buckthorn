@@ -250,7 +250,6 @@ public class MParamDetailsFragment extends Fragment {
 			switch (arg0.getId()) {
 				case R.id.save_data :
 					saveMeasureParam();
-					server.firstStart = 0 ;
 					break;
 				case R.id.conn_start :
 					if(!Utility.isEmpty(measureParam) && measureParam.getId()>0){
@@ -397,6 +396,14 @@ public class MParamDetailsFragment extends Fragment {
 	 */
 	public void sendMessage(int what,String text){
 		mHandler.sendMessage(mHandler.obtainMessage(what, text));
+	}
+	
+	@Override
+	public void onPause() {
+		if(!Utility.isEmpty(server) && server.getCurrStatus() == CommunicateServer.START){
+			server.sendStop();
+		}
+		super.onPause();
 	}
 	
 }

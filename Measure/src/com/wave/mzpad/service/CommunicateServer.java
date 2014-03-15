@@ -69,8 +69,6 @@ public class CommunicateServer {
 	
 	private HeartBeatThread heartBeatThread = null ;
 	
-	public  int firstStart = 0 ;
-
 	private final SerialInputOutputManager.Listener mListener = new SerialInputOutputManager.Listener() {
 
 		@Override
@@ -111,14 +109,17 @@ public class CommunicateServer {
 									break;
 								case Contants.COMMAND_PAUSE:
 									mHandler.sendMessage(mHandler.obtainMessage(Contants.SHOW_MSG, "已暂停……"));
+									currStatus = PAUSE ; //标识暂停状态
 									break;
 								case Contants.COMMAND_SAMPLE_INTERVAL:
 									break;
 								case Contants.COMMAND_START:
 									mHandler.sendMessage(mHandler.obtainMessage(Contants.SHOW_MSG, "已开始……"));
+									currStatus = START ; //标识启动状态
 									break;
 								case Contants.COMMAND_STOP:
 									mHandler.sendMessage(mHandler.obtainMessage(Contants.SHOW_MSG, "已停止……"));
+									currStatus = STOP ; //标识停止状态
 									break;
 								default :
 									break;
@@ -206,10 +207,6 @@ public class CommunicateServer {
 	 * @return
 	 */
 	public void sendStart() {
-		if(firstStart<1){
-		   sendStop();	
-		   firstStart = 1 ;
-		}
 		String cmd = Contants.COMMAND_FORMAT.replaceFirst("%S", Utility.toHexString(Contants.COMMAND_START));
 		cmd = cmd.replace("%S", Utility.getCheckCodeHexByString(cmd));
 		if(sendCommand(cmd)){
