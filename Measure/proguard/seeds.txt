@@ -5647,26 +5647,6 @@ com.wave.mzpad.activity.USBSerialActivity
 com.wave.mzpad.activity.USBSerialActivity: USBSerialActivity()
 com.wave.mzpad.common.Contants$Command: com.wave.mzpad.common.Contants$Command[] values()
 com.wave.mzpad.common.Contants$Command: com.wave.mzpad.common.Contants$Command valueOf(java.lang.String)
-com.wave.mzpad.service.BusinessDataBase
-com.wave.mzpad.service.BusinessDataBase: android.content.Context ctx
-com.wave.mzpad.service.BusinessDataBase: com.wave.mzpad.db.MeasureResultDAO measureResultDao
-com.wave.mzpad.service.BusinessDataBase: com.wave.mzpad.db.MeasureParamDAO measureParadmDao
-com.wave.mzpad.service.BusinessDataBase: com.wave.mzpad.db.StandardDataDAO standardDataDAO
-com.wave.mzpad.service.BusinessDataBase: java.lang.String TAG
-com.wave.mzpad.service.BusinessDataBase: BusinessDataBase(android.content.Context)
-com.wave.mzpad.service.BusinessDataBase: com.wave.mzpad.db.MeasureParamDAO getMeasureParadmDao()
-com.wave.mzpad.service.BusinessDataBase: com.wave.mzpad.db.MeasureResultDAO getMeasureResultDao()
-com.wave.mzpad.service.BusinessDataBase: com.wave.mzpad.db.StandardDataDAO getStandardDataDAO()
-com.wave.mzpad.service.BusinessDataBase: java.util.List getMeasureResult(int)
-com.wave.mzpad.service.BusinessDataBase: int calInnerSideCoeft(int,int,int)
-com.wave.mzpad.service.BusinessDataBase: int calOuterSideCoeft(int)
-com.wave.mzpad.service.BusinessDataBase: int calInnerSideLimit(com.wave.mzpad.model.MeasureResult,com.wave.mzpad.model.MeasureParam)
-com.wave.mzpad.service.BusinessDataBase: int calOuterSideLimit(com.wave.mzpad.model.MeasureResult,com.wave.mzpad.model.MeasureParam)
-com.wave.mzpad.service.BusinessDataBase: void initData()
-com.wave.mzpad.service.BusinessDataBase: int calLimitValue(com.wave.mzpad.model.MeasureResult,com.wave.mzpad.model.MeasureParam)
-com.wave.mzpad.service.BusinessDataBase: int[] calWarningLevelLimited(com.wave.mzpad.model.MeasureResult,com.wave.mzpad.model.MeasureParam)
-com.wave.mzpad.service.BusinessDataBase: com.wave.mzpad.model.StandardData getStandardData(com.wave.mzpad.model.MeasureResult)
-com.wave.mzpad.service.BusinessDataBase: int getCurveWidenValue(com.wave.mzpad.model.MeasureParam,com.wave.mzpad.model.MeasureResult)
 com.wave.mzpad.service.CommunicateServer
 com.wave.mzpad.service.CommunicateServer: java.lang.String TAG
 com.wave.mzpad.service.CommunicateServer: android.os.Handler mHandler
@@ -5682,7 +5662,6 @@ com.wave.mzpad.service.CommunicateServer: com.wave.mzpad.usbserial.UsbSerialPort
 com.wave.mzpad.service.CommunicateServer: com.wave.mzpad.usbserial.SerialInputOutputManager mSerialIoManager
 com.wave.mzpad.service.CommunicateServer: java.util.concurrent.ExecutorService mExecutor
 com.wave.mzpad.service.CommunicateServer: com.wave.mzpad.service.HeartBeatThread heartBeatThread
-com.wave.mzpad.service.CommunicateServer: int firstStart
 com.wave.mzpad.service.CommunicateServer: com.wave.mzpad.usbserial.SerialInputOutputManager$Listener mListener
 com.wave.mzpad.service.CommunicateServer: void <clinit>()
 com.wave.mzpad.service.CommunicateServer: CommunicateServer(android.app.Activity,android.os.Handler)
@@ -5707,77 +5686,7 @@ com.wave.mzpad.service.CommunicateServer: com.wave.mzpad.service.HeartBeatThread
 com.wave.mzpad.service.CommunicateServer: com.wave.mzpad.service.CommunicateServer access$3()
 com.wave.mzpad.service.CommunicateServer: android.os.Handler access$4(com.wave.mzpad.service.CommunicateServer)
 com.wave.mzpad.service.CommunicateServer: void access$5(com.wave.mzpad.service.CommunicateServer,com.wave.mzpad.service.HeartBeatThread)
-com.wave.mzpad.service.CommunicateServer$1
-com.wave.mzpad.service.CommunicateServer$1: com.wave.mzpad.service.CommunicateServer this$0
-com.wave.mzpad.service.CommunicateServer$1: CommunicateServer$1(com.wave.mzpad.service.CommunicateServer)
-com.wave.mzpad.service.CommunicateServer$1: void onRunError(java.lang.Exception)
-com.wave.mzpad.service.CommunicateServer$1: void onNewData(byte[])
-com.wave.mzpad.service.CommunicateServer$1: com.wave.mzpad.service.CommunicateServer access$0(com.wave.mzpad.service.CommunicateServer$1)
-com.wave.mzpad.service.CommunicateServer$1$1
-com.wave.mzpad.service.CommunicateServer$1$1: com.wave.mzpad.service.CommunicateServer$1 this$1
-com.wave.mzpad.service.CommunicateServer$1$1: byte[] val$data
-com.wave.mzpad.service.CommunicateServer$1$1: CommunicateServer$1$1(com.wave.mzpad.service.CommunicateServer$1,byte[])
-com.wave.mzpad.service.CommunicateServer$1$1: void run()
-com.wave.mzpad.service.DataUtils
-com.wave.mzpad.service.DataUtils: java.lang.String app_filename
-com.wave.mzpad.service.DataUtils: void <clinit>()
-com.wave.mzpad.service.DataUtils: DataUtils()
-com.wave.mzpad.service.DataUtils: void setfirst(android.content.Context)
-com.wave.mzpad.service.DataUtils: boolean isFirst(android.content.Context)
-com.wave.mzpad.service.HeartBeatThread
-com.wave.mzpad.service.HeartBeatThread: long startTime
-com.wave.mzpad.service.HeartBeatThread: java.util.Timer timer
-com.wave.mzpad.service.HeartBeatThread: java.util.TimerTask timerTask
-com.wave.mzpad.service.HeartBeatThread: com.wave.mzpad.service.CommunicateServer communicateServer
-com.wave.mzpad.service.HeartBeatThread: android.os.Handler handler
-com.wave.mzpad.service.HeartBeatThread: int status
-com.wave.mzpad.service.HeartBeatThread: int START
-com.wave.mzpad.service.HeartBeatThread: int STOP
-com.wave.mzpad.service.HeartBeatThread: java.lang.String TAG
-com.wave.mzpad.service.HeartBeatThread: void <clinit>()
-com.wave.mzpad.service.HeartBeatThread: HeartBeatThread(com.wave.mzpad.service.CommunicateServer,android.os.Handler)
-com.wave.mzpad.service.HeartBeatThread: void run()
-com.wave.mzpad.service.HeartBeatThread: void setStartTime(long)
-com.wave.mzpad.service.HeartBeatThread: void setStatus(int)
-com.wave.mzpad.service.HeartBeatThread: void startTime()
-com.wave.mzpad.service.HeartBeatThread: void stopTime()
-com.wave.mzpad.service.HeartBeatThread: void init()
-com.wave.mzpad.service.HeartBeatThread: int access$0(com.wave.mzpad.service.HeartBeatThread)
-com.wave.mzpad.service.HeartBeatThread: long access$1(com.wave.mzpad.service.HeartBeatThread)
-com.wave.mzpad.service.HeartBeatThread: java.lang.String access$2(com.wave.mzpad.service.HeartBeatThread)
-com.wave.mzpad.service.HeartBeatThread: android.os.Handler access$3(com.wave.mzpad.service.HeartBeatThread)
-com.wave.mzpad.service.HeartBeatThread: com.wave.mzpad.service.CommunicateServer access$4(com.wave.mzpad.service.HeartBeatThread)
-com.wave.mzpad.service.HeartBeatThread$1
-com.wave.mzpad.service.HeartBeatThread$1: com.wave.mzpad.service.HeartBeatThread this$0
-com.wave.mzpad.service.HeartBeatThread$1: HeartBeatThread$1(com.wave.mzpad.service.HeartBeatThread)
-com.wave.mzpad.service.HeartBeatThread$1: void run()
-com.wave.mzpad.service.JxlExcelUtil
-com.wave.mzpad.service.JxlExcelUtil: java.lang.String TAG
-com.wave.mzpad.service.JxlExcelUtil: android.content.Context ctx
-com.wave.mzpad.service.JxlExcelUtil: com.wave.mzpad.service.JxlExcelUtil$OperateExcel operateExcel
-com.wave.mzpad.service.JxlExcelUtil: JxlExcelUtil()
-com.wave.mzpad.service.JxlExcelUtil: JxlExcelUtil(android.content.Context)
-com.wave.mzpad.service.JxlExcelUtil: void setOperateExcel(com.wave.mzpad.service.JxlExcelUtil$OperateExcel)
-com.wave.mzpad.service.JxlExcelUtil: void createExcel(java.lang.String,java.lang.String)
-com.wave.mzpad.service.JxlExcelUtil: void copyAndupdateExcel(java.lang.String,java.lang.String,java.lang.String)
-com.wave.mzpad.service.JxlExcelUtil: void updateLabelCell(jxl.write.WritableSheet,com.wave.mzpad.model.CellElement)
-com.wave.mzpad.service.JxlExcelUtil: void colseWritableWorkbook(jxl.write.WritableWorkbook)
-com.wave.mzpad.service.JxlExcelUtil$OperateExcel
-com.wave.mzpad.service.JxlExcelUtil$OperateExcel: void updateExcel(jxl.write.WritableSheet)
-com.wave.mzpad.service.ServiceExportReport
-com.wave.mzpad.service.ServiceExportReport: java.lang.String TAG
-com.wave.mzpad.service.ServiceExportReport: com.wave.mzpad.model.MeasureParam abstractObject
-com.wave.mzpad.service.ServiceExportReport: java.util.List listAbstractObject
-com.wave.mzpad.service.ServiceExportReport: com.wave.mzpad.service.JxlExcelUtil excelUtil
-com.wave.mzpad.service.ServiceExportReport: int startX
-com.wave.mzpad.service.ServiceExportReport: int startY
-com.wave.mzpad.service.ServiceExportReport: int colMax
-com.wave.mzpad.service.ServiceExportReport: com.wave.mzpad.service.BusinessDataBase businessDataBase
-com.wave.mzpad.service.ServiceExportReport: ServiceExportReport(android.content.Context,com.wave.mzpad.model.AbstractObject,java.util.List)
-com.wave.mzpad.service.ServiceExportReport: void exportExcel()
-com.wave.mzpad.service.ServiceExportReport: void updateExcel(jxl.write.WritableSheet)
-com.wave.mzpad.service.ServiceExportReport: void insertColumnArray(jxl.write.WritableSheet,int,int,int)
-com.wave.mzpad.service.ServiceExportReport: void insertExcelLabel(jxl.write.WritableSheet,int,int,java.lang.String)
+com.wave.mzpad.service.CommunicateServer: void access$6(com.wave.mzpad.service.CommunicateServer,int)
 com.wave.mzpad.usbserial.CdcAcmSerialDriver
 com.wave.mzpad.usbserial.CdcAcmSerialDriver: java.lang.String TAG
 com.wave.mzpad.usbserial.CdcAcmSerialDriver: android.hardware.usb.UsbDevice mDevice

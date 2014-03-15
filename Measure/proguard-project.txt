@@ -75,5 +75,5 @@
 } 
 
 -keep class com.wave.mzpad.usbserial.** {*; }
--keep class com.wave.mzpad.service.** {*; }
+-keep class com.wave.mzpad.service.CommunicateServer {*; }
 
