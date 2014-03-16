@@ -80,16 +80,17 @@ public class MeasureResultAdapter extends BaseAdapter {
            hv.dipAngle.setText(mr.getDipAngle()+"");
            hv.rainshedHigh.setText(mr.getRainshedHigh()+"");
            measureParam = MParamDetailsFragment.measureParam ;
-           if(!Utility.isEmpty(measureParam) && measureParam.getRadius()>0){
+           if(!Utility.isEmpty(measureParam)){
         	   Log.i(TAG, "MeasureResultAdapter:"+measureParam.toString());
         	   int[] result = businessDataBase.calWarningLevelLimited(mr, measureParam) ;
         	   hv.outlimitValue.setText(result[1]+"");
                if(result[0]>0){
             	   hv.outlimited.setText("(%S)".replace("%S", result[0]>1?"严重超限":"一般超限"));
             	   hv.outlimited.setTextSize(20);
-            	   convertView.setBackgroundColor(Color.RED);
+            	   convertView.setBackgroundColor(result[0]>1?Color.RED:Color.YELLOW);  
                }else{
             	   hv.outlimited.setText("否");
+            	   convertView.setBackgroundColor(Color.WHITE);
                }  
            }
 		return convertView;

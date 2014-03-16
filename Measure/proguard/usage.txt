@@ -82,13 +82,6 @@ com.wave.mzpad.model.CellElement:
     42:43:public void setY(int)
     46:46:public java.lang.String getValue()
     50:51:public void setValue(java.lang.String)
-com.wave.mzpad.service.BusinessDataBase:
-    127:130:public int calLimitValue(com.wave.mzpad.model.MeasureResult,com.wave.mzpad.model.MeasureParam)
-com.wave.mzpad.service.DataUtils:
-    6:6:public DataUtils()
-com.wave.mzpad.service.JxlExcelUtil:
-    65:81:public void createExcel(java.lang.String,java.lang.String)
-    163:166:public void colseWritableWorkbook(jxl.write.WritableWorkbook)
 com.wave.mzpad.test.TestAndroid
 jxl.Cell:
     public abstract boolean isHidden()
@@ -206,8 +199,6 @@ jxl.Workbook:
     public abstract java.lang.String[] getRangeNames()
     198:198:public static jxl.Workbook getWorkbook(java.io.File)
     213:239:public static jxl.Workbook getWorkbook(java.io.File,jxl.WorkbookSettings)
-    286:286:public static jxl.write.WritableWorkbook createWorkbook(java.io.File)
-    301:303:public static jxl.write.WritableWorkbook createWorkbook(java.io.File,jxl.WorkbookSettings)
     357:357:public static jxl.write.WritableWorkbook createWorkbook(java.io.OutputStream,jxl.Workbook)
     376:377:public static jxl.write.WritableWorkbook createWorkbook(java.io.OutputStream,jxl.Workbook,jxl.WorkbookSettings)
     393:393:public static jxl.write.WritableWorkbook createWorkbook(java.io.OutputStream)
@@ -468,8 +459,6 @@ jxl.biff.XFRecord:
     private static final int USE_PROTECTION
     private static final int USE_DEFAULT_VALUE
     519:605:protected XFRecord(jxl.format.CellFormat)
-    800:802:protected final void setXFLocked(boolean)
-    811:812:protected final void setXFCellOptions(int)
     835:838:protected void setXFIndentation(int)
     847:850:protected void setXFShrinkToFit(boolean)
     859:864:public jxl.format.Alignment getAlignment()
@@ -1267,7 +1256,6 @@ jxl.write.WritableWorkbook:
     public abstract jxl.write.WritableSheet getSheet(java.lang.String)
     public abstract jxl.write.WritableCell getWritableCell(java.lang.String)
     public abstract int getNumberOfSheets()
-    public abstract jxl.write.WritableSheet createSheet(java.lang.String,int)
     public abstract jxl.write.WritableSheet importSheet(java.lang.String,int,jxl.Sheet)
     public abstract void copySheet(int,java.lang.String,int)
     public abstract void copySheet(java.lang.String,java.lang.String,int)
@@ -1499,7 +1487,6 @@ jxl.write.biff.SheetWriter:
     619:619:final jxl.write.biff.FooterRecord getFooter()
     678:678:jxl.biff.WorkspaceInformationRecord getWorkspaceOptions()
 jxl.write.biff.SortRecord
-jxl.write.biff.StyleXFRecord
 jxl.write.biff.SupbookRecord:
     162:164:private void initInternal(jxl.read.biff.SupbookRecord)
 jxl.write.biff.WritableFontRecord:
@@ -1510,8 +1497,8 @@ jxl.write.biff.WritableFontRecord:
     135:141:protected void setColour(int)
     152:158:protected void setScriptStyle(int)
     168:173:protected void setStruckout(boolean)
-jxl.write.biff.WritableFonts
-jxl.write.biff.WritableFormattingRecords
+jxl.write.biff.WritableFormattingRecords:
+    public static jxl.write.WritableCellFormat normalStyle
 jxl.write.biff.WritableSheetCopier
 jxl.write.biff.WritableSheetImpl:
     private static final int rowGrowSize
@@ -1584,12 +1571,10 @@ jxl.write.biff.WritableSheetImpl:
     2724:2822:public void applySharedDataValidation(jxl.write.WritableCell,int,int)
     2834:2896:public void removeSharedDataValidation(jxl.write.WritableCell)
 jxl.write.biff.WritableWorkbookImpl:
-    182:215:public WritableWorkbookImpl(java.io.OutputStream,boolean,jxl.WorkbookSettings)
     362:368:public jxl.write.WritableSheet[] getSheets()
     397:397:public jxl.Sheet getReadSheet(int)
     420:434:public jxl.write.WritableSheet getSheet(java.lang.String)
     469:471:public void setOutputFile(java.io.File)
-    538:538:public jxl.write.WritableSheet createSheet(java.lang.String,int)
     550:600:public void removeSheet(int)
     613:621:public jxl.write.WritableSheet moveSheet(int,int)
     985:988:public void copySheet(int,java.lang.String,int)
