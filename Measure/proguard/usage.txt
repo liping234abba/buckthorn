@@ -21,6 +21,7 @@ com.wave.mzpad.common.Contants:
     public static final int REQUEST_GETDATA
     public static final int SHOW_MSG
     public static final int TOAST_MSG
+    public static final int SHOW_MSG_CHANGE
     public static final int PAGE_MAXSIZE
     public static final byte COMMAND_START
     public static final byte COMMAND_PAUSE

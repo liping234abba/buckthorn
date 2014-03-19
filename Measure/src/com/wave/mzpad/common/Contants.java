@@ -19,6 +19,8 @@ public class Contants {
 	
 	public final static int TOAST_MSG = 6; //Toast显示消息
 	
+	public final static int SHOW_MSG_CHANGE = 7; //改变按钮状态
+	
 	public final static int PAGE_MAXSIZE = 20 ;//一页显示条数
 	
 	public final static byte COMMAND_START = 0x01 ;//开始测量命令
@@ -41,6 +43,6 @@ public class Contants {
 	
     public static String COMMAND_FORMAT = "0x55,%S,0xff,%S,0xaa"; //命令格式
     
-    public static String EXPORT_EXCEL_FILEPATH = "wave" ;
-	
+    public static String EXPORT_EXCEL_FILEPATH = "wave" ;//导出报表路径
+    
 }

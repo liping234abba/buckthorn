@@ -227,4 +227,20 @@ public class Utility {
 		return Utility.toHexString((byte)sum);
 	}
 	
+	/*
+	 * 防止重复点击：dDuration毫秒钟内，只能点击一次
+	 */
+	private static long dClickTime = 0;
+
+	public static boolean isFastDoubleClick(int dDuration) {
+		long time = System.currentTimeMillis();
+		long timeD = time - dClickTime;
+		if (0 < timeD && timeD <= dDuration) {
+			return true;
+		} else {
+			dClickTime = time;
+			return false;
+		}
+	}
+	
 }

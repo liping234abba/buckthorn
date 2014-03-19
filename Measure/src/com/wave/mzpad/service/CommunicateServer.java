@@ -110,16 +110,19 @@ public class CommunicateServer {
 								case Contants.COMMAND_PAUSE:
 									mHandler.sendMessage(mHandler.obtainMessage(Contants.SHOW_MSG, "已暂停……"));
 									currStatus = PAUSE ; //标识暂停状态
+									mHandler.sendMessage(mHandler.obtainMessage(Contants.SHOW_MSG_CHANGE, false));
 									break;
 								case Contants.COMMAND_SAMPLE_INTERVAL:
 									break;
 								case Contants.COMMAND_START:
 									mHandler.sendMessage(mHandler.obtainMessage(Contants.SHOW_MSG, "已开始……"));
 									currStatus = START ; //标识启动状态
+									mHandler.sendMessage(mHandler.obtainMessage(Contants.SHOW_MSG_CHANGE, true));
 									break;
 								case Contants.COMMAND_STOP:
 									mHandler.sendMessage(mHandler.obtainMessage(Contants.SHOW_MSG, "已停止……"));
 									currStatus = STOP ; //标识停止状态
+									mHandler.sendMessage(mHandler.obtainMessage(Contants.SHOW_MSG_CHANGE, false));
 									break;
 								default :
 									break;

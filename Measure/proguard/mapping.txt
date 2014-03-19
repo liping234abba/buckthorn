@@ -5108,14 +5108,16 @@ com.wave.mzpad.activity.MParamDetailsFragment -> com.wave.mzpad.activity.MParamD
     android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> onCreateView
     void sendMessage(int,java.lang.String) -> a
     void onPause() -> onPause
+    void initImmediatelyStatus(boolean) -> a
     void access$0(com.wave.mzpad.activity.MParamDetailsFragment,java.lang.String[]) -> a
     android.widget.TextView access$1(com.wave.mzpad.activity.MParamDetailsFragment) -> a
     android.app.Activity access$2(com.wave.mzpad.activity.MParamDetailsFragment) -> b
-    void access$3(com.wave.mzpad.activity.MParamDetailsFragment) -> c
-    com.wave.mzpad.service.CommunicateServer access$4(com.wave.mzpad.activity.MParamDetailsFragment) -> d
-    void access$5(com.wave.mzpad.activity.MParamDetailsFragment) -> e
-    android.os.Handler access$6(com.wave.mzpad.activity.MParamDetailsFragment) -> f
-    com.wave.mzpad.adpter.MeasureResultAdapter access$7(com.wave.mzpad.activity.MParamDetailsFragment) -> g
+    void access$3(com.wave.mzpad.activity.MParamDetailsFragment,boolean) -> a
+    void access$4(com.wave.mzpad.activity.MParamDetailsFragment) -> c
+    com.wave.mzpad.service.CommunicateServer access$5(com.wave.mzpad.activity.MParamDetailsFragment) -> d
+    void access$6(com.wave.mzpad.activity.MParamDetailsFragment) -> e
+    android.os.Handler access$7(com.wave.mzpad.activity.MParamDetailsFragment) -> f
+    com.wave.mzpad.adpter.MeasureResultAdapter access$8(com.wave.mzpad.activity.MParamDetailsFragment) -> g
 com.wave.mzpad.activity.MParamDetailsFragment$1 -> com.wave.mzpad.activity.a:
     com.wave.mzpad.activity.MParamDetailsFragment this$0 -> a
     void handleMessage(android.os.Message) -> handleMessage
@@ -5239,6 +5241,7 @@ com.wave.mzpad.common.Log -> com.wave.mzpad.b.b:
     void d(java.lang.String,java.lang.String) -> f
 com.wave.mzpad.common.Utility -> com.wave.mzpad.b.c:
     char[] HEX_DIGITS -> a
+    long dClickTime -> b
     boolean isEmpty(java.lang.String) -> a
     boolean isEmpty(java.lang.String[]) -> a
     boolean isEmpty(java.lang.Object) -> a
@@ -5246,6 +5249,7 @@ com.wave.mzpad.common.Utility -> com.wave.mzpad.b.c:
     java.lang.String toHexString(byte) -> a
     int strToInt(java.lang.String) -> b
     java.lang.String getCheckCodeHexByString(java.lang.String) -> c
+    boolean isFastDoubleClick(int) -> a
 com.wave.mzpad.db.DAOBase -> com.wave.mzpad.c.a:
     java.lang.String TAG -> a
     android.content.Context mContext -> b

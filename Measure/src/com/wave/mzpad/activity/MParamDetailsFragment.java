@@ -90,6 +90,10 @@ public class MParamDetailsFragment extends Fragment {
 			case Contants.TOAST_MSG:
 				Toast.makeText(mActivity, (String)msg.obj+"", Toast.LENGTH_SHORT).show();
 				break;	
+			case Contants.SHOW_MSG_CHANGE:
+				boolean show = (Boolean)msg.obj ;
+				initImmediatelyStatus(show);
+				break;	
 			default:
 				break;
 			}
@@ -166,6 +170,7 @@ public class MParamDetailsFragment extends Fragment {
 		export_excel = (Button)view.findViewById(R.id.export_excel);
 		showMsg = (TextView)view.findViewById(R.id.show_msg);
 		listView = (ListView) view.findViewById(android.R.id.list);
+		initImmediatelyStatus(false);
 	}
 
 	private void setTextValueByMeasureParam(MeasureParam _mp) {
@@ -265,6 +270,10 @@ public class MParamDetailsFragment extends Fragment {
 					server.sendStop();
 					break;
 				case R.id.immediately_measure :
+					if(Utility.isFastDoubleClick(2000)){
+						sendMessage(Contants.TOAST_MSG, "两秒以内不能重复点击立即测量！");
+						return;
+					}
 					server.sendImmediately();
 					break;
 				case R.id.export_excel:
@@ -404,6 +413,10 @@ public class MParamDetailsFragment extends Fragment {
 			server.sendStop();
 		}
 		super.onPause();
+	}
+	
+	private void initImmediatelyStatus(boolean isShow){
+		immediately_measure.setEnabled(isShow);
 	}
 	
 }
