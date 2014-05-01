@@ -9,8 +9,39 @@
         android:layout_height="wrap_content"
         android:layout_weight="1" >
 
+       <LinearLayout
+            android:id="@+id/layout_stand_id"
+            style="@style/main_layout" >
+
+            <TextView
+                style="@style/app_textview"
+                android:text="@string/stand_id" />
+
+            <EditText
+                android:id="@+id/stand_id"
+                style="@style/app_editview_text" />
+        </LinearLayout>
+        
+        
+       <LinearLayout
+            android:id="@+id/layout_stand_name"
+            android:layout_below="@id/layout_stand_id"
+            style="@style/main_layout" >
+
+            <TextView
+                style="@style/app_textview"
+                android:text="@string/stand_name" />
+
+            <EditText
+                android:id="@+id/stand_name"
+                style="@style/app_editview_text" />
+        </LinearLayout>
+        
+        
+        
         <LinearLayout
             android:id="@+id/layout_linenum"
+            android:layout_below="@id/layout_stand_name"
             style="@style/main_layout" >
 
             <TextView
@@ -19,7 +50,7 @@
 
             <EditText
                 android:id="@+id/line_number"
-                style="@style/app_editview" />
+                style="@style/app_editview_text" />
         </LinearLayout>
 
         <LinearLayout
@@ -33,8 +64,7 @@
 
             <EditText
                 android:id="@+id/line_name"
-                style="@style/app_editview"
-                android:inputType="text"
+                style="@style/app_editview_text"
                 android:text="" />
         </LinearLayout>
 
@@ -49,7 +79,7 @@
 
             <EditText
                 android:id="@+id/radius"
-                style="@style/app_editview" />
+                style="@style/app_editview_number" />
         </LinearLayout>
     </RelativeLayout>
 
@@ -58,8 +88,36 @@
         android:layout_height="wrap_content"
         android:layout_weight="1" >
 
+         <LinearLayout
+            android:id="@+id/layout_stand_direction"
+            style="@style/main_layout" >
+
+            <TextView
+                style="@style/app_textview"
+                android:text="@string/stand_direction" />
+
+            <EditText
+                android:id="@+id/stand_direction"
+                style="@style/app_editview_text" />
+        </LinearLayout>
+        
+        <LinearLayout
+            android:id="@+id/layout_stand_area"
+            android:layout_below="@id/layout_stand_direction"
+            style="@style/main_layout" >
+
+            <TextView
+                style="@style/app_textview"
+                android:text="@string/stand_area" />
+
+            <EditText
+                android:id="@+id/stand_area"
+                style="@style/app_editview_text" />
+        </LinearLayout>
+        
         <LinearLayout
             android:id="@+id/layout_outerrail"
+            android:layout_below="@id/layout_stand_area"
             style="@style/main_layout" >
 
             <TextView
@@ -68,7 +126,7 @@
 
             <EditText
                 android:id="@+id/outerrail_high"
-                style="@style/app_editview" />
+                style="@style/app_editview_number" />
         </LinearLayout>
 
         <LinearLayout
@@ -82,7 +140,7 @@
 
             <EditText
                 android:id="@+id/sample_interval"
-                style="@style/app_editview" />
+                style="@style/app_editview_text" />
         </LinearLayout>
 
         <LinearLayout
@@ -96,7 +154,7 @@
 
             <EditText
                 android:id="@+id/measure_startposition"
-                style="@style/app_editview" />
+                style="@style/app_editview_text" />
         </LinearLayout>
     </RelativeLayout>
 
@@ -106,7 +164,48 @@
         android:layout_weight="1" >
 
         <LinearLayout
+            android:id="@+id/layout_stand_orientation"
+            style="@style/main_layout"
+             >
+
+            <TextView
+                style="@style/app_textview"
+                android:minWidth="80dp"
+                android:text="@string/stand_orientation" />
+
+            <Spinner
+                android:id="@+id/stand_orientation"
+                android:entries="@array/stand_orientation"
+                style="@style/app_editview_text"
+                android:spinnerMode="dropdown"
+                android:layout_width="130dp"
+                android:dropDownWidth="115dp"
+                />
+        </LinearLayout>
+        
+        <LinearLayout
+            android:id="@+id/layout_bight_direction"
+            style="@style/main_layout"
+            android:layout_below="@id/layout_stand_orientation" >
+
+            <TextView
+                style="@style/app_textview"
+                android:minWidth="80dp"
+                android:text="@string/bight_direction" />
+
+            <Spinner
+                android:id="@+id/bight_direction"
+                android:entries="@array/bight_direction"
+                style="@style/app_editview_text"
+                android:spinnerMode="dropdown"
+                android:layout_width="130dp"
+                android:dropDownWidth="115dp"
+                />
+        </LinearLayout>
+        
+        <LinearLayout
             android:id="@+id/layout_track"
+            android:layout_below="@id/layout_bight_direction"
             style="@style/main_layout" >
 
             <TextView
@@ -116,7 +215,7 @@
 
             <CheckBox
                 android:id="@+id/track"
-                style="@style/app_editview"
+                style="@style/app_editview_text"
                 android:text="" />
         </LinearLayout>
 
@@ -132,9 +231,26 @@
 
             <CheckBox
                 android:id="@+id/inner_side"
-                style="@style/app_editview"
+                style="@style/app_editview_text"
                 android:text="" />
         </LinearLayout>
+        
+        <LinearLayout
+            android:id="@+id/layout_rail_high"
+            style="@style/main_layout"
+            android:layout_below="@id/layout_innerside" >
+
+            <TextView
+                style="@style/app_textview"
+                android:minWidth="80dp"
+                android:text="@string/rail_high" />
+
+            <CheckBox
+                android:id="@+id/rail_high"
+                style="@style/app_editview_text"
+                android:text="" />
+        </LinearLayout>
+        
     </RelativeLayout>
 
 </merge>

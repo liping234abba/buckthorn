@@ -14,12 +14,12 @@
         <TextView
             style="@style/list_textview"
             android:text="@string/report_index1" />
-
+<!-- 
         <TextView
             style="@style/list_textview"
             android:layout_width="40dp"
             android:text="@string/report_index4" />
-
+ -->
         <TextView
             style="@style/list_textview"
             android:text="@string/report_index5" />

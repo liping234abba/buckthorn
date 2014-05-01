@@ -20,6 +20,7 @@ public class TestAndroid extends AndroidTestCase {
 	protected void setUp() throws Exception {
 		super.setUp();
 		businessDataBase = new BusinessDataBase(getContext());
+//		businessDataBase.initData();
 	}
 
 	public void testSelect(){
@@ -31,26 +32,26 @@ public class TestAndroid extends AndroidTestCase {
 		SQLiteHelper.getInstance(getContext());
 		
 		MeasureParam measureParam = new MeasureParam() ;
-		measureParam.setInnerSide(0);
-		measureParam.setLineName("线路名称");
-		measureParam.setLineNumber(1);
-		measureParam.setMeasureStartposition(20);
-		measureParam.setRadius(500);
-		measureParam.setSampleInterval(20);
-		measureParam.setTrack(0);
-		measureParam.setOuterrailHigh(20);
+		measureParam.setOuterrailHigh(45);
+		measureParam.setRadius(1000);
+		measureParam.setInnerSide(1);
+		measureParam.setTrack(1);
+		measureParam.setMeasureStartposition(20+"");
+		measureParam.setSampleInterval(2);
+		measureParam.setLineNumber(1+"");
+		measureParam.setLineName("怀化");
 		businessDataBase.getMeasureParadmDao().insertMeasureParam(measureParam);
 	}
 	
 	public void testMeasureResult(){
 		MeasureResult measureResult = new MeasureResult() ;
 		for(int i = 0 ; i < 20 ; i++){
-			measureResult.setParamId(2);
-			measureResult.setPlatformDistance(1745);
-			measureResult.setPlatformHigh(310);
+			measureResult.setDipAngle(0);
+			measureResult.setParamId(1);
+			measureResult.setPlatformDistance(1155);
+			measureResult.setPlatformHigh(1798);
 			measureResult.setRainshedHigh(30);
 			measureResult.setTravelDistance(100);
-			measureResult.setDipAngle(0);
 			businessDataBase.getMeasureResultDao().insertMeasureResult(measureResult);
 		}
 	}
@@ -67,20 +68,20 @@ public class TestAndroid extends AndroidTestCase {
 	
 	public void testcurvlReportData(){
 		MeasureParam measureParam = new MeasureParam() ;
-		measureParam.setOuterrailHigh(75);
-		measureParam.setRadius(1020);
-		measureParam.setInnerSide(0);
-		measureParam.setTrack(0);
-		measureParam.setMeasureStartposition(20);
+		measureParam.setOuterrailHigh(45);
+		measureParam.setRadius(1000);
+		measureParam.setInnerSide(1);
+		measureParam.setTrack(1);
+		measureParam.setMeasureStartposition(20+"");
 		measureParam.setSampleInterval(2);
-		measureParam.setLineNumber(1);
+		measureParam.setLineNumber(1+"");
 		measureParam.setLineName("怀化");
 		
 		MeasureResult measureResult = new MeasureResult();
 		measureResult.setDipAngle(0);
 		measureResult.setParamId(1);
-		measureResult.setPlatformDistance(1745);
-		measureResult.setPlatformHigh(310);
+		measureResult.setPlatformDistance(1155);
+		measureResult.setPlatformHigh(1798);
 		measureResult.setRainshedHigh(30);
 		measureResult.setTravelDistance(100);
 		int[] result = businessDataBase.calWarningLevelLimited(measureResult, measureParam);

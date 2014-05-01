@@ -42,14 +42,21 @@ public class MeasureParamDAO extends DAOBase {
         if (!Utility.isEmpty(pCursor)) {
             _measureParam = new MeasureParam();
             _measureParam.setId(pCursor.getInt(pCursor.getColumnIndex("id")));
-            _measureParam.setLineNumber(pCursor.getInt(pCursor.getColumnIndex("line_number")));
+            _measureParam.setLineNumber(pCursor.getString(pCursor.getColumnIndex("line_number")));
             _measureParam.setTrack(pCursor.getInt(pCursor.getColumnIndex("track")));
             _measureParam.setRadius(pCursor.getInt(pCursor.getColumnIndex("radius")));
             _measureParam.setOuterrailHigh(pCursor.getInt(pCursor.getColumnIndex("outerrail_high")));
             _measureParam.setSampleInterval(pCursor.getInt(pCursor.getColumnIndex("sample_interval")));
             _measureParam.setInnerSide(pCursor.getInt(pCursor.getColumnIndex("inner_side")));
-            _measureParam.setMeasureStartposition(pCursor.getInt(pCursor.getColumnIndex("measure_startpos")));
+            _measureParam.setMeasureStartposition(pCursor.getString(pCursor.getColumnIndex("measure_startpos")));
             _measureParam.setLineName(pCursor.getString(pCursor.getColumnIndex("line_name")));
+            _measureParam.setStandName(pCursor.getString(pCursor.getColumnIndex("stand_name")));
+            _measureParam.setStandId(pCursor.getString(pCursor.getColumnIndex("stand_id")));
+        	_measureParam.setStandArea(pCursor.getString(pCursor.getColumnIndex("stand_area")));
+        	_measureParam.setStandDirection(pCursor.getString(pCursor.getColumnIndex("stand_direction")));
+        	_measureParam.setStandOrientation(pCursor.getInt(pCursor.getColumnIndex("stand_orientation")));
+        	_measureParam.setBightDirection(pCursor.getInt(pCursor.getColumnIndex("bight_direction")));
+        	_measureParam.setRailHigh(pCursor.getInt(pCursor.getColumnIndex("rail_high")));
         }
         return _measureParam;
     }
@@ -69,6 +76,13 @@ public class MeasureParamDAO extends DAOBase {
         _contentValues.put("inner_side", pInfo.getInnerSide());
         _contentValues.put("measure_startpos", pInfo.getMeasureStartposition());
         _contentValues.put("line_name", pInfo.getLineName());
+        _contentValues.put("stand_id", pInfo.getStandId());
+        _contentValues.put("stand_name", pInfo.getStandName());
+        _contentValues.put("stand_area", pInfo.getStandArea());
+        _contentValues.put("stand_direction", pInfo.getStandDirection());
+        _contentValues.put("stand_orientation", pInfo.getStandOrientation());
+        _contentValues.put("bight_direction", pInfo.getBightDirection());
+        _contentValues.put("rail_high", pInfo.getRailHigh());
         return _contentValues;
     }
 
@@ -143,7 +157,7 @@ public class MeasureParamDAO extends DAOBase {
 			return true;
 		}
 		MeasureParam measureParam = (MeasureParam)abstractObject;
-		String sql = " where " + measureParam.COLUMN_LINE_NUMBER+"=" + measureParam.getLineNumber() + " AND " + measureParam.COLUMN_LINE_NAME + "='" + measureParam.getLineName() +"'";
+		String sql = " where " + measureParam.COLUMN_LINE_NUMBER+"='" + measureParam.getLineNumber() + "' AND " + measureParam.COLUMN_LINE_NAME + "='" + measureParam.getLineName() +"'";
 		List<MeasureParam> listMP = getMeasureParam(sql);
 		if(Utility.isEmpty(listMP)){
 			return false;

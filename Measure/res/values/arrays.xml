@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="stand_orientation">
+        <item>左</item>
+        <item>右</item>
+    </string-array>
+    <string-array name="bight_direction">
+        <item>线路左侧</item>
+        <item>线路右侧</item>
+    </string-array>
+</resources>

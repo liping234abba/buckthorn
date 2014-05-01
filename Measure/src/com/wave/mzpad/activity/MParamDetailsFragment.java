@@ -1,36 +1,39 @@
 package com.wave.mzpad.activity;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.hardware.usb.UsbManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
-
-import com.wave.mzpad.common.Log;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.wave.mzpad.R;
 import com.wave.mzpad.adpter.MeasureResultAdapter;
 import com.wave.mzpad.common.Contants;
+import com.wave.mzpad.common.Log;
 import com.wave.mzpad.common.Utility;
 import com.wave.mzpad.model.MeasureParam;
 import com.wave.mzpad.model.MeasureResult;
@@ -40,9 +43,18 @@ import com.wave.mzpad.service.ServiceExportReport;
 
 public class MParamDetailsFragment extends Fragment {
 
+	//站名、设备名称,设备编号,换算面积,面向车站,
+	private EditText stand_name,stand_id,stand_area,stand_direction;
+		
+	//设备方位,曲线方向
+	private Spinner stand_orientation,bight_direction;
+	
+	//是否高铁
+	private CheckBox rail_high;
+	
 	// 线路编号,线路名称,半径(m),外轨超高(mm),采样间隔(m),测试起始位置;
 	private EditText line_number, line_name, radius, outerrail_high, sample_interval, measure_startposition;
-
+	
 	// 是否正线,是否内侧
 	private CheckBox track, inner_side;
 
@@ -149,6 +161,13 @@ public class MParamDetailsFragment extends Fragment {
 		save_data.setOnClickListener(clickListener);
 		immediately_measure.setOnClickListener(clickListener);
 		export_excel.setOnClickListener(clickListener);
+		listView.setOnItemLongClickListener(new OnItemLongClickListener() {
+			@Override
+			public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+				showDialog(arg2);
+				return false;
+			}
+		});
 	}
 
 	private void initWidget(View view) {
@@ -158,10 +177,17 @@ public class MParamDetailsFragment extends Fragment {
 		outerrail_high = (EditText) view.findViewById(R.id.outerrail_high);
 		sample_interval = (EditText) view.findViewById(R.id.sample_interval);
 		measure_startposition = (EditText) view.findViewById(R.id.measure_startposition);
-
 		track = (CheckBox) view.findViewById(R.id.track);
 		inner_side = (CheckBox) view.findViewById(R.id.inner_side);
 
+		stand_name = (EditText) view.findViewById(R.id.stand_name);
+		stand_id = (EditText) view.findViewById(R.id.stand_id);
+		stand_area = (EditText) view.findViewById(R.id.stand_area);
+		stand_direction = (EditText) view.findViewById(R.id.stand_direction);
+		rail_high = (CheckBox) view.findViewById(R.id.rail_high);
+		stand_orientation = (Spinner) view.findViewById(R.id.stand_orientation);
+		bight_direction = (Spinner)view.findViewById(R.id.bight_direction);
+		
 		conn_start = (Button) view.findViewById(R.id.conn_start);
 		conn_pause = (Button) view.findViewById(R.id.conn_pause);
 		conn_stop = (Button) view.findViewById(R.id.conn_stop);
@@ -177,17 +203,24 @@ public class MParamDetailsFragment extends Fragment {
 		if (Utility.isEmpty(_mp)) {
 			return;
 		}
-		Log.i(TAG, "linenumber:" + line_number.getText().toString() + "radius:" + track.isChecked() + "inner_side:" + inner_side.isChecked());
-		line_number.setText(_mp.getLineNumber() + "");
-		if( _mp.getId()>0){
-			line_name.setText(_mp.getLineName() + "");
+		if(_mp.getId()>0){
+			line_name.setText(_mp.getLineName());	
 		}
+		line_number.setText(_mp.getLineNumber());
 		radius.setText(_mp.getRadius() + "");
 		outerrail_high.setText(_mp.getOuterrailHigh() + "");
 		sample_interval.setText(_mp.getSampleInterval() + "");
-		measure_startposition.setText(_mp.getMeasureStartposition() + "");
+		measure_startposition.setText(_mp.getMeasureStartposition());
 		track.setChecked(_mp.getTrack() > 0 ? true : false);
 		inner_side.setChecked(_mp.getInnerSide() > 0 ? true : false);
+		
+		stand_name.setText(_mp.getStandName());
+		stand_id.setText(_mp.getStandId());
+		stand_area.setText(_mp.getStandArea());
+		stand_direction.setText(_mp.getStandDirection());
+		rail_high.setChecked(_mp.getRailHigh() > 0 ? true : false);
+		stand_orientation.setSelection(_mp.getStandOrientation());
+		bight_direction.setSelection(_mp.getBightDirection());
 	}
 
 	private void setMeasureParam() {
@@ -195,14 +228,22 @@ public class MParamDetailsFragment extends Fragment {
 		if (Utility.isEmpty(measureParam)) {
 			measureParam = new MeasureParam();
 		}
-		measureParam.setLineNumber(Integer.parseInt(line_number.getText().toString()));
+		measureParam.setLineNumber(line_number.getText().toString());
 		measureParam.setLineName(line_name.getText().toString());
 		measureParam.setRadius(Integer.parseInt(radius.getText().toString()));
 		measureParam.setOuterrailHigh(Integer.parseInt(outerrail_high.getText().toString()));
 		measureParam.setSampleInterval(Integer.parseInt(sample_interval.getText().toString()));
-		measureParam.setMeasureStartposition(Integer.parseInt(measure_startposition.getText().toString()));
+		measureParam.setMeasureStartposition(measure_startposition.getText().toString());
 		measureParam.setTrack(track.isChecked() == true ? 1 : 0);
 		measureParam.setInnerSide(inner_side.isChecked() == true ? 1 : 0);
+		
+		measureParam.setStandArea(stand_area.getText().toString());
+		measureParam.setStandDirection(stand_direction.getText().toString());
+		measureParam.setStandId(stand_id.getText().toString());
+		measureParam.setStandName(stand_name.getText().toString());
+		measureParam.setRailHigh(rail_high.isChecked() == true?1:0);
+		measureParam.setStandOrientation(stand_orientation.getSelectedItemPosition());
+		measureParam.setBightDirection(bight_direction.getSelectedItemPosition());
 	}
 
 	private void saveMeasureParam() {
@@ -237,7 +278,7 @@ public class MParamDetailsFragment extends Fragment {
 	private boolean validateForm() {
 
 		if (Utility.isEmpty(line_number.getText().toString())) {
-			sendMessage(Contants.TOAST_MSG,"编号不能为空！");
+			sendMessage(Contants.TOAST_MSG,"股道号不能为空！");
 			return false;
 		}
 
@@ -419,4 +460,26 @@ public class MParamDetailsFragment extends Fragment {
 		immediately_measure.setEnabled(isShow);
 	}
 	
+	protected void showDialog(final int mpIndex) {
+		  AlertDialog.Builder builder = new Builder(mActivity);
+		  builder.setMessage("确认要删除吗？");
+		  builder.setPositiveButton("确认", new AlertDialog.OnClickListener() {
+		   @Override
+		   public void onClick(DialogInterface dialog, int which) {
+			List<MeasureResult> mrList =  measureResultAdapter.getMrLists();
+			businessDataBase.getMeasureResultDao().deleteMeasureResult(mrList.get(mpIndex));
+			mrList.remove(mpIndex);
+			measureResultAdapter.updateData(mrList);
+			measureResultAdapter.notifyDataSetChanged();
+		    dialog.dismiss();
+		   }
+		  });
+		  builder.setNegativeButton("取消", new AlertDialog.OnClickListener() {
+		   @Override
+		   public void onClick(DialogInterface dialog, int which) {
+		    dialog.dismiss();
+		   }
+		  });
+		  builder.create().show();
+		 }
 }

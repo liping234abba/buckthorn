@@ -8,12 +8,13 @@
         android:id="@+id/travel_distance"
         style="@style/list_textview" />
 
+    <!-- 
     <TextView
         android:id="@+id/dip_angle"
         style="@style/list_textview" 
         android:layout_width="40dp"
         />
-
+ 	-->
     <TextView
         android:id="@+id/rainshed_high"
         style="@style/list_textview" />

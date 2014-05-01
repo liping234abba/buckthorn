@@ -94,6 +94,16 @@ public class MeasureResultDAO extends DAOBase {
     public boolean deleteMeasureResult(String pCondition) {
         return delete(getTableNameAndPK()[0], pCondition);
     }
+    
+    /**
+     * 根据条件删除记录
+     * @param pCondition
+     * @return true 删除成功，false ：删除失败
+     */
+    public boolean deleteMeasureResult(MeasureResult mResult) {
+    	String sql = mResult.COLUMN_ID + " = "+ mResult.getId() ;
+        return delete(getTableNameAndPK()[0], sql);
+    }
 
     /**
      * 更新记录

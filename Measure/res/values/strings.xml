@@ -7,14 +7,14 @@
     <string name="conn_start">开始</string>
     <string name="conn_pause">暂停</string>
     <string name="conn_stop">停止</string>
-    <string name="line_number">线路编号</string>
+    <string name="line_number">股道号</string>
     <string name="line_name">线路名称</string>
     <string name="track">是否正线</string>
     <string name="radius">半径(m)</string>
     <string name="outerrail_high">外轨超高(mm)</string>
     <string name="sample_interval">采样间隔(m)</string>
     <string name="inner_side">是否内侧</string>
-    <string name="measure_startposition">起始位置</string>
+    <string name="measure_startposition">中心里程</string>
     <string name="immediately_measure">立即测量</string>
     <string name="report_index0">测量点序号</string>
     <string name="report_index1">测量点</string>
@@ -34,5 +34,14 @@
     <string name="export_excel">导出报表</string>
     <string name="app_release_name">数显式站台限界测量仪</string>
     <string name="company">深圳市深量精密量具有限公司</string>
+    
+    <!-- 第二版本修改 -->
+     <string name="stand_name">站名设备名称</string> <!-- 站名、设备名称 -->
+     <string name="stand_id">设备编号</string> <!-- 设备编号 -->
+     <string name="stand_area">换算面积 </string><!-- 换算面积 -->
+     <string name="stand_direction">面向车站 </string><!-- 测量时面向车站  -->
+     <string name="stand_orientation">设备方位</string><!-- 设备方位 -->
+     <string name="bight_direction">曲线方向</string><!-- 曲线方向 -->
+     <string name="rail_high">是否高铁 </string><!-- 是否高铁 --> 
     
 </resources>

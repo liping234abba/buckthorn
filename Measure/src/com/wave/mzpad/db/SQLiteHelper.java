@@ -61,14 +61,21 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     	Log.i(TAG," SQLiteHelper->onCreate");
     	String create_sql = "CREATE TABLE " + MeasureParamDAO.TABLE_MEASUREPARAM
     			        +"(id INTEGER PRIMARY KEY AUTOINCREMENT,"
-    					+"line_number  INTEGER DEFAULT 0,"
-    					+"line_name  VARCHAR(50),"
+    					+"line_number VARCHAR(20),"
+    					+"line_name  VARCHAR(20),"
     					+"track  INTEGER DEFAULT 0,"
     					+"radius  INTEGER DEFAULT 0,"
     					+"outerrail_high  INTEGER DEFAULT 0,"
     					+"sample_interval  INTEGER DEFAULT 0,"
     					+"inner_side  INTEGER DEFAULT 0,"
-    					+"measure_startpos  INTEGER DEFAULT 0);";
+    					+"stand_name  VARCHAR(20),"
+    					+"stand_id  VARCHAR(20),"
+    					+"stand_area  VARCHAR(20),"
+    					+"stand_direction  VARCHAR(20),"
+    					+"stand_orientation  INTEGER DEFAULT 0,"
+    					+"bight_direction  INTEGER DEFAULT 0,"
+    					+"rail_high  INTEGER DEFAULT 0,"
+    					+"measure_startpos  VARCHAR(50) );";
     	Log.i(TAG, "create_sql:"+create_sql);
     	pDataBase.execSQL(create_sql);
     		create_sql = "CREATE TABLE " + MeasureResultDAO.TABLE_MEASURERESULT
