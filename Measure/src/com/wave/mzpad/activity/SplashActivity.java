@@ -11,7 +11,7 @@ import com.wave.mzpad.service.DataUtils;
 
 public class SplashActivity extends Activity {
 	
-	private final int SPLASH_DISPLAY_LENGHT = 2000;
+	private final int SPLASH_DISPLAY_LENGHT = 5000;
 	
 	private Handler mHandler = new Handler();
 	

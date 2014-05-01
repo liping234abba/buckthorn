@@ -5,9 +5,10 @@
     android:orientation="vertical" >
     
      <ImageView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:scaleType="fitXY"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="fitStart"
+        android:layout_gravity="center_horizontal"
         android:background="@drawable/splash" />
     
      <TextView 
@@ -16,6 +17,7 @@
           android:text="@string/app_release_name"
           android:textStyle="bold"
           android:textColor="@color/black"
+          android:layout_marginTop="150dp"
           android:gravity="center"
           android:textSize="20pt"
           android:background="#00000000"
@@ -26,7 +28,7 @@
           android:text="@string/company"
           android:textColor="@color/gray"
           android:gravity="center_horizontal|bottom"
-          android:textSize="15pt"
+          android:textSize="17pt"
           android:layout_marginBottom="40dp"
           android:background="#00000000"
          />
