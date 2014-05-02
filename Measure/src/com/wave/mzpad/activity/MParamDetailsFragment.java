@@ -251,7 +251,8 @@ public class MParamDetailsFragment extends Fragment {
 			return;
 		}
 		setMeasureParam();
-		boolean isExist = businessDataBase.getMeasureParadmDao().isExistObject(measureParam);
+//		boolean isExist = businessDataBase.getMeasureParadmDao().isExistObject(measureParam);
+		boolean isExist = measureParam.getId()>0?true:false ;
 		if (isExist) {
 			boolean result = false;
 			result = businessDataBase.getMeasureParadmDao().updateMeasureParam(measureParam);

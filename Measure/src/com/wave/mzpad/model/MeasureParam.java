@@ -38,8 +38,8 @@ public class MeasureParam extends AbstractObject {
 	private String standId = ""; //设备编号
 	private String standArea = ""; //换算面积
 	private String standDirection = ""; //面向车站
-	private int standOrientation = 0; //设备方位
-	private int bightDirection = 0; //曲线方向
+	private int standOrientation = 0; //设备方位:0:线路左侧，1：线路右侧
+	private int bightDirection = 0; //曲线方向：0：左，1：右
 	private int railHigh = 0; //是否高铁  1:是，0，否
 	
 	public String getStandName() {
