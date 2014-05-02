@@ -3,21 +3,19 @@ package com.wave.mzpad.adpter;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.wave.mzpad.R;
 import com.wave.mzpad.activity.MParamDetailsFragment;
-import com.wave.mzpad.activity.MainFragment;
+import com.wave.mzpad.activity.UpdatePopWindow;
 import com.wave.mzpad.common.Log;
 import com.wave.mzpad.common.Utility;
 import com.wave.mzpad.model.MeasureParam;
@@ -37,6 +35,10 @@ public class MeasureResultAdapter extends BaseAdapter {
 	private MeasureParam measureParam;
 
 	private String TAG="MeasureResultAdapter";
+	
+	private UpdatePopWindow updatePopWindow;
+	
+	private int position ;
 	
 	public MeasureResultAdapter(Context ctx,List<MeasureResult> results){
 		this.context = ctx ;
@@ -61,7 +63,7 @@ public class MeasureResultAdapter extends BaseAdapter {
 	}
 
 	@Override
-	public View getView(int arg0, View convertView, ViewGroup arg2) {
+	public View getView(final int arg0, View convertView, ViewGroup arg2) {
 		   HodlerView hv = null;
 		   final MeasureResult mr = getItem(arg0);
            if (convertView == null) {
@@ -73,11 +75,12 @@ public class MeasureResultAdapter extends BaseAdapter {
         	   hv.rainshedHigh = (TextView) convertView.findViewById(R.id.rainshed_high);
         	   hv.outlimited = (TextView) convertView.findViewById(R.id.outlimited);
         	   hv.outlimitValue = (TextView) convertView.findViewById(R.id.outlimit_value);
+        	   hv.edit = (Button)convertView.findViewById(R.id.edit);
         	   convertView.setTag(hv);
            }else{
         	   hv = (HodlerView) convertView.getTag();
            }
-           hv.travelDistance.setText("第"+mr.getTravelDistance()/1000+"米");
+           hv.travelDistance.setText(Utility.getTravelDistance(mr.getTravelDistance()));
            hv.platformHigh.setText(mr.getPlatformHigh()+"");
            hv.platformDistance.setText(mr.getPlatformDistance()+"");
            hv.rainshedHigh.setText(mr.getRainshedHigh()+"");
@@ -95,32 +98,21 @@ public class MeasureResultAdapter extends BaseAdapter {
             	   convertView.setBackgroundColor(Color.WHITE);
                }  
            }
-           hv.platformDistance.setOnClickListener(new OnClickListener() {
+           hv.edit.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				showUpdateDialog(mr);
+				showpopWindow(v,mr);
+				position = arg0;
 			}
 		  });
 		return convertView;
 	}
 	
-    protected void showUpdateDialog(final MeasureResult mr) {
-    	  AlertDialog.Builder builder = new Builder(context);
-		  builder.setMessage("确认要修改吗？");
-//		  builder.setView(view);
-		  builder.setPositiveButton("确认", new AlertDialog.OnClickListener() {
-		   @Override
-		   public void onClick(DialogInterface dialog, int which) {
-		    dialog.dismiss();
-		   }
-		  });
-		  builder.setNegativeButton("取消", new AlertDialog.OnClickListener() {
-		   @Override
-		   public void onClick(DialogInterface dialog, int which) {
-		    dialog.dismiss();
-		   }
-		  });
-		  builder.create().show();
+    protected void showpopWindow(View v,final MeasureResult mr) {
+    	  if(Utility.isEmpty(updatePopWindow)){
+    		  updatePopWindow = new UpdatePopWindow(context,this);
+    	  }
+    	  updatePopWindow.ShowPopWindow(v,mr);
 	}
 
 	class HodlerView {
@@ -130,12 +122,22 @@ public class MeasureResultAdapter extends BaseAdapter {
         TextView rainshedHigh;
         TextView outlimited;//是否超限
         TextView outlimitValue;//超限值
+        Button edit ;//编辑
     }
     
 	public void updateData(MeasureResult mr){
 		if(!Utility.isEmpty(mr)){
 			Log.i("wave", "updateData");
 			mrLists.add(0, mr);
+			notifyDataSetChanged();
+		}
+	}
+	
+	public void updateMeasureResult(MeasureResult mr){
+		if(!Utility.isEmpty(mr)){
+			String sql = mr.COLUMN_ID + "=" + mr.getId() ;
+			businessDataBase.getMeasureResultDao().updateMeasureResult(sql, mr);
+			mrLists.set(position, mr);
 			notifyDataSetChanged();
 		}
 	}

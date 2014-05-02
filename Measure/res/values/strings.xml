@@ -39,9 +39,11 @@
      <string name="stand_name">站名设备名称</string> <!-- 站名、设备名称 -->
      <string name="stand_id">设备编号</string> <!-- 设备编号 -->
      <string name="stand_area">换算面积 </string><!-- 换算面积 -->
-     <string name="stand_direction">面向车站 </string><!-- 测量时面向车站  -->
-     <string name="stand_orientation">设备方位</string><!-- 设备方位 -->
-     <string name="bight_direction">曲线方向</string><!-- 曲线方向 -->
-     <string name="rail_high">是否高铁 </string><!-- 是否高铁 --> 
+     <string name="stand_direction">面向车站 </string> <!-- 测量时面向车站  -->
+     <string name="stand_orientation">设备方位</string> <!-- 设备方位 -->
+     <string name="bight_direction">曲线方向</string> <!-- 曲线方向 -->
+     <string name="rail_high">是否高铁 </string> <!-- 是否高铁 --> 
+     <string name="edit">编辑</string>
+     <string name="update_result">更新数据</string>
     
 </resources>
