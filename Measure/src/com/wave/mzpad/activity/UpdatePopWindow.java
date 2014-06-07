@@ -40,16 +40,10 @@ public class UpdatePopWindow {
 			updateWindow = new PopupWindow(view, 500, 400);
 			updateWindow.setFocusable(true);
 			updateWindow.setBackgroundDrawable(ctx.getResources().getDrawable(R.drawable.bg_popup_window));
-			updateWindow.setOutsideTouchable(true);
+			updateWindow.setOutsideTouchable(false);
 			et_rh = (EditText)view.findViewById(R.id.et_rainshed_high);
 			et_pd = (EditText)view.findViewById(R.id.et_platform_distance);
 			et_ph = (EditText)view.findViewById(R.id.et_platform_high);
-			view.setOnClickListener(new OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					updateWindow.dismiss();
-				}
-			});
 			Button saveBtn = (Button)view.findViewById(R.id.save_data);
 			saveBtn.setOnClickListener(new OnClickListener() {
 				@Override

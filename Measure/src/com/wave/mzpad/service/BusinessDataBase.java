@@ -59,33 +59,16 @@ public class BusinessDataBase {
 	}
 	
 	
-	/**
-	 * 计算内侧系数（W1 = （40500/R）+H*h/1500）(R:半径m ，H：月台高度，mm ，h：外轨超高mm)
-	 */
-	public int calInnerSideCoeft(int radius,int platformHight,int outerrailHight){
-		return 40500/radius+platformHight*outerrailHight/1500 ;
-	}
+
 	
-	/**
-	 * 计算外侧系数（W2 = 44000/R）
-	 */
-	public int calOuterSideCoeft(int radius){
-		return 44000/radius ;
-	}
+/*	*//**
+	 * 
+	 *//*
+	public float calGTInnerSideCoeft(int platformHight,int outerrailHight){
+		
+		return 1;
+	}*/
 	
-	/**
-	 *  内侧计算超限真实月台距离：前端月台距离+W1
-	 */ 
-	public int calInnerSideLimit(MeasureResult measureResult,MeasureParam measureParam){
-		return measureResult.getPlatformDistance() + calInnerSideCoeft(measureParam.getRadius(), measureResult.getPlatformHigh(), measureParam.getOuterrailHigh()) ;
-	}
-	
-	/**
-	 * 外侧计算超限真实月台距离：前端月台距离+W2
-	 */
-	public int calOuterSideLimit(MeasureResult measureResult,MeasureParam measureParam){
-		return measureResult.getPlatformDistance() + calOuterSideCoeft(measureParam.getRadius()) ;
-	}
 	
 	/**
      * 初始化数据
@@ -123,11 +106,17 @@ public class BusinessDataBase {
 	/**
 	 *  计算超限值
 	 */
-	public int calLimitValue(MeasureResult measureResult,MeasureParam measureParam){
-		if(measureParam.getInnerSide()>0){
-			return calInnerSideLimit(measureResult, measureParam);
+	public float calLimitValue(MeasureResult measureResult,MeasureParam measureParam){
+		AbstractCalResult calResult = null ;
+		if(measureParam.getRailHigh()>0){
+			calResult = new GTCalResult();
 		}else{
-			return calOuterSideLimit(measureResult, measureParam);
+			calResult = new PuKuaiCalResult();
+		}
+		if(measureParam.getInnerSide()>0){
+			return calResult.calInnerSideLimit(measureResult, measureParam);
+		}else{
+			return calResult.calOuterSideLimit(measureResult, measureParam);
 		}
 	}
 	
@@ -137,8 +126,8 @@ public class BusinessDataBase {
 	public int[] calWarningLevelLimited(MeasureResult measureResult,MeasureParam measureParam){
 		int[] result = new int[2];//[0]:是否超限，[1]侵限值
 		int isLimited = -1 ;
-		int limitValue = 0 ;
-		int diffResult = 0;
+		float limitValue = 0 ;
+		float diffResult = 0;
 		StandardData sd = getStandardData(measureResult);
 		if(Utility.isEmpty(sd)){
 			Log.i(TAG, "StandardData is null") ;
@@ -146,15 +135,21 @@ public class BusinessDataBase {
 		}
 		int secondLimit = sd.getSecondLevel() ;// 在二级超限到建筑界限之间属于一般超限，小于二级超限属于严重超限
 		//计算是否正线对应的超限差别
+		AbstractCalResult calResult = null ;
+		if(measureParam.getRailHigh()>0){
+			calResult = new GTCalResult();
+		}else{
+			calResult = new PuKuaiCalResult();
+		}
 		if(measureParam.getInnerSide()>0){
-			limitValue = measureParam.getRadius()>0?calInnerSideLimit(measureResult, measureParam):measureResult.getPlatformDistance() ;//直线测量值就是准确值，曲线需要加系数
+			limitValue = measureParam.getRadius()>0?calResult.calInnerSideLimit(measureResult, measureParam):measureResult.getPlatformDistance() ;//直线测量值就是准确值，曲线需要加系数
 			if(measureParam.getTrack()>0){
 				diffResult = limitValue -  sd.getBuildRight() ;
 			}else{
 				diffResult = limitValue - sd.getBuildDevious();
 			}
 		}else{
-			limitValue = measureParam.getRadius()>0?calOuterSideLimit(measureResult, measureParam):measureResult.getPlatformDistance() ;
+			limitValue = measureParam.getRadius()>0?calResult.calOuterSideLimit(measureResult, measureParam):measureResult.getPlatformDistance() ;
 			if(measureParam.getTrack()>0){
 				diffResult = limitValue -  sd.getBuildRight() ;
 			}else{
@@ -173,7 +168,7 @@ public class BusinessDataBase {
 			isLimited = -1 ;
 		}	
 		result[0] = isLimited ;
-		result[1] = diffResult ;
+		result[1] = Math.round(Math.abs(diffResult)) ;
 		return result ;
 	}
 	
@@ -201,12 +196,18 @@ public class BusinessDataBase {
 	/**
 	 * 获取曲线加宽量
 	 */
-	public int getCurveWidenValue(MeasureParam measureParam,MeasureResult mResult){
-		int result = 0 ;
-		if(measureParam.getInnerSide()>0){
-		   result = calInnerSideCoeft(measureParam.getRadius(), mResult.getPlatformHigh(), measureParam.getOuterrailHigh());
+	public float getCurveWidenValue(MeasureParam measureParam,MeasureResult mResult){
+		float result = 0 ;
+		AbstractCalResult calResult = null ;
+		if(measureParam.getRailHigh()>0){
+			calResult = new GTCalResult();
 		}else{
-			result = calOuterSideCoeft(measureParam.getRadius());
+			calResult = new PuKuaiCalResult();
+		}
+		if(measureParam.getInnerSide()>0){
+		   result = calResult.calInnerSideCoeft(measureParam.getRadius(), mResult.getPlatformHigh(), measureParam.getOuterrailHigh());
+		}else{
+			result = calResult.calOuterSideCoeft(measureParam.getRadius());
 		}
 		return result;
 	}

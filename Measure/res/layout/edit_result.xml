@@ -43,7 +43,7 @@
         <TextView
             style="@style/list_textview"
             android:layout_marginTop="20dp"
-            android:text="@string/report_index7"
+            android:text="@string/report_index8"
             android:textColor="@color/white" />
 
         <EditText
@@ -61,7 +61,7 @@
 
         <TextView
             style="@style/list_textview"
-            android:text="@string/report_index8"
+            android:text="@string/report_index7"
             android:textColor="@color/white" />
 
         <EditText
