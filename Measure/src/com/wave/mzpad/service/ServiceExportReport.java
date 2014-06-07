@@ -11,9 +11,9 @@ import jxl.write.biff.RowsExceededException;
 import android.content.Context;
 import android.os.Environment;
 import android.text.format.DateFormat;
-import android.util.Log;
 
 import com.wave.mzpad.common.Contants;
+import com.wave.mzpad.common.Log;
 import com.wave.mzpad.common.Utility;
 import com.wave.mzpad.model.AbstractObject;
 import com.wave.mzpad.model.CellElement;
@@ -88,7 +88,7 @@ public class ServiceExportReport implements OperateExcel {
 					 int pointX = startX ;
 					 insertColumnArray(ws, index, pointY, pointX); 
 				 }else{
-					 int pointY = (startY-1) + (index - colMax);
+					 int pointY = startY + (index - colMax);
 					 int pointX = startX + 5 ;
 					 insertColumnArray(ws, index, pointY, pointX);
 				 }
@@ -112,72 +112,84 @@ public class ServiceExportReport implements OperateExcel {
 			Log.e(TAG, "insertMeasureParam object is null ");
 			return;
 		}
+		String cellValue = "";//填入值
+		int pointX = 0,pointY = 0 ;//需填入的Cell坐标
 		try {
-			String cellValue = "";//填入值
-			int pointX = 0,pointY = 0 ;//需填入的Cell坐标
+			Log.i(TAG, "abstractObject:" + abstractObject.toString());
 			//站名、设备名称
 			cellValue = abstractObject.getStandName();
 			pointY = 2 ;pointX = 2;
 			insertExcelLabel(ws, pointY, pointX, cellValue);
-			ws.mergeCells(2, 2, 5, 2);
+			//ws.mergeCells(2, 2, 5, 2);
 			//设备编号
 			cellValue = abstractObject.getStandId();
-			pointY = 7 ;pointX = 2;
+			pointY = 2 ;pointX = 7;
 			insertExcelLabel(ws, pointY, pointX, cellValue);
 			//换算面积
 			cellValue = abstractObject.getStandArea();
-			pointY = 10 ;pointX = 2;
+			pointY = 2 ;pointX = 10;
 			insertExcelLabel(ws, pointY, pointX, cellValue);
-			ws.mergeCells(10, 2, 12, 2);
+			//ws.mergeCells(10, 2, 12, 2);
+			//避免右边白线
+			pointY = 2 ;pointX = 13;
+			cellValue = "";
+			CellElement cell = new CellElement(pointX, pointY, cellValue);
+			excelUtil.updateLabelCell(ws, cell,true);
 			//线路名称
 			cellValue = abstractObject.getLineName();
-			pointY = 0 ;pointX = 4;
+			pointY = 4 ;pointX = 0;
 			insertExcelLabel(ws, pointY, pointX, cellValue);
 			//中心里程
 			cellValue = abstractObject.getMeasureStartposition();
-			pointY = 1 ;pointX = 4;
+			pointY = 4 ;pointX = 1;
 			insertExcelLabel(ws, pointY, pointX, cellValue);
 			//站内股道号
 			cellValue = abstractObject.getLineNumber();
-			pointY = 2 ;pointX = 4;
+			pointY = 4 ;pointX = 2;
 			insertExcelLabel(ws, pointY, pointX, cellValue);
 			//测量时面向车站
 			cellValue = abstractObject.getStandDirection();
-			pointY = 3 ;pointX = 4;
+			pointY = 4 ;pointX = 3;
 			insertExcelLabel(ws, pointY, pointX, cellValue);
 			//设备方位
 			cellValue = abstractObject.getStandOrientation()>0?"线路右侧":"线路左侧";
 			pointY = 4 ;pointX = 4;
 			insertExcelLabel(ws, pointY, pointX, cellValue);
-			ws.mergeCells(4, 4, 5, 4);
+			//ws.mergeCells(4, 4, 5, 4);
 			//曲线半径
 			cellValue = abstractObject.getRadius()+"";
-			pointY = 6 ;pointX = 4;
+			pointY = 4 ;pointX = 6;
 			insertExcelLabel(ws, pointY, pointX, cellValue);
 			//外轨超高
 			cellValue = abstractObject.getOuterrailHigh()+"";
-			pointY = 7 ;pointX = 4;
+			pointY = 4 ;pointX = 7;
 			insertExcelLabel(ws, pointY, pointX, cellValue);
 			//曲线方向
 			cellValue = abstractObject.getBightDirection()>0?"右侧":"左侧";
-			pointY = 8 ;pointX = 4;
+			pointY = 4 ;pointX = 8;
 			insertExcelLabel(ws, pointY, pointX, cellValue);
 			ws.mergeCells(8, 4, 9, 4);
 			//曲线内或外侧
 			cellValue = abstractObject.getInnerSide()>0?"是":"否";
-			pointY = 10 ;pointX = 4;
+			pointY = 4 ;pointX = 10;
 			insertExcelLabel(ws, pointY, pointX, cellValue);
 			//是否正线
 			cellValue = abstractObject.getTrack()>0?"是":"否";
-			pointY = 11 ;pointX = 4;
+			pointY = 4 ;pointX = 11;
 			insertExcelLabel(ws, pointY, pointX, cellValue);
-			ws.mergeCells(11, 4, 12, 4);
+			//ws.mergeCells(11, 4, 12, 4);
+			
+			//避免右边白线
+			pointY = 4 ;pointX = 13;
+			cellValue = "";
+			CellElement cell2 = new CellElement(pointX, pointY, cellValue);
+			excelUtil.updateLabelCell(ws, cell2,true);
 		} catch (RowsExceededException e) {
-			Log.e(TAG, "insertMeasureParam :"+ e.getMessage());
+			Log.e(TAG, "insertMeasureParam :"+ e.getMessage() + " pointX:"+pointX + " pointY"+pointY + " cellValue:"+cellValue);
 		} catch (WriteException e) {
-			Log.e(TAG, "insertMeasureParam :"+ e.getMessage());
+			Log.e(TAG, "insertMeasureParam :"+ e.getMessage() + " pointX:"+pointX + " pointY"+pointY + " cellValue:"+cellValue);
 		} catch (IOException e) {
-			Log.e(TAG, "insertMeasureParam :"+ e.getMessage());
+			Log.e(TAG, "insertMeasureParam :"+ e.getMessage() + " pointX:"+pointX + " pointY"+pointY + " cellValue:"+cellValue);
 		}
 	}
 
@@ -202,15 +214,6 @@ public class ServiceExportReport implements OperateExcel {
 		//测量点
 		cellValue = measureResult.getTravelDistance() +  "" ;
 		insertExcelLabel(ws, pointY, pointX + 1, cellValue);
-		//曲线内侧加宽量:只有曲线才需要填写
-	/*	if(abstractObject.getRadius()>0){
-			cellValue = businessDataBase.getCurveWidenValue(abstractObject, measureResult)+  "" ;
-			insertExcelLabel(ws, pointY, pointX + 2, cellValue);
-		}*/
-		
-		/*//外轨超高
-		cellValue = abstractObject.getOuterrailHigh() +  "" ;
-		insertExcelLabel(ws, pointY, pointX + 3, cellValue);*/
 		//距轨顶面断面测量高度
 		cellValue = measureResult.getPlatformHigh() +  "" ;
 		insertExcelLabel(ws, pointY, pointX + 2, cellValue);
@@ -225,7 +228,12 @@ public class ServiceExportReport implements OperateExcel {
 			Log.e(TAG, "updateExcel 计算限制失败 epx"+ epx.getMessage());
 		}
 		 cellValue = result+ "";
-		 insertExcelLabel(ws, pointY, pointX + 4, cellValue);
+		 if(index <colMax){
+			 insertExcelLabel(ws, pointY, pointX + 4, cellValue);
+		 }else{
+			 insertExcelLabel(ws, pointY, pointX + 5, cellValue);
+		 }
+		 
 	}
 
 	/**
@@ -239,9 +247,16 @@ public class ServiceExportReport implements OperateExcel {
 	 * @throws WriteException
 	 */
 	private void insertExcelLabel(WritableSheet ws, int pointY, int pointX,
-			String cellValue) throws IOException, RowsExceededException,
-			WriteException {
+			String cellValue)  {
 		CellElement cell = new CellElement(pointX, pointY, cellValue);
-		excelUtil.updateLabelCell(ws, cell);
+		try {
+			excelUtil.updateLabelCell(ws, cell);
+		} catch (RowsExceededException e) {
+			Log.e(TAG, "insertMeasureParam :"+ e.getMessage() + " pointX:"+pointX + " pointY"+pointY + " cellValue:"+cellValue);
+		} catch (WriteException e) {
+			Log.e(TAG, "insertMeasureParam :"+ e.getMessage() + " pointX:"+pointX + " pointY"+pointY + " cellValue:"+cellValue);
+		} catch (IOException e) {
+			Log.e(TAG, "insertMeasureParam :"+ e.getMessage() + " pointX:"+pointX + " pointY"+pointY + " cellValue:"+cellValue);
+		}
 	}
 }

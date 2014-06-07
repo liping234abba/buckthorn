@@ -151,6 +151,28 @@ public class JxlExcelUtil {
 	}
 
 	/**
+	 * 更新 Excel元素对象
+	 * 
+	 * @param wwb
+	 * @throws IOException
+	 * @throws WriteException 
+	 * @throws RowsExceededException 
+	 */
+	public void updateLabelCell(WritableSheet ws, CellElement cell,boolean board)
+			throws IOException, RowsExceededException, WriteException {
+		WritableCell wc = ws.getWritableCell(cell.x, cell.y); // 判断单元格的类型,做出相应的转换
+		if(wc.getType() == CellType.EMPTY){
+		   WritableCellFormat wcfF = new WritableCellFormat();
+		   wcfF.setBorder(jxl.format.Border.LEFT,jxl.format.BorderLineStyle.THIN);
+		   wc = new Label(cell.x, cell.y, cell.value); 
+		   wc.setCellFormat(wcfF);
+		}else if(wc.getType() == CellType.LABEL){
+		  ((Label)wc).setString(cell.value);
+		}
+		ws.addCell(wc);
+	}
+	
+	/**
 	 * 关闭 WritableWorkbook 对象
 	 * 
 	 * @param wwb

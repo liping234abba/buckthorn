@@ -86,7 +86,6 @@ public class MeasureResultAdapter extends BaseAdapter {
            hv.rainshedHigh.setText(mr.getRainshedHigh()+"");
            measureParam = MParamDetailsFragment.measureParam ;
            if(!Utility.isEmpty(measureParam)){
-        	   Log.i(TAG, "MeasureResultAdapter:"+measureParam.toString());
         	   int[] result = businessDataBase.calWarningLevelLimited(mr, measureParam) ;
         	   hv.outlimitValue.setText(result[1]+"");
                if(result[0]>0){
