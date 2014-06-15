@@ -46,7 +46,7 @@ public class CommunicateServer {
 	private static CommunicateServer commServer;
 
 	/**
-	 * USB 串口对象
+	 *  串口对象
 	 */
 	private BluetoothSocket sPort = null;
 
@@ -288,6 +288,7 @@ public class CommunicateServer {
 			Log.i(TAG, "Stopping io manager ..");
 			mBTManager.stop();
 			mBTManager = null;
+			BluetoothService.getInstance().stop();
 		}
 	}
 

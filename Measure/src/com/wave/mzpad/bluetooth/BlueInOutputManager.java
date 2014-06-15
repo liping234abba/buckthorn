@@ -198,7 +198,9 @@ public class BlueInOutputManager implements Runnable {
                 Log.d(TAG, "Writing data len=" + len);
             }
             try {
-				mBTDriver.getOutputStream().write(outBuff);
+            	if(!Utility.isEmpty(mBTDriver)){
+            		mBTDriver.getOutputStream().write(outBuff);
+            	}
 			} catch (IOException e) {
 				 Log.d(TAG, "IOException  error:" + e.getMessage());
 			}
