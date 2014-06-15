@@ -33,7 +33,7 @@
     <TextView
         android:id="@+id/outlimit_value"
         style="@style/list_textview"
-        android:layout_width="60dp" />
+        android:layout_width="80dp" />
 
     <TextView
         android:id="@+id/outlimited"

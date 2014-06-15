@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
@@ -34,7 +35,7 @@ public class MeasureResultAdapter extends BaseAdapter {
 	
 	private MeasureParam measureParam;
 
-	private String TAG="MeasureResultAdapter";
+	private String TAG = MeasureResultAdapter.class.getSimpleName();
 	
 	private UpdatePopWindow updatePopWindow;
 	
@@ -104,6 +105,12 @@ public class MeasureResultAdapter extends BaseAdapter {
 				position = arg0;
 			}
 		  });
+           convertView.setOnLongClickListener(new OnLongClickListener() {
+			@Override
+			public boolean onLongClick(View v) {
+				return false;
+			}
+		});
 		return convertView;
 	}
 	
