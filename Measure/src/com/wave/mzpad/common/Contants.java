@@ -45,4 +45,8 @@ public class Contants {
     
     public static String EXPORT_EXCEL_FILEPATH = "wave" ;//导出报表路径
     
+    public final static int RESPONSE_CONNECT = 8; //断开连接
+    
+    public final static int MESSAGE_STATE_CHANGE = 9 ;//蓝牙状态改变
+    
 }

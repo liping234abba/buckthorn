@@ -7,12 +7,13 @@ import java.util.List;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.hardware.usb.UsbManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -71,13 +72,7 @@ public class MParamDetailsFragment extends Fragment {
 	
 	private CommunicateServer server ;
 	
-	private  final String EVENT_USB_INSERT = "intent_action_usb_inserted" ;
-	
-	private  final String ACTION_USB_PERMISSION = "com.android.hardware.USB_PERMISSION";
-	
-	public final static String ACTION_CUSTOMIZE_INSERT = "com.android.hardware.CUSTOMIZE";
-	
-	private USBSerialBroadcastReceiver broadcastReceiver = null ; 
+	private BroadcastReceiver broadcastReceiver = null ; 
 	
 	private TextView showMsg ;
 	
@@ -87,10 +82,12 @@ public class MParamDetailsFragment extends Fragment {
 			case Contants.REQUEST_SUCCESSED:
 				sendMessage(obtainMessage(Contants.TOAST_MSG, "连接成功"));
 				sendMessage(obtainMessage(Contants.SHOW_MSG, "连接成功！"));
+				server.startIoManager();
 				break;
 			case Contants.REQUEST_FAILED:
 				sendMessage(obtainMessage(Contants.TOAST_MSG, "连接失败，请检查设备!"));
 				sendMessage(obtainMessage(Contants.SHOW_MSG, "连接失败！"));
+				server.resetSerialDevice();
 				break;
 			case Contants.REQUEST_GETDATA:
 				String[] data = (String[])msg.obj ;
@@ -119,12 +116,13 @@ public class MParamDetailsFragment extends Fragment {
 		businessDataBase = new BusinessDataBase(mActivity);
 		server = CommunicateServer.getInstance(mActivity, mHandler);
 		//注册USB设备监听广播
-        broadcastReceiver = new USBSerialBroadcastReceiver();
-        IntentFilter filter = new IntentFilter() ;
-        filter.addAction(ACTION_USB_PERMISSION);
-        filter.addAction(UsbManager.ACTION_USB_DEVICE_DETACHED);
-        filter.addAction(EVENT_USB_INSERT);
-        filter.addAction(ACTION_CUSTOMIZE_INSERT);
+        broadcastReceiver = new BlueBroadcastReceiver();
+        IntentFilter filter = new IntentFilter();
+		filter.addAction(BluetoothDevice.ACTION_FOUND);
+		filter.addAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED);
+		filter.addAction(BluetoothAdapter.ACTION_SCAN_MODE_CHANGED);
+		filter.addAction(BluetoothAdapter.ACTION_STATE_CHANGED);
+		filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
         mActivity.registerReceiver(broadcastReceiver, filter); 
 	}
 
@@ -251,7 +249,6 @@ public class MParamDetailsFragment extends Fragment {
 			return;
 		}
 		setMeasureParam();
-//		boolean isExist = businessDataBase.getMeasureParadmDao().isExistObject(measureParam);
 		boolean isExist = measureParam.getId()>0?true:false ;
 		if (isExist) {
 			boolean result = false;
@@ -382,41 +379,6 @@ public class MParamDetailsFragment extends Fragment {
 		sendMessage(Contants.SHOW_MSG, "测量点: "+measurePoint+" 接收成功");
 	}
 	
-	/**
-	 * 
-	 */
-	public class USBSerialBroadcastReceiver extends BroadcastReceiver {
-		private String TAG="USBBroadCastReceiver";
-		@Override
-		public void onReceive(Context context, Intent intent) {
-			String action = intent.getAction();
-			Log.e(TAG, "BroadcastReceiver action:" + action);
-			//授予权限成功后
-			/*if (ACTION_USB_PERMISSION.equals(action)) {
-				if (intent.getBooleanExtra(UsbManager.EXTRA_PERMISSION_GRANTED,false)) {
-					mHandler.sendMessage(mHandler.obtainMessage(Contants.SHOW_MSG, "前端设备连上！"));
-					server.initSerialDevice(mActivity,mHandler);
-				} else{
-					server.resetSerialDevice();
-				}
-				return;
-			}*/
-			//USB设备插入
-			if(ACTION_CUSTOMIZE_INSERT.equals(action)){
-				sendMessage(Contants.SHOW_MSG, "前端设备连上！");
-				server.initSerialDevice(mActivity,mHandler);
-				return;
-			}
-			//USB设备拔出
-			if (UsbManager.ACTION_USB_DEVICE_DETACHED.equals(action)) {
-				Log.e(TAG, "前端设备拔出！");
-				sendMessage(Contants.SHOW_MSG, "前端设备拔出！");
-				server.resetSerialDevice();
-				return;
-			}
-		}
-	}
-	
 	private void exportExcel(){
 		new Thread(){
 			public void run() {
@@ -482,5 +444,30 @@ public class MParamDetailsFragment extends Fragment {
 		   }
 		  });
 		  builder.create().show();
-		 }
+  }
+	
+	/**
+	 * 广播接收器监听搜索到的新蓝牙设备信息，搜索完成改变标题
+	 */
+	class BlueBroadcastReceiver extends BroadcastReceiver {
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			// 得到action
+			String action = intent.getAction();
+			// 当设备已经被搜索到
+			if (BluetoothDevice.ACTION_FOUND.equals(action)) {
+				// 从intent得到远程蓝牙设备
+				BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+				// 排除已经配对过的蓝牙设备，将剩下的列出来
+				if (device.getBondState() != BluetoothDevice.BOND_BONDED) {
+				if (!Utility.isEmpty(device.getName())){ // && "yaokan".contains(device.getName().trim().toLowerCase())) {
+//				   String addr = device.getAddress();
+//				   server.initSerialDevice(context, mHandler);
+				 }
+			   }
+			} else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {
+				
+			}
+		}
+	};
 }

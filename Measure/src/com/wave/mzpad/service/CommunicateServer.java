@@ -1,25 +1,20 @@
 package com.wave.mzpad.service;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import com.wave.mzpad.activity.MParamDetailsFragment;
-import com.wave.mzpad.common.Contants;
-import com.wave.mzpad.common.Utility;
-import com.wave.mzpad.usbserial.SerialInputOutputManager;
-import com.wave.mzpad.usbserial.UsbSerialDriver;
-import com.wave.mzpad.usbserial.UsbSerialPort;
-import com.wave.mzpad.usbserial.UsbSerialProber;
-
 import android.app.Activity;
+import android.bluetooth.BluetoothSocket;
 import android.content.Context;
-import android.hardware.usb.UsbDeviceConnection;
-import android.hardware.usb.UsbManager;
 import android.os.Handler;
+
+import com.wave.mzpad.activity.MParamDetailsFragment;
+import com.wave.mzpad.activity.MainFragment;
+import com.wave.mzpad.bluetooth.BlueInOutputManager;
+import com.wave.mzpad.bluetooth.BluetoothService;
+import com.wave.mzpad.common.Contants;
 import com.wave.mzpad.common.Log;
+import com.wave.mzpad.common.Utility;
 
 public class CommunicateServer {
 
@@ -51,26 +46,21 @@ public class CommunicateServer {
 	private static CommunicateServer commServer;
 
 	/**
-	 * USB通讯对象
-	 */
-	private static UsbManager mUsbManager;
-
-	/**
 	 * USB 串口对象
 	 */
-	private static UsbSerialPort sPort = null;
+	private BluetoothSocket sPort = null;
 
 	/**
 	 * 串口传输对象
 	 */
-	private SerialInputOutputManager mSerialIoManager;
+	private BlueInOutputManager mBTManager;
 
 	private final ExecutorService mExecutor = Executors.newSingleThreadExecutor();
 	
 	private HeartBeatThread heartBeatThread = null ;
 	
-	private final SerialInputOutputManager.Listener mListener = new SerialInputOutputManager.Listener() {
-
+	
+	private final Listener mListener = new Listener() {
 		@Override
 		public void onRunError(Exception e) {
 			Log.d(TAG, "Runner stopped.");
@@ -163,39 +153,12 @@ public class CommunicateServer {
 
 	public static void initSerialDevice(Context ctx,Handler handler){
 		Log.i(TAG, "initSerialDevice starting");
-		mUsbManager = (UsbManager) ctx.getSystemService(Context.USB_SERVICE);
-		 List<UsbSerialDriver> drivers = UsbSerialProber.getDefaultProber().findAllDrivers(mUsbManager);
-		 List<UsbSerialPort> result = new ArrayList<UsbSerialPort>();
-		for ( UsbSerialDriver driver : drivers) {
-		    List<UsbSerialPort> ports = driver.getPorts();
-			Log.d(TAG, String.format("+ %s: %s port%s", driver, Integer.valueOf(ports.size()), ports.size() == 1 ? "" : "s"));
-			result.addAll(ports);
-		}
-		if (Utility.isEmpty(result)) {
-			Log.d(TAG, "can not serial device!");
-			return ;
-		}
-		sPort = result.get(0);
-		UsbDeviceConnection connection = mUsbManager.openDevice(sPort.getDriver().getDevice());
-		if (connection == null) {
-			Log.d(TAG, "Opening device failed");
-			handler.sendMessage(handler.obtainMessage(Contants.TOAST_MSG, "串口连接失败，请检查设备,或者重新打开应用"));
-			return ;
-		}
-		try {
-			sPort.open(connection);
-			sPort.setParameters(115200, 8, UsbSerialPort.STOPBITS_1, UsbSerialPort.PARITY_NONE);
-			Log.e(TAG, "Serial device: " + sPort.getClass().getSimpleName());
-			handler.sendMessage(handler.obtainMessage(Contants.SHOW_MSG, "连接成功！"));
-			return ;
-		} catch (IOException e) {
-			Log.e(TAG, "Error setting up device: " + e.getMessage(), e);
-			try {
-				sPort.close();
-			} catch (IOException e2) {
-				Log.e(TAG, "Error setting up device: " + e2.getMessage(), e);
-			}
-			sPort = null;
+		BluetoothService.getInstance().setmHandler(handler);
+		if(!Utility.isEmpty(MainFragment.blueDeviceAddr)){
+			BluetoothService.getInstance().connect(MainFragment.blueDeviceAddr);
+		}else{
+			Log.i(TAG, "蓝牙设备未发现");
+			handler.sendMessage(handler.obtainMessage(Contants.SHOW_MSG, "设备未发现"));
 		}
 		Log.i(TAG, "initSerialDevice end");
 	}
@@ -289,18 +252,21 @@ public class CommunicateServer {
 			Log.e(TAG, "send command is null");
 			return false;
 		}
+		
 		if(Utility.isEmpty(sPort)){
 			Log.e(TAG, "sPort is null");
 			initSerialDevice(context,mHandler);
 			return false;
 		}
-		if(Utility.isEmpty(mSerialIoManager)){
+		
+		if(Utility.isEmpty(mBTManager)){
 			startIoManager();
 			return false;
 		}
+		
 		try {
 			Log.e(TAG, "send command Start command:"+command);
-			mSerialIoManager.writeAsync(command.getBytes());
+			mBTManager.writeAsync(command.getBytes());
 			Log.e(TAG, "send command End");
 		} catch (Exception e) {
 			Log.e(TAG, "send command Exception:" + e.getMessage());
@@ -318,18 +284,23 @@ public class CommunicateServer {
 	}
 
 	public void stopIoManager() {
-		if (mSerialIoManager != null) {
+		if (mBTManager != null) {
 			Log.i(TAG, "Stopping io manager ..");
-			mSerialIoManager.stop();
-			mSerialIoManager = null;
+			mBTManager.stop();
+			mBTManager = null;
 		}
 	}
 
 	public void startIoManager() {
+		sPort = BluetoothService.getInstance().getBTSocket();
 		if (sPort != null) {
 			Log.i(TAG, "Starting io manager ..");
-			mSerialIoManager = new SerialInputOutputManager(sPort, mListener);
-			mExecutor.submit(mSerialIoManager);
+			if(Utility.isEmpty(mBTManager)){
+			 mBTManager = new BlueInOutputManager(sPort, mListener);
+			 mExecutor.submit(mBTManager);
+			}else{
+				mBTManager.setmBTDriver(sPort);
+			}
 			heartBeatThread = new HeartBeatThread(this, mHandler);
 			heartBeatThread.start() ;
 		}

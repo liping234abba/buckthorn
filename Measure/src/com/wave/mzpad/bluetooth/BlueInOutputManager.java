@@ -19,17 +19,17 @@
  * Project home page: https://github.com/mik3y/usb-serial-for-android
  */
 
-package com.wave.mzpad.usbserial;
+package com.wave.mzpad.bluetooth;
 
-import android.hardware.usb.UsbRequest;
-import com.wave.mzpad.common.Log;
-
-
-import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 
+import android.bluetooth.BluetoothSocket;
+import android.hardware.usb.UsbRequest;
+
+import com.wave.mzpad.common.Log;
 import com.wave.mzpad.common.Utility;
+import com.wave.mzpad.service.Listener;
 
 /**
  * Utility class which services a {@link UsbSerialPort} in its {@link #run()}
@@ -37,19 +37,16 @@ import com.wave.mzpad.common.Utility;
  *
  * @author mike wakerly (opensource@hoho.com)
  */
-public class SerialInputOutputManager implements Runnable {
+public class BlueInOutputManager implements Runnable {
 
-    private static final String TAG = SerialInputOutputManager.class.getSimpleName();
+    private static final String TAG = BlueInOutputManager.class.getSimpleName();
     private static final boolean DEBUG = true;
-
-    private static final int READ_WAIT_MILLIS = 50;
     private static final int BUFSIZ = 2048;
 
-    private final UsbSerialPort mDriver;
+    private  BluetoothSocket mBTDriver;
 
     private final ByteBuffer mReadBuffer = ByteBuffer.allocate(BUFSIZ);
 
-    // Synchronized by 'mWriteBuffer'
     private final ByteBuffer mWriteBuffer = ByteBuffer.allocate(BUFSIZ);
     
     private StringBuffer stringBuffer = new StringBuffer() ;
@@ -66,31 +63,18 @@ public class SerialInputOutputManager implements Runnable {
     // Synchronized by 'this'
     private Listener mListener;
 
-    public interface Listener {
-        /**
-         * Called when new incoming data is available.
-         */
-        public void onNewData(byte[] data);
-
-        /**
-         * Called when {@link SerialInputOutputManager#run()} aborts due to an
-         * error.
-         */
-        public void onRunError(Exception e);
-    }
-
     /**
      * Creates a new instance with no listener.
      */
-    public SerialInputOutputManager(UsbSerialPort driver) {
+    public BlueInOutputManager(BluetoothSocket driver) {
         this(driver, null);
     }
 
     /**
      * Creates a new instance with the provided listener.
      */
-    public SerialInputOutputManager(UsbSerialPort driver, Listener listener) {
-        mDriver = driver;
+    public BlueInOutputManager(BluetoothSocket driver, Listener listener) {
+        mBTDriver = driver;
         mListener = listener;
     }
 
@@ -119,7 +103,6 @@ public class SerialInputOutputManager implements Runnable {
     private synchronized State getState() {
         return mState;
     }
-
     /**
      * Continuously services the read and write buffers until {@link #stop()} is
      * called, or until a driver exception is raised.
@@ -158,16 +141,18 @@ public class SerialInputOutputManager implements Runnable {
             }
         }
     }
+    
+    public void setmBTDriver(BluetoothSocket mBTDriver) {
+		this.mBTDriver = mBTDriver;
+	}
 
-    private void step() throws IOException, InterruptedException {
+	private void step() throws IOException, InterruptedException {
         // Handle incoming data.
-    	if(Utility.isEmpty(mDriver)){
-    		Log.i(TAG, "USB driver is null");
+    	if(Utility.isEmpty(mBTDriver)){
+    		Log.i(TAG, "BT driver is null");
     		return;
     	}
-        int len = mDriver.read(mReadBuffer.array(), READ_WAIT_MILLIS);
-//    	String buffer = "0x55,0x05,1343834,1200,1820,3,8435,0xff,0x52,0xaa";
-//    	int len = buffer.getBytes().length;
+        int len =  mBTDriver.getInputStream().read(mReadBuffer.array());
         if(len>0){
         	  if (DEBUG) Log.d(TAG, "Read data len=" + len);
         	  byte[] data = new byte[len];
@@ -213,9 +198,8 @@ public class SerialInputOutputManager implements Runnable {
                 Log.d(TAG, "Writing data len=" + len);
             }
             try {
-				mDriver.write(outBuff, READ_WAIT_MILLIS);
+				mBTDriver.getOutputStream().write(outBuff);
 			} catch (IOException e) {
-				
 				 Log.d(TAG, "IOException  error:" + e.getMessage());
 			}
         }

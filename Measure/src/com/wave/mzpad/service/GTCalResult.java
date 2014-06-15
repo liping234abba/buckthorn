@@ -9,7 +9,7 @@ public class GTCalResult extends AbstractCalResult {
 	 * 计算高铁内侧加宽量W=H×h/1500(H：月台高度，mm ，h：外轨超高mm)
 	 */
 	public float calInnerSideCoeft(int radius,int platformHight,int outerrailHight){
-		return  40500/(float)radius+ (float)platformHight*(float)outerrailHight/1500 ;
+		return  (float)platformHight*(float)outerrailHight/1500 ;
 	}
 	
 	/**
