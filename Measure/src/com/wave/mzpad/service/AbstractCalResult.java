@@ -13,8 +13,13 @@ public abstract class AbstractCalResult {
 	/**
 	 * 计算普快外侧系数（W2 = 44000/R）
 	 */
-	public abstract float calOuterSideCoeft(int radius);
+	public abstract float calOuterSideCoeft(int radius,int platformHight,int outerrailHight);
 	
+	/**
+	 * 计算直线
+	 */
+	public abstract float calLineLimit(MeasureResult measureResult,MeasureParam measureParam);
+		
 	/**
 	 *  内侧计算超限真实月台距离：前端月台距离+W1
 	 */ 

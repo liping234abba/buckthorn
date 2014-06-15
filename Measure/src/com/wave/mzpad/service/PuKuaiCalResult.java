@@ -15,10 +15,16 @@ public class PuKuaiCalResult extends AbstractCalResult {
 	/**
 	 * 计算普快外侧系数（W2 = 44000/R）
 	 */
-	public float calOuterSideCoeft(int radius){
+	public float calOuterSideCoeft(int radius,int platformHight,int outerrailHight){
 		return 44000/(float)radius ;
 	}
 	
+	/**
+	 * 计算直线
+	 */
+	public float calLineLimit(MeasureResult measureResult,MeasureParam measureParam){
+		return measureResult.getPlatformDistance();
+	}
 	
 	/**
 	 *  内侧计算超限真实月台距离：前端月台距离+W1
@@ -31,7 +37,7 @@ public class PuKuaiCalResult extends AbstractCalResult {
 	 * 外侧计算超限真实月台距离：前端月台距离+W2
 	 */
 	public float calOuterSideLimit(MeasureResult measureResult,MeasureParam measureParam){
-		return measureResult.getPlatformDistance() - calOuterSideCoeft(measureParam.getRadius()) ;
+		return measureResult.getPlatformDistance() - calOuterSideCoeft(measureParam.getRadius(), measureResult.getPlatformHigh(), measureParam.getOuterrailHigh())  ;
 	}
 	
 }

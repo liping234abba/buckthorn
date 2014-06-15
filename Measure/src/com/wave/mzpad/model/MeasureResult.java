@@ -14,6 +14,10 @@ public class MeasureResult extends AbstractObject implements Comparable {
 	public  String COLUMN_DIP_ANGLE = "dip_angle";
 	public  String COLUMN_RAINSHED_HIGH = "rainshed_high";
 	public  String COLUMN_PARAMID = "param_id";
+	
+	public  String COLUMN_LIMIT_DEFAULT = "limit_default";
+	public  String COLUMN_LIMIT_UPDATE = "limit_update";
+	
 
 	private int travelDistance = 0;// 行进距离
 	private int platformHigh = 0; // 月台高度
@@ -21,6 +25,8 @@ public class MeasureResult extends AbstractObject implements Comparable {
 	private int dipAngle = 0;//倾角
 	private int rainshedHigh = 0;//雨棚高度
 	private int paramId ;//外键
+	
+	private int limitDefault = 0 ,limitUpdate = 0 ; //原始值，修改值
 	
 	public int getTravelDistance() {
 		return travelDistance;
@@ -69,9 +75,10 @@ public class MeasureResult extends AbstractObject implements Comparable {
 		}
 		return false ;
 	}
+	
 	@Override
 	public String toString() {
-		return "MeasureResult [travelDistance=" + travelDistance + ", platformHigh=" + platformHigh + ", platformDistance=" + platformDistance + ", dipAngle=" + dipAngle + ", rainshedHigh=" + rainshedHigh + ", paramId=" + paramId + ", id=" + id + "]";
+		return "MeasureResult [travelDistance=" + travelDistance + ", platformHigh=" + platformHigh + ", platformDistance=" + platformDistance + ", dipAngle=" + dipAngle + ", rainshedHigh=" + rainshedHigh + ", paramId=" + paramId + ", limitDefault=" + limitDefault + ", limitUpdate=" + limitUpdate + "]";
 	}
 	@Override
 	public int compareTo(Object another) {
@@ -84,5 +91,17 @@ public class MeasureResult extends AbstractObject implements Comparable {
 		return 0;
 	}
 	
+	public int getLimitDefault() {
+		return limitDefault;
+	}
+	public void setLimitDefault(int limitDefault) {
+		this.limitDefault = limitDefault;
+	}
+	public int getLimitUpdate() {
+		return limitUpdate;
+	}
+	public void setLimitUpdate(int limitUpdate) {
+		this.limitUpdate = limitUpdate;
+	}
 	
 }

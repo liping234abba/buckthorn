@@ -15,12 +15,16 @@ public class GTCalResult extends AbstractCalResult {
 	/**
 	 * 计算普快外侧系数（W2 = 44000/R）
 	 */
-	public float calOuterSideCoeft(int radius){
-		return 44000/(float)radius ;
+	public float calOuterSideCoeft(int radius,int platformHight,int outerrailHight){
+		return (float)platformHight*(float)outerrailHight/1500 ;
 	}
 	
-	
-	
+	/**
+	 * 计算直线
+	 */
+	public float calLineLimit(MeasureResult measureResult,MeasureParam measureParam){
+		return measureResult.getPlatformDistance();
+	}
 	
 	/**
 	 *  内侧计算超限真实月台距离：前端月台距离+W1
@@ -33,7 +37,7 @@ public class GTCalResult extends AbstractCalResult {
 	 * 外侧计算超限真实月台距离：前端月台距离+W2
 	 */
 	public float calOuterSideLimit(MeasureResult measureResult,MeasureParam measureParam){
-		return measureResult.getPlatformDistance() - calOuterSideCoeft(measureParam.getRadius()) ;
+		return measureResult.getPlatformDistance() - calOuterSideCoeft(measureParam.getRadius(), measureResult.getPlatformHigh(), measureParam.getOuterrailHigh());
 	}
 	
 }

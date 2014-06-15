@@ -302,8 +302,8 @@ public class CommunicateServer {
 			}else{
 				mBTManager.setmBTDriver(sPort);
 			}
-			heartBeatThread = new HeartBeatThread(this, mHandler);
-			heartBeatThread.start() ;
+			/*heartBeatThread = new HeartBeatThread(this, mHandler);
+			heartBeatThread.start() ;*/
 		}
 	}
 	

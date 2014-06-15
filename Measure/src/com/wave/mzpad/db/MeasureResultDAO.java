@@ -50,6 +50,8 @@ public class MeasureResultDAO extends DAOBase {
             _measureResult.setDipAngle(pCursor.getInt(pCursor.getColumnIndex("dip_angle")));
             _measureResult.setRainshedHigh(pCursor.getInt(pCursor.getColumnIndex("rainshed_high")));
             _measureResult.setParamId(pCursor.getInt(pCursor.getColumnIndex("param_id")));
+            _measureResult.setLimitDefault(pCursor.getInt(pCursor.getColumnIndex("limit_default")));
+            _measureResult.setLimitUpdate(pCursor.getInt(pCursor.getColumnIndex("limit_update")));
         }
         return _measureResult;
     }
@@ -67,6 +69,8 @@ public class MeasureResultDAO extends DAOBase {
         _contentValues.put("dip_angle", pInfo.getDipAngle());
         _contentValues.put("rainshed_high", pInfo.getRainshedHigh());
         _contentValues.put("param_id", pInfo.getParamId());
+        _contentValues.put("limit_default", pInfo.getLimitDefault());
+        _contentValues.put("limit_update", pInfo.getLimitUpdate());
         return _contentValues;
     }
 

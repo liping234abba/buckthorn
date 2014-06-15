@@ -7,13 +7,8 @@ import java.util.List;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
-import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothDevice;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -72,8 +67,6 @@ public class MParamDetailsFragment extends Fragment {
 	
 	private CommunicateServer server ;
 	
-	private BroadcastReceiver broadcastReceiver = null ; 
-	
 	private TextView showMsg ;
 	
 	private Handler mHandler = new Handler(){
@@ -115,20 +108,10 @@ public class MParamDetailsFragment extends Fragment {
 		mActivity = getActivity();
 		businessDataBase = new BusinessDataBase(mActivity);
 		server = CommunicateServer.getInstance(mActivity, mHandler);
-		//注册USB设备监听广播
-        broadcastReceiver = new BlueBroadcastReceiver();
-        IntentFilter filter = new IntentFilter();
-		filter.addAction(BluetoothDevice.ACTION_FOUND);
-		filter.addAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED);
-		filter.addAction(BluetoothAdapter.ACTION_SCAN_MODE_CHANGED);
-		filter.addAction(BluetoothAdapter.ACTION_STATE_CHANGED);
-		filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
-        mActivity.registerReceiver(broadcastReceiver, filter); 
 	}
 
 	@Override
 	public void onDestroy() {
-		mActivity.unregisterReceiver(broadcastReceiver);
 		super.onDestroy();
 	}
 	
@@ -358,6 +341,9 @@ public class MParamDetailsFragment extends Fragment {
 			_result.setPlatformDistance(Utility.strToInt(data[2]));
 			_result.setDipAngle(Utility.strToInt(data[3]));
 			_result.setRainshedHigh(Utility.strToInt(data[4]));
+			int limitValue = Math.round(businessDataBase.calDiffResultValue(_result, measureParam)) ;
+			_result.setLimitDefault(limitValue);
+			_result.setLimitUpdate(limitValue);
 			_result = businessDataBase.getMeasureResultDao().insertMeasureResult(_result);
 		}catch(Exception exp){
 			Log.i(TAG, "整型转换出错  :data:"+ exp.getMessage());	
@@ -446,28 +432,4 @@ public class MParamDetailsFragment extends Fragment {
 		  builder.create().show();
   }
 	
-	/**
-	 * 广播接收器监听搜索到的新蓝牙设备信息，搜索完成改变标题
-	 */
-	class BlueBroadcastReceiver extends BroadcastReceiver {
-		@Override
-		public void onReceive(Context context, Intent intent) {
-			// 得到action
-			String action = intent.getAction();
-			// 当设备已经被搜索到
-			if (BluetoothDevice.ACTION_FOUND.equals(action)) {
-				// 从intent得到远程蓝牙设备
-				BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-				// 排除已经配对过的蓝牙设备，将剩下的列出来
-				if (device.getBondState() != BluetoothDevice.BOND_BONDED) {
-				if (!Utility.isEmpty(device.getName())){ // && "yaokan".contains(device.getName().trim().toLowerCase())) {
-//				   String addr = device.getAddress();
-//				   server.initSerialDevice(context, mHandler);
-				 }
-			   }
-			} else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {
-				
-			}
-		}
-	};
 }

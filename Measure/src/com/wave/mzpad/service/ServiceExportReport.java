@@ -223,7 +223,8 @@ public class ServiceExportReport implements OperateExcel {
 		//超限值
 		int result =  0 ;
 		try{
-			result = businessDataBase.calWarningLevelLimited(measureResult, (MeasureParam)abstractObject)[1] ; 
+//			result = businessDataBase.calWarningLevelLimited(measureResult, (MeasureParam)abstractObject)[1] ; 
+			result = measureResult.getLimitUpdate() ;
 		}catch(Exception epx){
 			Log.e(TAG, "updateExcel 计算限制失败 epx"+ epx.getMessage());
 		}
