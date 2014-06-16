@@ -1,4 +1,4 @@
-package com.wave.mzpad.service;
+package com.wave.mzpad.common;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -17,8 +17,6 @@ import jxl.write.biff.RowsExceededException;
 import android.content.Context;
 import android.os.Environment;
 
-import com.wave.mzpad.common.Log;
-import com.wave.mzpad.common.Utility;
 import com.wave.mzpad.model.CellElement;
 
 public class JxlExcelUtil {

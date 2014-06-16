@@ -13,13 +13,14 @@ import android.os.Environment;
 import android.text.format.DateFormat;
 
 import com.wave.mzpad.common.Contants;
+import com.wave.mzpad.common.JxlExcelUtil;
 import com.wave.mzpad.common.Log;
 import com.wave.mzpad.common.Utility;
+import com.wave.mzpad.common.JxlExcelUtil.OperateExcel;
 import com.wave.mzpad.model.AbstractObject;
 import com.wave.mzpad.model.CellElement;
 import com.wave.mzpad.model.MeasureParam;
 import com.wave.mzpad.model.MeasureResult;
-import com.wave.mzpad.service.JxlExcelUtil.OperateExcel;
 
 public class ServiceExportReport implements OperateExcel {
 
@@ -212,7 +213,7 @@ public class ServiceExportReport implements OperateExcel {
 		String cellValue = index + "" ;
 		insertExcelLabel(ws, pointY, pointX, cellValue);
 		//测量点
-		cellValue = measureResult.getTravelDistance() +  "" ;
+		cellValue = measureResult.getTravelDistance()/1000 + "."+ measureResult.getTravelDistance()%1000/100 +  "" ;
 		insertExcelLabel(ws, pointY, pointX + 1, cellValue);
 		//距轨顶面断面测量高度
 		cellValue = measureResult.getPlatformHigh() +  "" ;

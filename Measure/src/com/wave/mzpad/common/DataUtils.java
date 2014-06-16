@@ -1,4 +1,4 @@
-package com.wave.mzpad.service;
+package com.wave.mzpad.common;
 
 import android.content.Context;
 import android.content.SharedPreferences;

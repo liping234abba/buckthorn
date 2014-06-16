@@ -5633,7 +5633,6 @@ android.support.v4.widget.ViewDragHelper$Callback: boolean tryCaptureView(androi
 android.support.v4.widget.ViewDragHelper$Callback: int clampViewPositionHorizontal(android.view.View,int,int)
 android.support.v4.widget.ViewDragHelper$Callback: int clampViewPositionVertical(android.view.View,int,int)
 com.wave.mzpad.activity.MParamDetailsFragment
-com.wave.mzpad.activity.MParamDetailsFragment$USBSerialBroadcastReceiver
 com.wave.mzpad.activity.MParamListFragment
 com.wave.mzpad.activity.MParamListFragment: MParamListFragment()
 com.wave.mzpad.activity.MainFragment
@@ -5643,10 +5642,17 @@ com.wave.mzpad.activity.ReportActivity: ReportActivity()
 com.wave.mzpad.activity.ReportActivity: void onClick(android.view.View)
 com.wave.mzpad.activity.SplashActivity
 com.wave.mzpad.activity.SplashActivity: SplashActivity()
-com.wave.mzpad.activity.USBSerialActivity
-com.wave.mzpad.activity.USBSerialActivity: USBSerialActivity()
+com.wave.mzpad.bluetooth.BlueInOutputManager$State: com.wave.mzpad.bluetooth.BlueInOutputManager$State[] values()
+com.wave.mzpad.bluetooth.BlueInOutputManager$State: com.wave.mzpad.bluetooth.BlueInOutputManager$State valueOf(java.lang.String)
 com.wave.mzpad.common.Contants$Command: com.wave.mzpad.common.Contants$Command[] values()
 com.wave.mzpad.common.Contants$Command: com.wave.mzpad.common.Contants$Command valueOf(java.lang.String)
+com.wave.mzpad.service.AbstractCalResult
+com.wave.mzpad.service.AbstractCalResult: AbstractCalResult()
+com.wave.mzpad.service.AbstractCalResult: float calInnerSideCoeft(int,int,int)
+com.wave.mzpad.service.AbstractCalResult: float calOuterSideCoeft(int,int,int)
+com.wave.mzpad.service.AbstractCalResult: float calLineLimit(com.wave.mzpad.model.MeasureResult,com.wave.mzpad.model.MeasureParam)
+com.wave.mzpad.service.AbstractCalResult: float calInnerSideLimit(com.wave.mzpad.model.MeasureResult,com.wave.mzpad.model.MeasureParam)
+com.wave.mzpad.service.AbstractCalResult: float calOuterSideLimit(com.wave.mzpad.model.MeasureResult,com.wave.mzpad.model.MeasureParam)
 com.wave.mzpad.service.BusinessDataBase
 com.wave.mzpad.service.BusinessDataBase: android.content.Context ctx
 com.wave.mzpad.service.BusinessDataBase: com.wave.mzpad.db.MeasureResultDAO measureResultDao
@@ -5658,15 +5664,12 @@ com.wave.mzpad.service.BusinessDataBase: com.wave.mzpad.db.MeasureParamDAO getMe
 com.wave.mzpad.service.BusinessDataBase: com.wave.mzpad.db.MeasureResultDAO getMeasureResultDao()
 com.wave.mzpad.service.BusinessDataBase: com.wave.mzpad.db.StandardDataDAO getStandardDataDAO()
 com.wave.mzpad.service.BusinessDataBase: java.util.List getMeasureResult(int)
-com.wave.mzpad.service.BusinessDataBase: int calInnerSideCoeft(int,int,int)
-com.wave.mzpad.service.BusinessDataBase: int calOuterSideCoeft(int)
-com.wave.mzpad.service.BusinessDataBase: int calInnerSideLimit(com.wave.mzpad.model.MeasureResult,com.wave.mzpad.model.MeasureParam)
-com.wave.mzpad.service.BusinessDataBase: int calOuterSideLimit(com.wave.mzpad.model.MeasureResult,com.wave.mzpad.model.MeasureParam)
 com.wave.mzpad.service.BusinessDataBase: void initData()
-com.wave.mzpad.service.BusinessDataBase: int calLimitValue(com.wave.mzpad.model.MeasureResult,com.wave.mzpad.model.MeasureParam)
+com.wave.mzpad.service.BusinessDataBase: float calLimitValue(com.wave.mzpad.model.MeasureResult,com.wave.mzpad.model.MeasureParam)
+com.wave.mzpad.service.BusinessDataBase: float calDiffResultValue(com.wave.mzpad.model.MeasureResult,com.wave.mzpad.model.MeasureParam)
 com.wave.mzpad.service.BusinessDataBase: int[] calWarningLevelLimited(com.wave.mzpad.model.MeasureResult,com.wave.mzpad.model.MeasureParam)
 com.wave.mzpad.service.BusinessDataBase: com.wave.mzpad.model.StandardData getStandardData(com.wave.mzpad.model.MeasureResult)
-com.wave.mzpad.service.BusinessDataBase: int getCurveWidenValue(com.wave.mzpad.model.MeasureParam,com.wave.mzpad.model.MeasureResult)
+com.wave.mzpad.service.BusinessDataBase: float getCurveWidenValue(com.wave.mzpad.model.MeasureParam,com.wave.mzpad.model.MeasureResult)
 com.wave.mzpad.service.CommunicateServer
 com.wave.mzpad.service.CommunicateServer: java.lang.String TAG
 com.wave.mzpad.service.CommunicateServer: android.os.Handler mHandler
@@ -5677,12 +5680,11 @@ com.wave.mzpad.service.CommunicateServer: int PAUSE
 com.wave.mzpad.service.CommunicateServer: int STOP
 com.wave.mzpad.service.CommunicateServer: int CONNECTED
 com.wave.mzpad.service.CommunicateServer: com.wave.mzpad.service.CommunicateServer commServer
-com.wave.mzpad.service.CommunicateServer: android.hardware.usb.UsbManager mUsbManager
-com.wave.mzpad.service.CommunicateServer: com.wave.mzpad.usbserial.UsbSerialPort sPort
-com.wave.mzpad.service.CommunicateServer: com.wave.mzpad.usbserial.SerialInputOutputManager mSerialIoManager
+com.wave.mzpad.service.CommunicateServer: android.bluetooth.BluetoothSocket sPort
+com.wave.mzpad.service.CommunicateServer: com.wave.mzpad.bluetooth.BlueInOutputManager mBTManager
 com.wave.mzpad.service.CommunicateServer: java.util.concurrent.ExecutorService mExecutor
 com.wave.mzpad.service.CommunicateServer: com.wave.mzpad.service.HeartBeatThread heartBeatThread
-com.wave.mzpad.service.CommunicateServer: com.wave.mzpad.usbserial.SerialInputOutputManager$Listener mListener
+com.wave.mzpad.service.CommunicateServer: com.wave.mzpad.service.Listener mListener
 com.wave.mzpad.service.CommunicateServer: void <clinit>()
 com.wave.mzpad.service.CommunicateServer: CommunicateServer(android.app.Activity,android.os.Handler)
 com.wave.mzpad.service.CommunicateServer: com.wave.mzpad.service.CommunicateServer getInstance(android.app.Activity,android.os.Handler)
@@ -5718,12 +5720,13 @@ com.wave.mzpad.service.CommunicateServer$1$1: com.wave.mzpad.service.Communicate
 com.wave.mzpad.service.CommunicateServer$1$1: byte[] val$data
 com.wave.mzpad.service.CommunicateServer$1$1: CommunicateServer$1$1(com.wave.mzpad.service.CommunicateServer$1,byte[])
 com.wave.mzpad.service.CommunicateServer$1$1: void run()
-com.wave.mzpad.service.DataUtils
-com.wave.mzpad.service.DataUtils: java.lang.String app_filename
-com.wave.mzpad.service.DataUtils: void <clinit>()
-com.wave.mzpad.service.DataUtils: DataUtils()
-com.wave.mzpad.service.DataUtils: void setfirst(android.content.Context)
-com.wave.mzpad.service.DataUtils: boolean isFirst(android.content.Context)
+com.wave.mzpad.service.GTCalResult
+com.wave.mzpad.service.GTCalResult: GTCalResult()
+com.wave.mzpad.service.GTCalResult: float calInnerSideCoeft(int,int,int)
+com.wave.mzpad.service.GTCalResult: float calOuterSideCoeft(int,int,int)
+com.wave.mzpad.service.GTCalResult: float calLineLimit(com.wave.mzpad.model.MeasureResult,com.wave.mzpad.model.MeasureParam)
+com.wave.mzpad.service.GTCalResult: float calInnerSideLimit(com.wave.mzpad.model.MeasureResult,com.wave.mzpad.model.MeasureParam)
+com.wave.mzpad.service.GTCalResult: float calOuterSideLimit(com.wave.mzpad.model.MeasureResult,com.wave.mzpad.model.MeasureParam)
 com.wave.mzpad.service.HeartBeatThread
 com.wave.mzpad.service.HeartBeatThread: long startTime
 com.wave.mzpad.service.HeartBeatThread: java.util.Timer timer
@@ -5751,24 +5754,21 @@ com.wave.mzpad.service.HeartBeatThread$1
 com.wave.mzpad.service.HeartBeatThread$1: com.wave.mzpad.service.HeartBeatThread this$0
 com.wave.mzpad.service.HeartBeatThread$1: HeartBeatThread$1(com.wave.mzpad.service.HeartBeatThread)
 com.wave.mzpad.service.HeartBeatThread$1: void run()
-com.wave.mzpad.service.JxlExcelUtil
-com.wave.mzpad.service.JxlExcelUtil: java.lang.String TAG
-com.wave.mzpad.service.JxlExcelUtil: android.content.Context ctx
-com.wave.mzpad.service.JxlExcelUtil: com.wave.mzpad.service.JxlExcelUtil$OperateExcel operateExcel
-com.wave.mzpad.service.JxlExcelUtil: JxlExcelUtil()
-com.wave.mzpad.service.JxlExcelUtil: JxlExcelUtil(android.content.Context)
-com.wave.mzpad.service.JxlExcelUtil: void setOperateExcel(com.wave.mzpad.service.JxlExcelUtil$OperateExcel)
-com.wave.mzpad.service.JxlExcelUtil: void createExcel(java.lang.String,java.lang.String)
-com.wave.mzpad.service.JxlExcelUtil: void copyAndupdateExcel(java.lang.String,java.lang.String,java.lang.String)
-com.wave.mzpad.service.JxlExcelUtil: void updateLabelCell(jxl.write.WritableSheet,com.wave.mzpad.model.CellElement)
-com.wave.mzpad.service.JxlExcelUtil: void colseWritableWorkbook(jxl.write.WritableWorkbook)
-com.wave.mzpad.service.JxlExcelUtil$OperateExcel
-com.wave.mzpad.service.JxlExcelUtil$OperateExcel: void updateExcel(jxl.write.WritableSheet)
+com.wave.mzpad.service.Listener
+com.wave.mzpad.service.Listener: void onNewData(byte[])
+com.wave.mzpad.service.Listener: void onRunError(java.lang.Exception)
+com.wave.mzpad.service.PuKuaiCalResult
+com.wave.mzpad.service.PuKuaiCalResult: PuKuaiCalResult()
+com.wave.mzpad.service.PuKuaiCalResult: float calInnerSideCoeft(int,int,int)
+com.wave.mzpad.service.PuKuaiCalResult: float calOuterSideCoeft(int,int,int)
+com.wave.mzpad.service.PuKuaiCalResult: float calLineLimit(com.wave.mzpad.model.MeasureResult,com.wave.mzpad.model.MeasureParam)
+com.wave.mzpad.service.PuKuaiCalResult: float calInnerSideLimit(com.wave.mzpad.model.MeasureResult,com.wave.mzpad.model.MeasureParam)
+com.wave.mzpad.service.PuKuaiCalResult: float calOuterSideLimit(com.wave.mzpad.model.MeasureResult,com.wave.mzpad.model.MeasureParam)
 com.wave.mzpad.service.ServiceExportReport
 com.wave.mzpad.service.ServiceExportReport: java.lang.String TAG
 com.wave.mzpad.service.ServiceExportReport: com.wave.mzpad.model.MeasureParam abstractObject
 com.wave.mzpad.service.ServiceExportReport: java.util.List listAbstractObject
-com.wave.mzpad.service.ServiceExportReport: com.wave.mzpad.service.JxlExcelUtil excelUtil
+com.wave.mzpad.service.ServiceExportReport: com.wave.mzpad.common.JxlExcelUtil excelUtil
 com.wave.mzpad.service.ServiceExportReport: int startX
 com.wave.mzpad.service.ServiceExportReport: int startY
 com.wave.mzpad.service.ServiceExportReport: int colMax
@@ -5776,391 +5776,6 @@ com.wave.mzpad.service.ServiceExportReport: com.wave.mzpad.service.BusinessDataB
 com.wave.mzpad.service.ServiceExportReport: ServiceExportReport(android.content.Context,com.wave.mzpad.model.AbstractObject,java.util.List)
 com.wave.mzpad.service.ServiceExportReport: void exportExcel()
 com.wave.mzpad.service.ServiceExportReport: void updateExcel(jxl.write.WritableSheet)
+com.wave.mzpad.service.ServiceExportReport: void insertMeasureParam(jxl.write.WritableSheet)
 com.wave.mzpad.service.ServiceExportReport: void insertColumnArray(jxl.write.WritableSheet,int,int,int)
 com.wave.mzpad.service.ServiceExportReport: void insertExcelLabel(jxl.write.WritableSheet,int,int,java.lang.String)
-com.wave.mzpad.usbserial.CdcAcmSerialDriver
-com.wave.mzpad.usbserial.CdcAcmSerialDriver: java.lang.String TAG
-com.wave.mzpad.usbserial.CdcAcmSerialDriver: android.hardware.usb.UsbDevice mDevice
-com.wave.mzpad.usbserial.CdcAcmSerialDriver: com.wave.mzpad.usbserial.UsbSerialPort mPort
-com.wave.mzpad.usbserial.CdcAcmSerialDriver: CdcAcmSerialDriver(android.hardware.usb.UsbDevice)
-com.wave.mzpad.usbserial.CdcAcmSerialDriver: android.hardware.usb.UsbDevice getDevice()
-com.wave.mzpad.usbserial.CdcAcmSerialDriver: java.util.List getPorts()
-com.wave.mzpad.usbserial.CdcAcmSerialDriver: java.util.Map getSupportedDevices()
-com.wave.mzpad.usbserial.CdcAcmSerialDriver: java.lang.String access$0(com.wave.mzpad.usbserial.CdcAcmSerialDriver)
-com.wave.mzpad.usbserial.CdcAcmSerialDriver$CdcAdcmSerialPort
-com.wave.mzpad.usbserial.CdcAcmSerialDriver$CdcAdcmSerialPort: android.hardware.usb.UsbInterface mControlInterface
-com.wave.mzpad.usbserial.CdcAcmSerialDriver$CdcAdcmSerialPort: android.hardware.usb.UsbInterface mDataInterface
-com.wave.mzpad.usbserial.CdcAcmSerialDriver$CdcAdcmSerialPort: android.hardware.usb.UsbEndpoint mControlEndpoint
-com.wave.mzpad.usbserial.CdcAcmSerialDriver$CdcAdcmSerialPort: android.hardware.usb.UsbEndpoint mReadEndpoint
-com.wave.mzpad.usbserial.CdcAcmSerialDriver$CdcAdcmSerialPort: android.hardware.usb.UsbEndpoint mWriteEndpoint
-com.wave.mzpad.usbserial.CdcAcmSerialDriver$CdcAdcmSerialPort: boolean mRts
-com.wave.mzpad.usbserial.CdcAcmSerialDriver$CdcAdcmSerialPort: boolean mDtr
-com.wave.mzpad.usbserial.CdcAcmSerialDriver$CdcAdcmSerialPort: int USB_RECIP_INTERFACE
-com.wave.mzpad.usbserial.CdcAcmSerialDriver$CdcAdcmSerialPort: int USB_RT_ACM
-com.wave.mzpad.usbserial.CdcAcmSerialDriver$CdcAdcmSerialPort: int SET_LINE_CODING
-com.wave.mzpad.usbserial.CdcAcmSerialDriver$CdcAdcmSerialPort: int GET_LINE_CODING
-com.wave.mzpad.usbserial.CdcAcmSerialDriver$CdcAdcmSerialPort: int SET_CONTROL_LINE_STATE
-com.wave.mzpad.usbserial.CdcAcmSerialDriver$CdcAdcmSerialPort: int SEND_BREAK
-com.wave.mzpad.usbserial.CdcAcmSerialDriver$CdcAdcmSerialPort: com.wave.mzpad.usbserial.CdcAcmSerialDriver this$0
-com.wave.mzpad.usbserial.CdcAcmSerialDriver$CdcAdcmSerialPort: CdcAcmSerialDriver$CdcAdcmSerialPort(com.wave.mzpad.usbserial.CdcAcmSerialDriver,android.hardware.usb.UsbDevice)
-com.wave.mzpad.usbserial.CdcAcmSerialDriver$CdcAdcmSerialPort: com.wave.mzpad.usbserial.UsbSerialDriver getDriver()
-com.wave.mzpad.usbserial.CdcAcmSerialDriver$CdcAdcmSerialPort: void open(android.hardware.usb.UsbDeviceConnection)
-com.wave.mzpad.usbserial.CdcAcmSerialDriver$CdcAdcmSerialPort: int sendAcmControlMessage(int,int,byte[])
-com.wave.mzpad.usbserial.CdcAcmSerialDriver$CdcAdcmSerialPort: void close()
-com.wave.mzpad.usbserial.CdcAcmSerialDriver$CdcAdcmSerialPort: int read(byte[],int)
-com.wave.mzpad.usbserial.CdcAcmSerialDriver$CdcAdcmSerialPort: int write(byte[],int)
-com.wave.mzpad.usbserial.CdcAcmSerialDriver$CdcAdcmSerialPort: void setParameters(int,int,int,int)
-com.wave.mzpad.usbserial.CdcAcmSerialDriver$CdcAdcmSerialPort: boolean getCD()
-com.wave.mzpad.usbserial.CdcAcmSerialDriver$CdcAdcmSerialPort: boolean getCTS()
-com.wave.mzpad.usbserial.CdcAcmSerialDriver$CdcAdcmSerialPort: boolean getDSR()
-com.wave.mzpad.usbserial.CdcAcmSerialDriver$CdcAdcmSerialPort: boolean getDTR()
-com.wave.mzpad.usbserial.CdcAcmSerialDriver$CdcAdcmSerialPort: void setDTR(boolean)
-com.wave.mzpad.usbserial.CdcAcmSerialDriver$CdcAdcmSerialPort: boolean getRI()
-com.wave.mzpad.usbserial.CdcAcmSerialDriver$CdcAdcmSerialPort: boolean getRTS()
-com.wave.mzpad.usbserial.CdcAcmSerialDriver$CdcAdcmSerialPort: void setRTS(boolean)
-com.wave.mzpad.usbserial.CdcAcmSerialDriver$CdcAdcmSerialPort: void setDtrRts()
-com.wave.mzpad.usbserial.CommonUsbSerialPort
-com.wave.mzpad.usbserial.CommonUsbSerialPort: int DEFAULT_READ_BUFFER_SIZE
-com.wave.mzpad.usbserial.CommonUsbSerialPort: int DEFAULT_WRITE_BUFFER_SIZE
-com.wave.mzpad.usbserial.CommonUsbSerialPort: android.hardware.usb.UsbDevice mDevice
-com.wave.mzpad.usbserial.CommonUsbSerialPort: android.hardware.usb.UsbDeviceConnection mConnection
-com.wave.mzpad.usbserial.CommonUsbSerialPort: java.lang.Object mReadBufferLock
-com.wave.mzpad.usbserial.CommonUsbSerialPort: java.lang.Object mWriteBufferLock
-com.wave.mzpad.usbserial.CommonUsbSerialPort: byte[] mReadBuffer
-com.wave.mzpad.usbserial.CommonUsbSerialPort: byte[] mWriteBuffer
-com.wave.mzpad.usbserial.CommonUsbSerialPort: CommonUsbSerialPort(android.hardware.usb.UsbDevice)
-com.wave.mzpad.usbserial.CommonUsbSerialPort: android.hardware.usb.UsbDevice getDevice()
-com.wave.mzpad.usbserial.CommonUsbSerialPort: void setReadBufferSize(int)
-com.wave.mzpad.usbserial.CommonUsbSerialPort: void setWriteBufferSize(int)
-com.wave.mzpad.usbserial.CommonUsbSerialPort: void open(android.hardware.usb.UsbDeviceConnection)
-com.wave.mzpad.usbserial.CommonUsbSerialPort: void close()
-com.wave.mzpad.usbserial.CommonUsbSerialPort: int read(byte[],int)
-com.wave.mzpad.usbserial.CommonUsbSerialPort: int write(byte[],int)
-com.wave.mzpad.usbserial.CommonUsbSerialPort: void setParameters(int,int,int,int)
-com.wave.mzpad.usbserial.CommonUsbSerialPort: boolean getCD()
-com.wave.mzpad.usbserial.CommonUsbSerialPort: boolean getCTS()
-com.wave.mzpad.usbserial.CommonUsbSerialPort: boolean getDSR()
-com.wave.mzpad.usbserial.CommonUsbSerialPort: boolean getDTR()
-com.wave.mzpad.usbserial.CommonUsbSerialPort: void setDTR(boolean)
-com.wave.mzpad.usbserial.CommonUsbSerialPort: boolean getRI()
-com.wave.mzpad.usbserial.CommonUsbSerialPort: boolean getRTS()
-com.wave.mzpad.usbserial.CommonUsbSerialPort: void setRTS(boolean)
-com.wave.mzpad.usbserial.CommonUsbSerialPort: boolean purgeHwBuffers(boolean,boolean)
-com.wave.mzpad.usbserial.Cp21xxSerialDriver
-com.wave.mzpad.usbserial.Cp21xxSerialDriver: java.lang.String TAG
-com.wave.mzpad.usbserial.Cp21xxSerialDriver: android.hardware.usb.UsbDevice mDevice
-com.wave.mzpad.usbserial.Cp21xxSerialDriver: com.wave.mzpad.usbserial.UsbSerialPort mPort
-com.wave.mzpad.usbserial.Cp21xxSerialDriver: void <clinit>()
-com.wave.mzpad.usbserial.Cp21xxSerialDriver: Cp21xxSerialDriver(android.hardware.usb.UsbDevice)
-com.wave.mzpad.usbserial.Cp21xxSerialDriver: android.hardware.usb.UsbDevice getDevice()
-com.wave.mzpad.usbserial.Cp21xxSerialDriver: java.util.List getPorts()
-com.wave.mzpad.usbserial.Cp21xxSerialDriver: java.util.Map getSupportedDevices()
-com.wave.mzpad.usbserial.Cp21xxSerialDriver: java.lang.String access$0()
-com.wave.mzpad.usbserial.Cp21xxSerialDriver$Cp21xxSerialPort
-com.wave.mzpad.usbserial.Cp21xxSerialDriver$Cp21xxSerialPort: int DEFAULT_BAUD_RATE
-com.wave.mzpad.usbserial.Cp21xxSerialDriver$Cp21xxSerialPort: int USB_WRITE_TIMEOUT_MILLIS
-com.wave.mzpad.usbserial.Cp21xxSerialDriver$Cp21xxSerialPort: int REQTYPE_HOST_TO_DEVICE
-com.wave.mzpad.usbserial.Cp21xxSerialDriver$Cp21xxSerialPort: int SILABSER_IFC_ENABLE_REQUEST_CODE
-com.wave.mzpad.usbserial.Cp21xxSerialDriver$Cp21xxSerialPort: int SILABSER_SET_BAUDDIV_REQUEST_CODE
-com.wave.mzpad.usbserial.Cp21xxSerialDriver$Cp21xxSerialPort: int SILABSER_SET_LINE_CTL_REQUEST_CODE
-com.wave.mzpad.usbserial.Cp21xxSerialDriver$Cp21xxSerialPort: int SILABSER_SET_MHS_REQUEST_CODE
-com.wave.mzpad.usbserial.Cp21xxSerialDriver$Cp21xxSerialPort: int SILABSER_SET_BAUDRATE
-com.wave.mzpad.usbserial.Cp21xxSerialDriver$Cp21xxSerialPort: int SILABSER_FLUSH_REQUEST_CODE
-com.wave.mzpad.usbserial.Cp21xxSerialDriver$Cp21xxSerialPort: int FLUSH_READ_CODE
-com.wave.mzpad.usbserial.Cp21xxSerialDriver$Cp21xxSerialPort: int FLUSH_WRITE_CODE
-com.wave.mzpad.usbserial.Cp21xxSerialDriver$Cp21xxSerialPort: int UART_ENABLE
-com.wave.mzpad.usbserial.Cp21xxSerialDriver$Cp21xxSerialPort: int UART_DISABLE
-com.wave.mzpad.usbserial.Cp21xxSerialDriver$Cp21xxSerialPort: int BAUD_RATE_GEN_FREQ
-com.wave.mzpad.usbserial.Cp21xxSerialDriver$Cp21xxSerialPort: int MCR_DTR
-com.wave.mzpad.usbserial.Cp21xxSerialDriver$Cp21xxSerialPort: int MCR_RTS
-com.wave.mzpad.usbserial.Cp21xxSerialDriver$Cp21xxSerialPort: int MCR_ALL
-com.wave.mzpad.usbserial.Cp21xxSerialDriver$Cp21xxSerialPort: int CONTROL_WRITE_DTR
-com.wave.mzpad.usbserial.Cp21xxSerialDriver$Cp21xxSerialPort: int CONTROL_WRITE_RTS
-com.wave.mzpad.usbserial.Cp21xxSerialDriver$Cp21xxSerialPort: android.hardware.usb.UsbEndpoint mReadEndpoint
-com.wave.mzpad.usbserial.Cp21xxSerialDriver$Cp21xxSerialPort: android.hardware.usb.UsbEndpoint mWriteEndpoint
-com.wave.mzpad.usbserial.Cp21xxSerialDriver$Cp21xxSerialPort: com.wave.mzpad.usbserial.Cp21xxSerialDriver this$0
-com.wave.mzpad.usbserial.Cp21xxSerialDriver$Cp21xxSerialPort: Cp21xxSerialDriver$Cp21xxSerialPort(com.wave.mzpad.usbserial.Cp21xxSerialDriver,android.hardware.usb.UsbDevice)
-com.wave.mzpad.usbserial.Cp21xxSerialDriver$Cp21xxSerialPort: com.wave.mzpad.usbserial.UsbSerialDriver getDriver()
-com.wave.mzpad.usbserial.Cp21xxSerialDriver$Cp21xxSerialPort: int setConfigSingle(int,int)
-com.wave.mzpad.usbserial.Cp21xxSerialDriver$Cp21xxSerialPort: void open(android.hardware.usb.UsbDeviceConnection)
-com.wave.mzpad.usbserial.Cp21xxSerialDriver$Cp21xxSerialPort: void close()
-com.wave.mzpad.usbserial.Cp21xxSerialDriver$Cp21xxSerialPort: int read(byte[],int)
-com.wave.mzpad.usbserial.Cp21xxSerialDriver$Cp21xxSerialPort: int write(byte[],int)
-com.wave.mzpad.usbserial.Cp21xxSerialDriver$Cp21xxSerialPort: void setBaudRate(int)
-com.wave.mzpad.usbserial.Cp21xxSerialDriver$Cp21xxSerialPort: void setParameters(int,int,int,int)
-com.wave.mzpad.usbserial.Cp21xxSerialDriver$Cp21xxSerialPort: boolean getCD()
-com.wave.mzpad.usbserial.Cp21xxSerialDriver$Cp21xxSerialPort: boolean getCTS()
-com.wave.mzpad.usbserial.Cp21xxSerialDriver$Cp21xxSerialPort: boolean getDSR()
-com.wave.mzpad.usbserial.Cp21xxSerialDriver$Cp21xxSerialPort: boolean getDTR()
-com.wave.mzpad.usbserial.Cp21xxSerialDriver$Cp21xxSerialPort: void setDTR(boolean)
-com.wave.mzpad.usbserial.Cp21xxSerialDriver$Cp21xxSerialPort: boolean getRI()
-com.wave.mzpad.usbserial.Cp21xxSerialDriver$Cp21xxSerialPort: boolean getRTS()
-com.wave.mzpad.usbserial.Cp21xxSerialDriver$Cp21xxSerialPort: void setRTS(boolean)
-com.wave.mzpad.usbserial.Cp21xxSerialDriver$Cp21xxSerialPort: boolean purgeHwBuffers(boolean,boolean)
-com.wave.mzpad.usbserial.FtdiSerialDriver
-com.wave.mzpad.usbserial.FtdiSerialDriver: android.hardware.usb.UsbDevice mDevice
-com.wave.mzpad.usbserial.FtdiSerialDriver: com.wave.mzpad.usbserial.UsbSerialPort mPort
-com.wave.mzpad.usbserial.FtdiSerialDriver: FtdiSerialDriver(android.hardware.usb.UsbDevice)
-com.wave.mzpad.usbserial.FtdiSerialDriver: android.hardware.usb.UsbDevice getDevice()
-com.wave.mzpad.usbserial.FtdiSerialDriver: java.util.List getPorts()
-com.wave.mzpad.usbserial.FtdiSerialDriver: java.util.Map getSupportedDevices()
-com.wave.mzpad.usbserial.FtdiSerialDriver$DeviceType
-com.wave.mzpad.usbserial.FtdiSerialDriver$DeviceType: com.wave.mzpad.usbserial.FtdiSerialDriver$DeviceType TYPE_BM
-com.wave.mzpad.usbserial.FtdiSerialDriver$DeviceType: com.wave.mzpad.usbserial.FtdiSerialDriver$DeviceType TYPE_AM
-com.wave.mzpad.usbserial.FtdiSerialDriver$DeviceType: com.wave.mzpad.usbserial.FtdiSerialDriver$DeviceType TYPE_2232C
-com.wave.mzpad.usbserial.FtdiSerialDriver$DeviceType: com.wave.mzpad.usbserial.FtdiSerialDriver$DeviceType TYPE_R
-com.wave.mzpad.usbserial.FtdiSerialDriver$DeviceType: com.wave.mzpad.usbserial.FtdiSerialDriver$DeviceType TYPE_2232H
-com.wave.mzpad.usbserial.FtdiSerialDriver$DeviceType: com.wave.mzpad.usbserial.FtdiSerialDriver$DeviceType TYPE_4232H
-com.wave.mzpad.usbserial.FtdiSerialDriver$DeviceType: com.wave.mzpad.usbserial.FtdiSerialDriver$DeviceType[] ENUM$VALUES
-com.wave.mzpad.usbserial.FtdiSerialDriver$DeviceType: void <clinit>()
-com.wave.mzpad.usbserial.FtdiSerialDriver$DeviceType: FtdiSerialDriver$DeviceType(java.lang.String,int)
-com.wave.mzpad.usbserial.FtdiSerialDriver$DeviceType: com.wave.mzpad.usbserial.FtdiSerialDriver$DeviceType[] values()
-com.wave.mzpad.usbserial.FtdiSerialDriver$DeviceType: com.wave.mzpad.usbserial.FtdiSerialDriver$DeviceType valueOf(java.lang.String)
-com.wave.mzpad.usbserial.FtdiSerialDriver$FtdiSerialPort
-com.wave.mzpad.usbserial.FtdiSerialDriver$FtdiSerialPort: int USB_TYPE_STANDARD
-com.wave.mzpad.usbserial.FtdiSerialDriver$FtdiSerialPort: int USB_TYPE_CLASS
-com.wave.mzpad.usbserial.FtdiSerialDriver$FtdiSerialPort: int USB_TYPE_VENDOR
-com.wave.mzpad.usbserial.FtdiSerialDriver$FtdiSerialPort: int USB_TYPE_RESERVED
-com.wave.mzpad.usbserial.FtdiSerialDriver$FtdiSerialPort: int USB_RECIP_DEVICE
-com.wave.mzpad.usbserial.FtdiSerialDriver$FtdiSerialPort: int USB_RECIP_INTERFACE
-com.wave.mzpad.usbserial.FtdiSerialDriver$FtdiSerialPort: int USB_RECIP_ENDPOINT
-com.wave.mzpad.usbserial.FtdiSerialDriver$FtdiSerialPort: int USB_RECIP_OTHER
-com.wave.mzpad.usbserial.FtdiSerialDriver$FtdiSerialPort: int USB_ENDPOINT_IN
-com.wave.mzpad.usbserial.FtdiSerialDriver$FtdiSerialPort: int USB_ENDPOINT_OUT
-com.wave.mzpad.usbserial.FtdiSerialDriver$FtdiSerialPort: int USB_WRITE_TIMEOUT_MILLIS
-com.wave.mzpad.usbserial.FtdiSerialDriver$FtdiSerialPort: int USB_READ_TIMEOUT_MILLIS
-com.wave.mzpad.usbserial.FtdiSerialDriver$FtdiSerialPort: int SIO_RESET_REQUEST
-com.wave.mzpad.usbserial.FtdiSerialDriver$FtdiSerialPort: int SIO_MODEM_CTRL_REQUEST
-com.wave.mzpad.usbserial.FtdiSerialDriver$FtdiSerialPort: int SIO_SET_FLOW_CTRL_REQUEST
-com.wave.mzpad.usbserial.FtdiSerialDriver$FtdiSerialPort: int SIO_SET_BAUD_RATE_REQUEST
-com.wave.mzpad.usbserial.FtdiSerialDriver$FtdiSerialPort: int SIO_SET_DATA_REQUEST
-com.wave.mzpad.usbserial.FtdiSerialDriver$FtdiSerialPort: int SIO_RESET_SIO
-com.wave.mzpad.usbserial.FtdiSerialDriver$FtdiSerialPort: int SIO_RESET_PURGE_RX
-com.wave.mzpad.usbserial.FtdiSerialDriver$FtdiSerialPort: int SIO_RESET_PURGE_TX
-com.wave.mzpad.usbserial.FtdiSerialDriver$FtdiSerialPort: int FTDI_DEVICE_OUT_REQTYPE
-com.wave.mzpad.usbserial.FtdiSerialDriver$FtdiSerialPort: int FTDI_DEVICE_IN_REQTYPE
-com.wave.mzpad.usbserial.FtdiSerialDriver$FtdiSerialPort: int MODEM_STATUS_HEADER_LENGTH
-com.wave.mzpad.usbserial.FtdiSerialDriver$FtdiSerialPort: java.lang.String TAG
-com.wave.mzpad.usbserial.FtdiSerialDriver$FtdiSerialPort: com.wave.mzpad.usbserial.FtdiSerialDriver$DeviceType mType
-com.wave.mzpad.usbserial.FtdiSerialDriver$FtdiSerialPort: int mInterface
-com.wave.mzpad.usbserial.FtdiSerialDriver$FtdiSerialPort: int mMaxPacketSize
-com.wave.mzpad.usbserial.FtdiSerialDriver$FtdiSerialPort: boolean ENABLE_ASYNC_READS
-com.wave.mzpad.usbserial.FtdiSerialDriver$FtdiSerialPort: com.wave.mzpad.usbserial.FtdiSerialDriver this$0
-com.wave.mzpad.usbserial.FtdiSerialDriver$FtdiSerialPort: FtdiSerialDriver$FtdiSerialPort(com.wave.mzpad.usbserial.FtdiSerialDriver,android.hardware.usb.UsbDevice)
-com.wave.mzpad.usbserial.FtdiSerialDriver$FtdiSerialPort: com.wave.mzpad.usbserial.UsbSerialDriver getDriver()
-com.wave.mzpad.usbserial.FtdiSerialDriver$FtdiSerialPort: int filterStatusBytes(byte[],byte[],int,int)
-com.wave.mzpad.usbserial.FtdiSerialDriver$FtdiSerialPort: void reset()
-com.wave.mzpad.usbserial.FtdiSerialDriver$FtdiSerialPort: void open(android.hardware.usb.UsbDeviceConnection)
-com.wave.mzpad.usbserial.FtdiSerialDriver$FtdiSerialPort: void close()
-com.wave.mzpad.usbserial.FtdiSerialDriver$FtdiSerialPort: int read(byte[],int)
-com.wave.mzpad.usbserial.FtdiSerialDriver$FtdiSerialPort: int write(byte[],int)
-com.wave.mzpad.usbserial.FtdiSerialDriver$FtdiSerialPort: int setBaudRate(int)
-com.wave.mzpad.usbserial.FtdiSerialDriver$FtdiSerialPort: void setParameters(int,int,int,int)
-com.wave.mzpad.usbserial.FtdiSerialDriver$FtdiSerialPort: long[] convertBaudrate(int)
-com.wave.mzpad.usbserial.FtdiSerialDriver$FtdiSerialPort: boolean getCD()
-com.wave.mzpad.usbserial.FtdiSerialDriver$FtdiSerialPort: boolean getCTS()
-com.wave.mzpad.usbserial.FtdiSerialDriver$FtdiSerialPort: boolean getDSR()
-com.wave.mzpad.usbserial.FtdiSerialDriver$FtdiSerialPort: boolean getDTR()
-com.wave.mzpad.usbserial.FtdiSerialDriver$FtdiSerialPort: void setDTR(boolean)
-com.wave.mzpad.usbserial.FtdiSerialDriver$FtdiSerialPort: boolean getRI()
-com.wave.mzpad.usbserial.FtdiSerialDriver$FtdiSerialPort: boolean getRTS()
-com.wave.mzpad.usbserial.FtdiSerialDriver$FtdiSerialPort: void setRTS(boolean)
-com.wave.mzpad.usbserial.FtdiSerialDriver$FtdiSerialPort: boolean purgeHwBuffers(boolean,boolean)
-com.wave.mzpad.usbserial.ProbeTable
-com.wave.mzpad.usbserial.ProbeTable: java.util.Map mProbeTable
-com.wave.mzpad.usbserial.ProbeTable: ProbeTable()
-com.wave.mzpad.usbserial.ProbeTable: com.wave.mzpad.usbserial.ProbeTable addProduct(int,int,java.lang.Class)
-com.wave.mzpad.usbserial.ProbeTable: com.wave.mzpad.usbserial.ProbeTable addDriver(java.lang.Class)
-com.wave.mzpad.usbserial.ProbeTable: java.lang.Class findDriver(int,int)
-com.wave.mzpad.usbserial.ProlificSerialDriver
-com.wave.mzpad.usbserial.ProlificSerialDriver: java.lang.String TAG
-com.wave.mzpad.usbserial.ProlificSerialDriver: android.hardware.usb.UsbDevice mDevice
-com.wave.mzpad.usbserial.ProlificSerialDriver: com.wave.mzpad.usbserial.UsbSerialPort mPort
-com.wave.mzpad.usbserial.ProlificSerialDriver: ProlificSerialDriver(android.hardware.usb.UsbDevice)
-com.wave.mzpad.usbserial.ProlificSerialDriver: java.util.List getPorts()
-com.wave.mzpad.usbserial.ProlificSerialDriver: android.hardware.usb.UsbDevice getDevice()
-com.wave.mzpad.usbserial.ProlificSerialDriver: java.util.Map getSupportedDevices()
-com.wave.mzpad.usbserial.ProlificSerialDriver: java.lang.String access$0(com.wave.mzpad.usbserial.ProlificSerialDriver)
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: int USB_READ_TIMEOUT_MILLIS
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: int USB_WRITE_TIMEOUT_MILLIS
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: int USB_RECIP_INTERFACE
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: int PROLIFIC_VENDOR_READ_REQUEST
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: int PROLIFIC_VENDOR_WRITE_REQUEST
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: int PROLIFIC_VENDOR_OUT_REQTYPE
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: int PROLIFIC_VENDOR_IN_REQTYPE
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: int PROLIFIC_CTRL_OUT_REQTYPE
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: int WRITE_ENDPOINT
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: int READ_ENDPOINT
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: int INTERRUPT_ENDPOINT
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: int FLUSH_RX_REQUEST
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: int FLUSH_TX_REQUEST
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: int SET_LINE_REQUEST
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: int SET_CONTROL_REQUEST
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: int CONTROL_DTR
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: int CONTROL_RTS
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: int STATUS_FLAG_CD
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: int STATUS_FLAG_DSR
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: int STATUS_FLAG_RI
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: int STATUS_FLAG_CTS
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: int STATUS_BUFFER_SIZE
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: int STATUS_BYTE_IDX
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: int DEVICE_TYPE_HX
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: int DEVICE_TYPE_0
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: int DEVICE_TYPE_1
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: int mDeviceType
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: android.hardware.usb.UsbEndpoint mReadEndpoint
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: android.hardware.usb.UsbEndpoint mWriteEndpoint
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: android.hardware.usb.UsbEndpoint mInterruptEndpoint
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: int mControlLinesValue
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: int mBaudRate
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: int mDataBits
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: int mStopBits
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: int mParity
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: int mStatus
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: java.lang.Thread mReadStatusThread
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: java.lang.Object mReadStatusThreadLock
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: boolean mStopReadStatusThread
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: java.io.IOException mReadStatusException
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: com.wave.mzpad.usbserial.ProlificSerialDriver this$0
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: ProlificSerialDriver$ProlificSerialPort(com.wave.mzpad.usbserial.ProlificSerialDriver,android.hardware.usb.UsbDevice)
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: com.wave.mzpad.usbserial.UsbSerialDriver getDriver()
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: byte[] inControlTransfer(int,int,int,int,int)
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: void outControlTransfer(int,int,int,int,byte[])
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: byte[] vendorIn(int,int,int)
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: void vendorOut(int,int,byte[])
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: void resetDevice()
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: void ctrlOut(int,int,int,byte[])
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: void doBlackMagic()
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: void setControlLines(int)
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: void readStatusThreadFunction()
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: int getStatus()
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: boolean testStatusFlag(int)
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: void open(android.hardware.usb.UsbDeviceConnection)
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: void close()
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: int read(byte[],int)
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: int write(byte[],int)
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: void setParameters(int,int,int,int)
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: boolean getCD()
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: boolean getCTS()
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: boolean getDSR()
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: boolean getDTR()
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: void setDTR(boolean)
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: boolean getRI()
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: boolean getRTS()
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: void setRTS(boolean)
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: boolean purgeHwBuffers(boolean,boolean)
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort: void access$0(com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort)
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort$1
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort$1: com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort this$1
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort$1: ProlificSerialDriver$ProlificSerialPort$1(com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort)
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort$1: void run()
-com.wave.mzpad.usbserial.SerialInputOutputManager
-com.wave.mzpad.usbserial.SerialInputOutputManager: java.lang.String TAG
-com.wave.mzpad.usbserial.SerialInputOutputManager: boolean DEBUG
-com.wave.mzpad.usbserial.SerialInputOutputManager: int READ_WAIT_MILLIS
-com.wave.mzpad.usbserial.SerialInputOutputManager: int BUFSIZ
-com.wave.mzpad.usbserial.SerialInputOutputManager: com.wave.mzpad.usbserial.UsbSerialPort mDriver
-com.wave.mzpad.usbserial.SerialInputOutputManager: java.nio.ByteBuffer mReadBuffer
-com.wave.mzpad.usbserial.SerialInputOutputManager: java.nio.ByteBuffer mWriteBuffer
-com.wave.mzpad.usbserial.SerialInputOutputManager: java.lang.StringBuffer stringBuffer
-com.wave.mzpad.usbserial.SerialInputOutputManager: com.wave.mzpad.usbserial.SerialInputOutputManager$State mState
-com.wave.mzpad.usbserial.SerialInputOutputManager: com.wave.mzpad.usbserial.SerialInputOutputManager$Listener mListener
-com.wave.mzpad.usbserial.SerialInputOutputManager: void <clinit>()
-com.wave.mzpad.usbserial.SerialInputOutputManager: SerialInputOutputManager(com.wave.mzpad.usbserial.UsbSerialPort)
-com.wave.mzpad.usbserial.SerialInputOutputManager: SerialInputOutputManager(com.wave.mzpad.usbserial.UsbSerialPort,com.wave.mzpad.usbserial.SerialInputOutputManager$Listener)
-com.wave.mzpad.usbserial.SerialInputOutputManager: void setListener(com.wave.mzpad.usbserial.SerialInputOutputManager$Listener)
-com.wave.mzpad.usbserial.SerialInputOutputManager: com.wave.mzpad.usbserial.SerialInputOutputManager$Listener getListener()
-com.wave.mzpad.usbserial.SerialInputOutputManager: void writeAsync(byte[])
-com.wave.mzpad.usbserial.SerialInputOutputManager: void stop()
-com.wave.mzpad.usbserial.SerialInputOutputManager: com.wave.mzpad.usbserial.SerialInputOutputManager$State getState()
-com.wave.mzpad.usbserial.SerialInputOutputManager: void run()
-com.wave.mzpad.usbserial.SerialInputOutputManager: void step()
-com.wave.mzpad.usbserial.SerialInputOutputManager: void sendData()
-com.wave.mzpad.usbserial.SerialInputOutputManager: void write()
-com.wave.mzpad.usbserial.SerialInputOutputManager$Listener
-com.wave.mzpad.usbserial.SerialInputOutputManager$Listener: void onNewData(byte[])
-com.wave.mzpad.usbserial.SerialInputOutputManager$Listener: void onRunError(java.lang.Exception)
-com.wave.mzpad.usbserial.SerialInputOutputManager$State
-com.wave.mzpad.usbserial.SerialInputOutputManager$State: com.wave.mzpad.usbserial.SerialInputOutputManager$State STOPPED
-com.wave.mzpad.usbserial.SerialInputOutputManager$State: com.wave.mzpad.usbserial.SerialInputOutputManager$State RUNNING
-com.wave.mzpad.usbserial.SerialInputOutputManager$State: com.wave.mzpad.usbserial.SerialInputOutputManager$State STOPPING
-com.wave.mzpad.usbserial.SerialInputOutputManager$State: com.wave.mzpad.usbserial.SerialInputOutputManager$State[] ENUM$VALUES
-com.wave.mzpad.usbserial.SerialInputOutputManager$State: void <clinit>()
-com.wave.mzpad.usbserial.SerialInputOutputManager$State: SerialInputOutputManager$State(java.lang.String,int)
-com.wave.mzpad.usbserial.SerialInputOutputManager$State: com.wave.mzpad.usbserial.SerialInputOutputManager$State[] values()
-com.wave.mzpad.usbserial.SerialInputOutputManager$State: com.wave.mzpad.usbserial.SerialInputOutputManager$State valueOf(java.lang.String)
-com.wave.mzpad.usbserial.UsbId
-com.wave.mzpad.usbserial.UsbId: int VENDOR_FTDI
-com.wave.mzpad.usbserial.UsbId: int FTDI_FT232R
-com.wave.mzpad.usbserial.UsbId: int FTDI_FT231X
-com.wave.mzpad.usbserial.UsbId: int VENDOR_ATMEL
-com.wave.mzpad.usbserial.UsbId: int ATMEL_LUFA_CDC_DEMO_APP
-com.wave.mzpad.usbserial.UsbId: int VENDOR_ARDUINO
-com.wave.mzpad.usbserial.UsbId: int ARDUINO_UNO
-com.wave.mzpad.usbserial.UsbId: int ARDUINO_MEGA_2560
-com.wave.mzpad.usbserial.UsbId: int ARDUINO_SERIAL_ADAPTER
-com.wave.mzpad.usbserial.UsbId: int ARDUINO_MEGA_ADK
-com.wave.mzpad.usbserial.UsbId: int ARDUINO_MEGA_2560_R3
-com.wave.mzpad.usbserial.UsbId: int ARDUINO_UNO_R3
-com.wave.mzpad.usbserial.UsbId: int ARDUINO_MEGA_ADK_R3
-com.wave.mzpad.usbserial.UsbId: int ARDUINO_SERIAL_ADAPTER_R3
-com.wave.mzpad.usbserial.UsbId: int ARDUINO_LEONARDO
-com.wave.mzpad.usbserial.UsbId: int VENDOR_VAN_OOIJEN_TECH
-com.wave.mzpad.usbserial.UsbId: int VAN_OOIJEN_TECH_TEENSYDUINO_SERIAL
-com.wave.mzpad.usbserial.UsbId: int VENDOR_LEAFLABS
-com.wave.mzpad.usbserial.UsbId: int LEAFLABS_MAPLE
-com.wave.mzpad.usbserial.UsbId: int VENDOR_SILABS
-com.wave.mzpad.usbserial.UsbId: int SILABS_CP2102
-com.wave.mzpad.usbserial.UsbId: int SILABS_CP2105
-com.wave.mzpad.usbserial.UsbId: int SILABS_CP2108
-com.wave.mzpad.usbserial.UsbId: int SILABS_CP2110
-com.wave.mzpad.usbserial.UsbId: int VENDOR_PROLIFIC
-com.wave.mzpad.usbserial.UsbId: int PROLIFIC_PL2303
-com.wave.mzpad.usbserial.UsbId: UsbId()
-com.wave.mzpad.usbserial.UsbSerialDriver
-com.wave.mzpad.usbserial.UsbSerialDriver: android.hardware.usb.UsbDevice getDevice()
-com.wave.mzpad.usbserial.UsbSerialDriver: java.util.List getPorts()
-com.wave.mzpad.usbserial.UsbSerialPort
-com.wave.mzpad.usbserial.UsbSerialPort: int DATABITS_5
-com.wave.mzpad.usbserial.UsbSerialPort: int DATABITS_6
-com.wave.mzpad.usbserial.UsbSerialPort: int DATABITS_7
-com.wave.mzpad.usbserial.UsbSerialPort: int DATABITS_8
-com.wave.mzpad.usbserial.UsbSerialPort: int FLOWCONTROL_NONE
-com.wave.mzpad.usbserial.UsbSerialPort: int FLOWCONTROL_RTSCTS_IN
-com.wave.mzpad.usbserial.UsbSerialPort: int FLOWCONTROL_RTSCTS_OUT
-com.wave.mzpad.usbserial.UsbSerialPort: int FLOWCONTROL_XONXOFF_IN
-com.wave.mzpad.usbserial.UsbSerialPort: int FLOWCONTROL_XONXOFF_OUT
-com.wave.mzpad.usbserial.UsbSerialPort: int PARITY_NONE
-com.wave.mzpad.usbserial.UsbSerialPort: int PARITY_ODD
-com.wave.mzpad.usbserial.UsbSerialPort: int PARITY_EVEN
-com.wave.mzpad.usbserial.UsbSerialPort: int PARITY_MARK
-com.wave.mzpad.usbserial.UsbSerialPort: int PARITY_SPACE
-com.wave.mzpad.usbserial.UsbSerialPort: int STOPBITS_1
-com.wave.mzpad.usbserial.UsbSerialPort: int STOPBITS_1_5
-com.wave.mzpad.usbserial.UsbSerialPort: int STOPBITS_2
-com.wave.mzpad.usbserial.UsbSerialPort: com.wave.mzpad.usbserial.UsbSerialDriver getDriver()
-com.wave.mzpad.usbserial.UsbSerialPort: void open(android.hardware.usb.UsbDeviceConnection)
-com.wave.mzpad.usbserial.UsbSerialPort: void close()
-com.wave.mzpad.usbserial.UsbSerialPort: int read(byte[],int)
-com.wave.mzpad.usbserial.UsbSerialPort: int write(byte[],int)
-com.wave.mzpad.usbserial.UsbSerialPort: void setParameters(int,int,int,int)
-com.wave.mzpad.usbserial.UsbSerialPort: boolean getCD()
-com.wave.mzpad.usbserial.UsbSerialPort: boolean getCTS()
-com.wave.mzpad.usbserial.UsbSerialPort: boolean getDSR()
-com.wave.mzpad.usbserial.UsbSerialPort: boolean getDTR()
-com.wave.mzpad.usbserial.UsbSerialPort: void setDTR(boolean)
-com.wave.mzpad.usbserial.UsbSerialPort: boolean getRI()
-com.wave.mzpad.usbserial.UsbSerialPort: boolean getRTS()
-com.wave.mzpad.usbserial.UsbSerialPort: void setRTS(boolean)
-com.wave.mzpad.usbserial.UsbSerialPort: boolean purgeHwBuffers(boolean,boolean)
-com.wave.mzpad.usbserial.UsbSerialProber
-com.wave.mzpad.usbserial.UsbSerialProber: com.wave.mzpad.usbserial.ProbeTable mProbeTable
-com.wave.mzpad.usbserial.UsbSerialProber: UsbSerialProber(com.wave.mzpad.usbserial.ProbeTable)
-com.wave.mzpad.usbserial.UsbSerialProber: com.wave.mzpad.usbserial.UsbSerialProber getDefaultProber()
-com.wave.mzpad.usbserial.UsbSerialProber: java.util.List findAllDrivers(android.hardware.usb.UsbManager)
-com.wave.mzpad.usbserial.UsbSerialRuntimeException
-com.wave.mzpad.usbserial.UsbSerialRuntimeException: UsbSerialRuntimeException()
-com.wave.mzpad.usbserial.UsbSerialRuntimeException: UsbSerialRuntimeException(java.lang.String,java.lang.Throwable)
-com.wave.mzpad.usbserial.UsbSerialRuntimeException: UsbSerialRuntimeException(java.lang.String)
-com.wave.mzpad.usbserial.UsbSerialRuntimeException: UsbSerialRuntimeException(java.lang.Throwable)

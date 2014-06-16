@@ -1,5 +1,6 @@
 com.wave.mzpad.BuildConfig
 com.wave.mzpad.R
+com.wave.mzpad.R$array
 com.wave.mzpad.R$attr
 com.wave.mzpad.R$color
 com.wave.mzpad.R$drawable
@@ -8,11 +9,19 @@ com.wave.mzpad.R$layout
 com.wave.mzpad.R$string
 com.wave.mzpad.R$style
 com.wave.mzpad.R$xml
-com.wave.mzpad.activity.MParamDetailsFragment:
-    public static final java.lang.String ACTION_CUSTOMIZE_INSERT
 com.wave.mzpad.activity.ReportActivity:
     private com.wave.mzpad.model.MeasureParam measureParam
     144:149:private java.util.List getReportData()
+com.wave.mzpad.bluetooth.BlueInOutputManager:
+    private static final boolean DEBUG
+    private static final int BUFSIZ
+    70:71:public BlueInOutputManager(android.bluetooth.BluetoothSocket)
+    82:83:public synchronized void setListener(com.wave.mzpad.service.Listener)
+com.wave.mzpad.bluetooth.BluetoothService:
+    private int mState
+    60:60:public android.os.Handler getmHandler()
+    69:70:public synchronized void setState(int)
+    74:74:public int getState()
 com.wave.mzpad.common.Contants:
     public static final int REQUEST_TIMEOUT
     public static final int REPEAT_TIME
@@ -32,10 +41,19 @@ com.wave.mzpad.common.Contants:
     public static final byte COMMAND_IMMEDIATELY
     public static final byte COMMAND_HEARTBEAT
     public static final byte COMMAND_NASK
+    public static final int RESPONSE_CONNECT
+    public static final int MESSAGE_STATE_CHANGE
     3:3:public Contants()
 com.wave.mzpad.common.Contants$Command
+com.wave.mzpad.common.DataUtils:
+    6:6:public DataUtils()
+com.wave.mzpad.common.JxlExcelUtil:
+    62:78:public void createExcel(java.lang.String,java.lang.String)
+    182:185:public void colseWritableWorkbook(jxl.write.WritableWorkbook)
 com.wave.mzpad.common.Log:
     16:16:public Log()
+    24:27:public static void e(java.lang.String,java.lang.String,java.lang.Exception)
+    42:45:public static void w(java.lang.String,java.lang.String)
     54:57:public static void w(java.lang.String,java.lang.String,java.lang.Throwable)
     60:63:public static void v(java.lang.String,java.lang.String)
 com.wave.mzpad.common.Utility:
@@ -59,18 +77,17 @@ com.wave.mzpad.db.DAOBase:
     71:72:public void endTransaction()
     80:88:public int getCount(java.lang.String)
     99:106:public int getCount(java.lang.String,java.lang.String,java.lang.String)
-    116:116:protected java.lang.Boolean delete(java.lang.String,java.lang.String)
     173:174:public void execSql(java.lang.String,java.lang.String)
     protected abstract java.lang.String[] getTableNameAndPK()
     protected abstract boolean isExistObject(com.wave.mzpad.model.AbstractObject)
 com.wave.mzpad.db.MeasureParamDAO:
-    93:93:public boolean deleteMeasureParam(java.lang.String)
-    124:124:public boolean updateMeasureParam(java.lang.String,android.content.ContentValues)
+    107:107:public boolean deleteMeasureParam(java.lang.String)
+    138:138:public boolean updateMeasureParam(java.lang.String,android.content.ContentValues)
+    156:168:public boolean isExistObject(com.wave.mzpad.model.AbstractObject)
 com.wave.mzpad.db.MeasureResultDAO:
-    95:95:public boolean deleteMeasureResult(java.lang.String)
-    105:106:public boolean updateMeasureResult(java.lang.String,com.wave.mzpad.model.MeasureResult)
-    116:116:public boolean updateMeasureResult(java.lang.String,android.content.ContentValues)
-    134:146:protected boolean isExistObject(com.wave.mzpad.model.AbstractObject)
+    99:99:public boolean deleteMeasureResult(java.lang.String)
+    130:130:public boolean updateMeasureResult(java.lang.String,android.content.ContentValues)
+    148:160:protected boolean isExistObject(com.wave.mzpad.model.AbstractObject)
 com.wave.mzpad.db.StandardDataDAO:
     89:89:public boolean deleteStandardData(java.lang.String)
     99:100:public boolean updateStandardData(java.lang.String,com.wave.mzpad.model.StandardData)
@@ -200,6 +217,8 @@ jxl.Workbook:
     public abstract java.lang.String[] getRangeNames()
     198:198:public static jxl.Workbook getWorkbook(java.io.File)
     213:239:public static jxl.Workbook getWorkbook(java.io.File,jxl.WorkbookSettings)
+    286:286:public static jxl.write.WritableWorkbook createWorkbook(java.io.File)
+    301:303:public static jxl.write.WritableWorkbook createWorkbook(java.io.File,jxl.WorkbookSettings)
     357:357:public static jxl.write.WritableWorkbook createWorkbook(java.io.OutputStream,jxl.Workbook)
     376:377:public static jxl.write.WritableWorkbook createWorkbook(java.io.OutputStream,jxl.Workbook,jxl.WorkbookSettings)
     393:393:public static jxl.write.WritableWorkbook createWorkbook(java.io.OutputStream)
@@ -460,6 +479,8 @@ jxl.biff.XFRecord:
     private static final int USE_PROTECTION
     private static final int USE_DEFAULT_VALUE
     519:605:protected XFRecord(jxl.format.CellFormat)
+    800:802:protected final void setXFLocked(boolean)
+    811:812:protected final void setXFCellOptions(int)
     835:838:protected void setXFIndentation(int)
     847:850:protected void setXFShrinkToFit(boolean)
     859:864:public jxl.format.Alignment getAlignment()
@@ -1229,7 +1250,6 @@ jxl.write.WritableSheet:
     public abstract void insertColumn(int)
     public abstract void removeColumn(int)
     public abstract void removeRow(int)
-    public abstract jxl.Range mergeCells(int,int,int,int)
     public abstract void setRowGroup(int,int,boolean)
     public abstract void unsetRowGroup(int,int)
     public abstract void setColumnGroup(int,int,boolean)
@@ -1257,6 +1277,7 @@ jxl.write.WritableWorkbook:
     public abstract jxl.write.WritableSheet getSheet(java.lang.String)
     public abstract jxl.write.WritableCell getWritableCell(java.lang.String)
     public abstract int getNumberOfSheets()
+    public abstract jxl.write.WritableSheet createSheet(java.lang.String,int)
     public abstract jxl.write.WritableSheet importSheet(java.lang.String,int,jxl.Sheet)
     public abstract void copySheet(int,java.lang.String,int)
     public abstract void copySheet(java.lang.String,java.lang.String,int)
@@ -1488,6 +1509,7 @@ jxl.write.biff.SheetWriter:
     619:619:final jxl.write.biff.FooterRecord getFooter()
     678:678:jxl.biff.WorkspaceInformationRecord getWorkspaceOptions()
 jxl.write.biff.SortRecord
+jxl.write.biff.StyleXFRecord
 jxl.write.biff.SupbookRecord:
     162:164:private void initInternal(jxl.read.biff.SupbookRecord)
 jxl.write.biff.WritableFontRecord:
@@ -1498,8 +1520,8 @@ jxl.write.biff.WritableFontRecord:
     135:141:protected void setColour(int)
     152:158:protected void setScriptStyle(int)
     168:173:protected void setStruckout(boolean)
-jxl.write.biff.WritableFormattingRecords:
-    public static jxl.write.WritableCellFormat normalStyle
+jxl.write.biff.WritableFonts
+jxl.write.biff.WritableFormattingRecords
 jxl.write.biff.WritableSheetCopier
 jxl.write.biff.WritableSheetImpl:
     private static final int rowGrowSize
@@ -1540,7 +1562,6 @@ jxl.write.biff.WritableSheetImpl:
     1717:1718:public void removeHyperlink(jxl.write.WritableHyperlink)
     1737:1746:public void removeHyperlink(jxl.write.WritableHyperlink,boolean)
     1759:1828:public void addHyperlink(jxl.write.WritableHyperlink)
-    1846:1861:public jxl.Range mergeCells(int,int,int,int)
     1877:1892:public void setRowGroup(int,int,boolean)
     1905:1931:public void unsetRowGroup(int,int)
     1945:1968:public void setColumnGroup(int,int,boolean)
@@ -1572,10 +1593,12 @@ jxl.write.biff.WritableSheetImpl:
     2724:2822:public void applySharedDataValidation(jxl.write.WritableCell,int,int)
     2834:2896:public void removeSharedDataValidation(jxl.write.WritableCell)
 jxl.write.biff.WritableWorkbookImpl:
+    182:215:public WritableWorkbookImpl(java.io.OutputStream,boolean,jxl.WorkbookSettings)
     362:368:public jxl.write.WritableSheet[] getSheets()
     397:397:public jxl.Sheet getReadSheet(int)
     420:434:public jxl.write.WritableSheet getSheet(java.lang.String)
     469:471:public void setOutputFile(java.io.File)
+    538:538:public jxl.write.WritableSheet createSheet(java.lang.String,int)
     550:600:public void removeSheet(int)
     613:621:public jxl.write.WritableSheet moveSheet(int,int)
     985:988:public void copySheet(int,java.lang.String,int)

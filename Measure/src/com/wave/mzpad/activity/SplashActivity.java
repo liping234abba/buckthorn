@@ -6,8 +6,8 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import com.wave.mzpad.R;
+import com.wave.mzpad.common.DataUtils;
 import com.wave.mzpad.service.BusinessDataBase;
-import com.wave.mzpad.service.DataUtils;
 
 public class SplashActivity extends Activity {
 	

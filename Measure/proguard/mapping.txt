@@ -5074,34 +5074,38 @@ android.support.v4.widget.ViewDragHelper$Callback -> android.support.v4.widget.V
     int clampViewPositionHorizontal(android.view.View,int,int) -> clampViewPositionHorizontal
     int clampViewPositionVertical(android.view.View,int,int) -> clampViewPositionVertical
 com.wave.mzpad.activity.MParamDetailsFragment -> com.wave.mzpad.activity.MParamDetailsFragment:
-    android.widget.EditText line_number -> b
-    android.widget.EditText line_name -> c
-    android.widget.EditText radius -> d
-    android.widget.EditText outerrail_high -> e
-    android.widget.EditText sample_interval -> f
-    android.widget.EditText measure_startposition -> g
-    android.widget.CheckBox track -> h
-    android.widget.CheckBox inner_side -> i
-    android.widget.Button conn_start -> j
-    android.widget.Button conn_pause -> k
-    android.widget.Button conn_stop -> l
-    android.widget.Button save_data -> m
-    android.widget.Button immediately_measure -> n
-    android.widget.Button export_excel -> o
+    android.widget.EditText stand_name -> b
+    android.widget.EditText stand_id -> c
+    android.widget.EditText stand_area -> d
+    android.widget.EditText stand_direction -> e
+    android.widget.Spinner stand_orientation -> f
+    android.widget.Spinner bight_direction -> g
+    android.widget.CheckBox rail_high -> h
+    android.widget.EditText line_number -> i
+    android.widget.EditText line_name -> j
+    android.widget.EditText radius -> k
+    android.widget.EditText outerrail_high -> l
+    android.widget.EditText sample_interval -> m
+    android.widget.EditText measure_startposition -> n
+    android.widget.CheckBox track -> o
+    android.widget.CheckBox inner_side -> p
+    android.widget.Button conn_start -> q
+    android.widget.Button conn_pause -> r
+    android.widget.Button conn_stop -> s
+    android.widget.Button save_data -> t
+    android.widget.Button immediately_measure -> u
+    android.widget.Button export_excel -> v
     com.wave.mzpad.model.MeasureParam measureParam -> a
-    java.lang.String TAG -> p
-    com.wave.mzpad.service.BusinessDataBase businessDataBase -> q
-    android.app.Activity mActivity -> r
-    com.wave.mzpad.service.CommunicateServer server -> s
-    java.lang.String EVENT_USB_INSERT -> t
-    java.lang.String ACTION_USB_PERMISSION -> u
-    com.wave.mzpad.activity.MParamDetailsFragment$USBSerialBroadcastReceiver broadcastReceiver -> v
-    android.widget.TextView showMsg -> w
-    android.os.Handler mHandler -> x
-    android.view.View$OnClickListener clickListener -> y
-    android.widget.ListView listView -> z
-    com.wave.mzpad.adpter.MeasureResultAdapter measureResultAdapter -> A
-    java.util.List results -> B
+    java.lang.String TAG -> w
+    com.wave.mzpad.service.BusinessDataBase businessDataBase -> x
+    android.app.Activity mActivity -> y
+    com.wave.mzpad.service.CommunicateServer server -> z
+    android.widget.TextView showMsg -> A
+    android.os.Handler mHandler -> B
+    android.view.View$OnClickListener clickListener -> C
+    android.widget.ListView listView -> D
+    com.wave.mzpad.adpter.MeasureResultAdapter measureResultAdapter -> E
+    java.util.List results -> F
     void onCreate(android.os.Bundle) -> onCreate
     void onDestroy() -> onDestroy
     com.wave.mzpad.activity.MParamDetailsFragment newInstance(com.wave.mzpad.model.MeasureParam) -> a
@@ -5109,15 +5113,16 @@ com.wave.mzpad.activity.MParamDetailsFragment -> com.wave.mzpad.activity.MParamD
     void sendMessage(int,java.lang.String) -> a
     void onPause() -> onPause
     void initImmediatelyStatus(boolean) -> a
-    void access$0(com.wave.mzpad.activity.MParamDetailsFragment,java.lang.String[]) -> a
-    android.widget.TextView access$1(com.wave.mzpad.activity.MParamDetailsFragment) -> a
-    android.app.Activity access$2(com.wave.mzpad.activity.MParamDetailsFragment) -> b
-    void access$3(com.wave.mzpad.activity.MParamDetailsFragment,boolean) -> a
-    void access$4(com.wave.mzpad.activity.MParamDetailsFragment) -> c
-    com.wave.mzpad.service.CommunicateServer access$5(com.wave.mzpad.activity.MParamDetailsFragment) -> d
+    void showDialog(int) -> a
+    com.wave.mzpad.service.CommunicateServer access$0(com.wave.mzpad.activity.MParamDetailsFragment) -> a
+    void access$1(com.wave.mzpad.activity.MParamDetailsFragment,java.lang.String[]) -> a
+    android.widget.TextView access$2(com.wave.mzpad.activity.MParamDetailsFragment) -> b
+    android.app.Activity access$3(com.wave.mzpad.activity.MParamDetailsFragment) -> c
+    void access$4(com.wave.mzpad.activity.MParamDetailsFragment,boolean) -> a
+    void access$5(com.wave.mzpad.activity.MParamDetailsFragment) -> d
     void access$6(com.wave.mzpad.activity.MParamDetailsFragment) -> e
-    android.os.Handler access$7(com.wave.mzpad.activity.MParamDetailsFragment) -> f
-    com.wave.mzpad.adpter.MeasureResultAdapter access$8(com.wave.mzpad.activity.MParamDetailsFragment) -> g
+    com.wave.mzpad.adpter.MeasureResultAdapter access$7(com.wave.mzpad.activity.MParamDetailsFragment) -> f
+    com.wave.mzpad.service.BusinessDataBase access$8(com.wave.mzpad.activity.MParamDetailsFragment) -> g
 com.wave.mzpad.activity.MParamDetailsFragment$1 -> com.wave.mzpad.activity.a:
     com.wave.mzpad.activity.MParamDetailsFragment this$0 -> a
     void handleMessage(android.os.Message) -> handleMessage
@@ -5126,11 +5131,17 @@ com.wave.mzpad.activity.MParamDetailsFragment$2 -> com.wave.mzpad.activity.b:
     void onClick(android.view.View) -> onClick
 com.wave.mzpad.activity.MParamDetailsFragment$3 -> com.wave.mzpad.activity.c:
     com.wave.mzpad.activity.MParamDetailsFragment this$0 -> a
-    void run() -> run
-com.wave.mzpad.activity.MParamDetailsFragment$USBSerialBroadcastReceiver -> com.wave.mzpad.activity.MParamDetailsFragment$USBSerialBroadcastReceiver:
-    java.lang.String TAG -> b
+    boolean onItemLongClick(android.widget.AdapterView,android.view.View,int,long) -> onItemLongClick
+com.wave.mzpad.activity.MParamDetailsFragment$4 -> com.wave.mzpad.activity.d:
     com.wave.mzpad.activity.MParamDetailsFragment this$0 -> a
-    void onReceive(android.content.Context,android.content.Intent) -> onReceive
+    void run() -> run
+com.wave.mzpad.activity.MParamDetailsFragment$5 -> com.wave.mzpad.activity.e:
+    com.wave.mzpad.activity.MParamDetailsFragment this$0 -> a
+    int val$mpIndex -> b
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.wave.mzpad.activity.MParamDetailsFragment$6 -> com.wave.mzpad.activity.f:
+    com.wave.mzpad.activity.MParamDetailsFragment this$0 -> a
+    void onClick(android.content.DialogInterface,int) -> onClick
 com.wave.mzpad.activity.MParamListFragment -> com.wave.mzpad.activity.MParamListFragment:
     int mCurCheckPosition -> a
     int mShownCheckPosition -> b
@@ -5153,17 +5164,19 @@ com.wave.mzpad.activity.MParamListFragment -> com.wave.mzpad.activity.MParamList
     com.wave.mzpad.adpter.ParamListAdapter access$1(com.wave.mzpad.activity.MParamListFragment) -> b
     com.wave.mzpad.service.BusinessDataBase access$2(com.wave.mzpad.activity.MParamListFragment) -> c
     java.util.List access$3(com.wave.mzpad.activity.MParamListFragment) -> d
-com.wave.mzpad.activity.MParamListFragment$1 -> com.wave.mzpad.activity.d:
+com.wave.mzpad.activity.MParamListFragment$1 -> com.wave.mzpad.activity.g:
     com.wave.mzpad.activity.MParamListFragment this$0 -> a
     int val$mpIndex -> b
     void onClick(android.content.DialogInterface,int) -> onClick
-com.wave.mzpad.activity.MParamListFragment$2 -> com.wave.mzpad.activity.e:
+com.wave.mzpad.activity.MParamListFragment$2 -> com.wave.mzpad.activity.h:
     com.wave.mzpad.activity.MParamListFragment this$0 -> a
     void onClick(android.content.DialogInterface,int) -> onClick
-com.wave.mzpad.activity.MParamListFragment$UpdateListBroadcastReceiver -> com.wave.mzpad.activity.f:
+com.wave.mzpad.activity.MParamListFragment$UpdateListBroadcastReceiver -> com.wave.mzpad.activity.i:
     com.wave.mzpad.activity.MParamListFragment this$0 -> a
     void onReceive(android.content.Context,android.content.Intent) -> onReceive
 com.wave.mzpad.activity.MainFragment -> com.wave.mzpad.activity.MainFragment:
+    android.bluetooth.BluetoothDevice blueDeviceAddr -> a
+    java.lang.String TAG -> b
     void onCreate(android.os.Bundle) -> onCreate
 com.wave.mzpad.activity.ReportActivity -> com.wave.mzpad.activity.ReportActivity:
     android.widget.EditText dir_path -> a
@@ -5181,7 +5194,7 @@ com.wave.mzpad.activity.ReportActivity -> com.wave.mzpad.activity.ReportActivity
     java.lang.String access$2(com.wave.mzpad.activity.ReportActivity) -> c
     void access$3(com.wave.mzpad.activity.ReportActivity,com.wave.mzpad.service.ServiceExportReport) -> a
     com.wave.mzpad.service.ServiceExportReport access$4(com.wave.mzpad.activity.ReportActivity) -> d
-com.wave.mzpad.activity.ReportActivity$1 -> com.wave.mzpad.activity.g:
+com.wave.mzpad.activity.ReportActivity$1 -> com.wave.mzpad.activity.j:
     com.wave.mzpad.activity.ReportActivity this$0 -> a
     void run() -> run
 com.wave.mzpad.activity.SplashActivity -> com.wave.mzpad.activity.SplashActivity:
@@ -5190,11 +5203,33 @@ com.wave.mzpad.activity.SplashActivity -> com.wave.mzpad.activity.SplashActivity
     com.wave.mzpad.service.BusinessDataBase businessDataBase -> c
     java.lang.Runnable mRunnable -> d
     void onCreate(android.os.Bundle) -> onCreate
-com.wave.mzpad.activity.SplashActivity$1 -> com.wave.mzpad.activity.h:
+com.wave.mzpad.activity.SplashActivity$1 -> com.wave.mzpad.activity.k:
     com.wave.mzpad.activity.SplashActivity this$0 -> a
     void run() -> run
-com.wave.mzpad.activity.USBSerialActivity -> com.wave.mzpad.activity.USBSerialActivity:
-    void onCreate(android.os.Bundle) -> onCreate
+com.wave.mzpad.activity.UpdatePopWindow -> com.wave.mzpad.activity.l:
+    android.content.Context ctx -> a
+    android.widget.PopupWindow updateWindow -> b
+    android.widget.EditText et_rh -> c
+    android.widget.EditText et_pd -> d
+    android.widget.EditText et_ph -> e
+    android.widget.EditText et_limit -> f
+    com.wave.mzpad.adpter.MeasureResultAdapter mra -> g
+    com.wave.mzpad.model.MeasureResult mr -> h
+    com.wave.mzpad.model.MeasureParam mp -> i
+    com.wave.mzpad.service.BusinessDataBase dataBase -> j
+    void ShowPopWindow(android.view.View,com.wave.mzpad.model.MeasureResult) -> a
+    com.wave.mzpad.model.MeasureResult access$0(com.wave.mzpad.activity.UpdatePopWindow) -> a
+    android.widget.EditText access$1(com.wave.mzpad.activity.UpdatePopWindow) -> b
+    android.widget.EditText access$2(com.wave.mzpad.activity.UpdatePopWindow) -> c
+    android.widget.EditText access$3(com.wave.mzpad.activity.UpdatePopWindow) -> d
+    com.wave.mzpad.service.BusinessDataBase access$4(com.wave.mzpad.activity.UpdatePopWindow) -> e
+    com.wave.mzpad.model.MeasureParam access$5(com.wave.mzpad.activity.UpdatePopWindow) -> f
+    android.widget.EditText access$6(com.wave.mzpad.activity.UpdatePopWindow) -> g
+    com.wave.mzpad.adpter.MeasureResultAdapter access$7(com.wave.mzpad.activity.UpdatePopWindow) -> h
+    android.widget.PopupWindow access$8(com.wave.mzpad.activity.UpdatePopWindow) -> i
+com.wave.mzpad.activity.UpdatePopWindow$1 -> com.wave.mzpad.activity.m:
+    com.wave.mzpad.activity.UpdatePopWindow this$0 -> a
+    void onClick(android.view.View) -> onClick
 com.wave.mzpad.adpter.MeasureResultAdapter -> com.wave.mzpad.a.a:
     android.content.Context context -> a
     java.util.List mrLists -> b
@@ -5202,44 +5237,116 @@ com.wave.mzpad.adpter.MeasureResultAdapter -> com.wave.mzpad.a.a:
     com.wave.mzpad.service.BusinessDataBase businessDataBase -> d
     com.wave.mzpad.model.MeasureParam measureParam -> e
     java.lang.String TAG -> f
+    com.wave.mzpad.activity.UpdatePopWindow updatePopWindow -> g
+    int position -> h
     int getCount() -> getCount
     com.wave.mzpad.model.MeasureResult getItem(int) -> a
     long getItemId(int) -> getItemId
     android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
+    void showpopWindow(android.view.View,com.wave.mzpad.model.MeasureResult) -> a
     void updateData(com.wave.mzpad.model.MeasureResult) -> a
+    void updateMeasureResult(com.wave.mzpad.model.MeasureResult) -> b
+    void updateData(java.util.List) -> a
     java.util.List getMrLists() -> a
     java.lang.Object getItem(int) -> getItem
-com.wave.mzpad.adpter.MeasureResultAdapter$HodlerView -> com.wave.mzpad.a.b:
+    void access$1(com.wave.mzpad.adpter.MeasureResultAdapter,int) -> a
+com.wave.mzpad.adpter.MeasureResultAdapter$1 -> com.wave.mzpad.a.b:
+    com.wave.mzpad.adpter.MeasureResultAdapter this$0 -> a
+    com.wave.mzpad.model.MeasureResult val$mr -> b
+    int val$arg0 -> c
+    void onClick(android.view.View) -> onClick
+com.wave.mzpad.adpter.MeasureResultAdapter$2 -> com.wave.mzpad.a.c:
+    com.wave.mzpad.adpter.MeasureResultAdapter this$0 -> a
+    boolean onLongClick(android.view.View) -> onLongClick
+com.wave.mzpad.adpter.MeasureResultAdapter$HodlerView -> com.wave.mzpad.a.d:
     android.widget.TextView travelDistance -> a
     android.widget.TextView platformHigh -> b
     android.widget.TextView platformDistance -> c
-    android.widget.TextView dipAngle -> d
-    android.widget.TextView rainshedHigh -> e
-    android.widget.TextView outlimited -> f
-    android.widget.TextView outlimitValue -> g
+    android.widget.TextView rainshedHigh -> d
+    android.widget.TextView outlimited -> e
+    android.widget.TextView outlimitValue -> f
+    android.widget.Button edit -> g
     com.wave.mzpad.adpter.MeasureResultAdapter this$0 -> h
-com.wave.mzpad.adpter.ParamListAdapter -> com.wave.mzpad.a.c:
+com.wave.mzpad.adpter.ParamListAdapter -> com.wave.mzpad.a.e:
     android.content.Context context -> a
     java.util.List listMP -> b
     android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
     int getCount() -> getCount
     java.lang.Object getItem(int) -> getItem
     long getItemId(int) -> getItemId
-com.wave.mzpad.adpter.ParamListAdapter$HodlerView -> com.wave.mzpad.a.d:
+com.wave.mzpad.adpter.ParamListAdapter$HodlerView -> com.wave.mzpad.a.f:
     android.widget.TextView showName -> a
     com.wave.mzpad.adpter.ParamListAdapter this$0 -> b
-com.wave.mzpad.common.Contants -> com.wave.mzpad.b.a:
+com.wave.mzpad.bluetooth.BlueInOutputManager -> com.wave.mzpad.b.a:
+    java.lang.String TAG -> a
+    android.bluetooth.BluetoothSocket mBTDriver -> b
+    java.nio.ByteBuffer mReadBuffer -> c
+    java.nio.ByteBuffer mWriteBuffer -> d
+    java.lang.StringBuffer stringBuffer -> e
+    com.wave.mzpad.bluetooth.BlueInOutputManager$State mState -> f
+    com.wave.mzpad.service.Listener mListener -> g
+    com.wave.mzpad.service.Listener getListener() -> b
+    void writeAsync(byte[]) -> a
+    void stop() -> a
+    com.wave.mzpad.bluetooth.BlueInOutputManager$State getState() -> c
+    void run() -> run
+    void setmBTDriver(android.bluetooth.BluetoothSocket) -> a
+    void sendData() -> d
+com.wave.mzpad.bluetooth.BlueInOutputManager$State -> com.wave.mzpad.b.b:
+    com.wave.mzpad.bluetooth.BlueInOutputManager$State STOPPED -> a
+    com.wave.mzpad.bluetooth.BlueInOutputManager$State RUNNING -> b
+    com.wave.mzpad.bluetooth.BlueInOutputManager$State STOPPING -> c
+    com.wave.mzpad.bluetooth.BlueInOutputManager$State[] ENUM$VALUES -> d
+    com.wave.mzpad.bluetooth.BlueInOutputManager$State[] values() -> values
+    com.wave.mzpad.bluetooth.BlueInOutputManager$State valueOf(java.lang.String) -> valueOf
+com.wave.mzpad.bluetooth.BluetoothService -> com.wave.mzpad.b.c:
+    java.lang.String TAG -> a
+    java.util.UUID MY_UUID -> b
+    android.bluetooth.BluetoothAdapter mAdapter -> c
+    android.os.Handler mHandler -> d
+    com.wave.mzpad.bluetooth.BluetoothService$ConnectThread mConnectThread -> e
+    com.wave.mzpad.bluetooth.BluetoothService bluetoothService -> f
+    android.bluetooth.BluetoothSocket btSocket -> g
+    com.wave.mzpad.bluetooth.BluetoothService getInstance() -> a
+    void setmHandler(android.os.Handler) -> a
+    void connect(android.bluetooth.BluetoothDevice) -> a
+    void connectSucessed() -> b
+    void stop() -> c
+    android.bluetooth.BluetoothSocket getBTSocket() -> d
+    java.lang.String access$0() -> e
+    android.bluetooth.BluetoothAdapter access$1(com.wave.mzpad.bluetooth.BluetoothService) -> a
+    java.util.UUID access$2() -> f
+    void access$3(com.wave.mzpad.bluetooth.BluetoothService,android.bluetooth.BluetoothSocket) -> a
+    android.bluetooth.BluetoothSocket access$4(com.wave.mzpad.bluetooth.BluetoothService) -> b
+    void access$5(com.wave.mzpad.bluetooth.BluetoothService) -> c
+com.wave.mzpad.bluetooth.BluetoothService$ConnectThread -> com.wave.mzpad.b.d:
+    android.bluetooth.BluetoothDevice mmDevice -> b
+    com.wave.mzpad.bluetooth.BluetoothService this$0 -> a
+    void run() -> run
+com.wave.mzpad.common.Contants -> com.wave.mzpad.c.a:
     java.lang.String COMMAND_FORMAT -> a
     java.lang.String EXPORT_EXCEL_FILEPATH -> b
-com.wave.mzpad.common.Log -> com.wave.mzpad.b.b:
+com.wave.mzpad.common.DataUtils -> com.wave.mzpad.c.b:
+    java.lang.String app_filename -> a
+    void setfirst(android.content.Context) -> a
+    boolean isFirst(android.content.Context) -> b
+com.wave.mzpad.common.JxlExcelUtil -> com.wave.mzpad.c.c:
+    java.lang.String TAG -> a
+    android.content.Context ctx -> b
+    com.wave.mzpad.common.JxlExcelUtil$OperateExcel operateExcel -> c
+    void setOperateExcel(com.wave.mzpad.common.JxlExcelUtil$OperateExcel) -> a
+    void copyAndupdateExcel(java.lang.String,java.lang.String,java.lang.String) -> a
+    void updateLabelCell(jxl.write.WritableSheet,com.wave.mzpad.model.CellElement) -> a
+    void updateLabelCell$208c9626(jxl.write.WritableSheet,com.wave.mzpad.model.CellElement) -> b
+com.wave.mzpad.common.JxlExcelUtil$OperateExcel -> com.wave.mzpad.c.d:
+    void updateExcel(jxl.write.WritableSheet) -> updateExcel
+com.wave.mzpad.common.Log -> com.wave.mzpad.c.e:
     boolean mLogGrade -> a
-    void e$6a33be3(java.lang.String,java.lang.String) -> a
-    void e(java.lang.String,java.lang.String) -> b
-    void i(java.lang.String,java.lang.String) -> c
-    void w(java.lang.String,java.lang.String) -> d
-    void w$6a33be3(java.lang.String,java.lang.String) -> e
-    void d(java.lang.String,java.lang.String) -> f
-com.wave.mzpad.common.Utility -> com.wave.mzpad.b.c:
+    void e(java.lang.String,java.lang.String) -> a
+    void i(java.lang.String,java.lang.String) -> b
+    void w$6a33be3(java.lang.String,java.lang.String) -> c
+    void d(java.lang.String,java.lang.String) -> d
+com.wave.mzpad.common.Utility -> com.wave.mzpad.c.f:
     char[] HEX_DIGITS -> a
     long dClickTime -> b
     boolean isEmpty(java.lang.String) -> a
@@ -5250,15 +5357,17 @@ com.wave.mzpad.common.Utility -> com.wave.mzpad.b.c:
     int strToInt(java.lang.String) -> b
     java.lang.String getCheckCodeHexByString(java.lang.String) -> c
     boolean isFastDoubleClick(int) -> a
-com.wave.mzpad.db.DAOBase -> com.wave.mzpad.c.a:
+    java.lang.String getTravelDistance(int) -> b
+com.wave.mzpad.db.DAOBase -> com.wave.mzpad.d.a:
     java.lang.String TAG -> a
     android.content.Context mContext -> b
     android.database.sqlite.SQLiteDatabase mDataBase -> c
     android.database.sqlite.SQLiteDatabase getDataBase() -> a
+    java.lang.Boolean delete(java.lang.String,java.lang.String) -> a
     java.lang.Boolean delete(java.lang.String,com.wave.mzpad.model.AbstractObject) -> a
     java.util.List getList(java.lang.String) -> a
     java.lang.Object findModel(android.database.Cursor) -> a
-com.wave.mzpad.db.MeasureParamDAO -> com.wave.mzpad.c.b:
+com.wave.mzpad.db.MeasureParamDAO -> com.wave.mzpad.d.b:
     java.lang.String TABLE_MEASUREPARAM -> b
     java.lang.Object findModel(android.database.Cursor) -> a
     android.content.ContentValues createParms(com.wave.mzpad.model.MeasureParam) -> d
@@ -5266,13 +5375,16 @@ com.wave.mzpad.db.MeasureParamDAO -> com.wave.mzpad.c.b:
     boolean deleteMeasureParam(com.wave.mzpad.model.MeasureParam) -> b
     boolean updateMeasureParam(com.wave.mzpad.model.MeasureParam) -> c
     java.util.List getMeasureParam(java.lang.String) -> b
-    boolean isExistObject(com.wave.mzpad.model.AbstractObject) -> a
-com.wave.mzpad.db.MeasureResultDAO -> com.wave.mzpad.c.c:
+com.wave.mzpad.db.MeasureResultDAO -> com.wave.mzpad.d.c:
     java.lang.String TABLE_MEASURERESULT -> b
+    java.lang.String[] getTableNameAndPK() -> b
     java.lang.Object findModel(android.database.Cursor) -> a
+    android.content.ContentValues createParms(com.wave.mzpad.model.MeasureResult) -> c
     com.wave.mzpad.model.MeasureResult insertMeasureResult(com.wave.mzpad.model.MeasureResult) -> a
+    boolean deleteMeasureResult(com.wave.mzpad.model.MeasureResult) -> b
+    boolean updateMeasureResult(java.lang.String,com.wave.mzpad.model.MeasureResult) -> a
     java.util.List getMeasureResult(java.lang.String) -> b
-com.wave.mzpad.db.SQLiteHelper -> com.wave.mzpad.c.d:
+com.wave.mzpad.db.SQLiteHelper -> com.wave.mzpad.d.d:
     java.lang.String TAG -> a
     com.wave.mzpad.db.SQLiteHelper INSTANCE -> b
     android.content.Context mContext -> c
@@ -5281,21 +5393,21 @@ com.wave.mzpad.db.SQLiteHelper -> com.wave.mzpad.c.d:
     com.wave.mzpad.db.SQLiteHelper getInstance(android.content.Context) -> a
     void onCreate(android.database.sqlite.SQLiteDatabase) -> onCreate
     void onUpgrade(android.database.sqlite.SQLiteDatabase,int,int) -> onUpgrade
-com.wave.mzpad.db.StandardDataDAO -> com.wave.mzpad.c.e:
+com.wave.mzpad.db.StandardDataDAO -> com.wave.mzpad.d.e:
     java.lang.String TABLE_STANDARDDATA -> b
     java.lang.Object findModel(android.database.Cursor) -> a
     boolean insertStandardData(com.wave.mzpad.model.StandardData) -> a
     java.util.List getStandardData(java.lang.String) -> b
-com.wave.mzpad.model.AbstractObject -> com.wave.mzpad.d.a:
+com.wave.mzpad.model.AbstractObject -> com.wave.mzpad.e.a:
     java.lang.String COLUMN_ID -> a
     int id -> b
     int getId() -> a
     void setId(int) -> a
-com.wave.mzpad.model.CellElement -> com.wave.mzpad.d.b:
+com.wave.mzpad.model.CellElement -> com.wave.mzpad.e.b:
     int x -> a
     int y -> b
     java.lang.String value -> c
-com.wave.mzpad.model.MeasureParam -> com.wave.mzpad.d.c:
+com.wave.mzpad.model.MeasureParam -> com.wave.mzpad.e.c:
     java.lang.String COLUMN_LINE_NUMBER -> c
     java.lang.String COLUMN_LINE_NAME -> d
     java.lang.String COLUMN_TRACK -> e
@@ -5304,45 +5416,77 @@ com.wave.mzpad.model.MeasureParam -> com.wave.mzpad.d.c:
     java.lang.String COLUMN_SAMPLE_INTERVAL -> h
     java.lang.String COLUMN_INNER_SIDE -> i
     java.lang.String COLUMN_MEASURE_STARTPOS -> j
-    int lineNumber -> k
-    java.lang.String lineName -> l
-    int track -> m
-    int radius -> n
-    int outerrailHigh -> o
-    int sampleInterval -> p
-    int innerSide -> q
-    int measureStartposition -> r
-    int getLineNumber() -> b
-    void setLineNumber(int) -> b
-    int getTrack() -> c
-    void setTrack(int) -> c
-    int getRadius() -> d
-    void setRadius(int) -> d
-    int getOuterrailHigh() -> e
-    void setOuterrailHigh(int) -> e
-    int getSampleInterval() -> f
-    void setSampleInterval(int) -> f
-    int getInnerSide() -> g
-    void setInnerSide(int) -> g
-    int getMeasureStartposition() -> h
-    void setMeasureStartposition(int) -> h
-    java.lang.String getLineName() -> i
-    void setLineName(java.lang.String) -> a
+    java.lang.String COLUMN_STAND_NAME -> k
+    java.lang.String COLUMN_STAND_ID -> l
+    java.lang.String COLUMN_STAND_AREA -> m
+    java.lang.String COLUMN_STAND_DIRECTION -> n
+    java.lang.String COLUMN_STAND_ORIENTATION -> o
+    java.lang.String COLUMN_BIGHT_DIRECTION -> p
+    java.lang.String COLUMN_RAIL_HIGH -> q
+    java.lang.String lineNumber -> r
+    java.lang.String lineName -> s
+    java.lang.String measureStartposition -> t
+    int track -> u
+    int innerSide -> v
+    int radius -> w
+    int outerrailHigh -> x
+    int sampleInterval -> y
+    java.lang.String standName -> z
+    java.lang.String standId -> A
+    java.lang.String standArea -> B
+    java.lang.String standDirection -> C
+    int standOrientation -> D
+    int bightDirection -> E
+    int railHigh -> F
+    java.lang.String getStandName() -> b
+    void setStandName(java.lang.String) -> a
+    java.lang.String getStandId() -> c
+    void setStandId(java.lang.String) -> b
+    java.lang.String getStandArea() -> d
+    void setStandArea(java.lang.String) -> c
+    java.lang.String getStandDirection() -> e
+    void setStandDirection(java.lang.String) -> d
+    int getStandOrientation() -> f
+    void setStandOrientation(int) -> b
+    int getBightDirection() -> g
+    void setBightDirection(int) -> c
+    int getRailHigh() -> h
+    void setRailHigh(int) -> d
+    int getTrack() -> i
+    void setTrack(int) -> e
+    int getRadius() -> j
+    void setRadius(int) -> f
+    int getOuterrailHigh() -> k
+    void setOuterrailHigh(int) -> g
+    int getSampleInterval() -> l
+    void setSampleInterval(int) -> h
+    int getInnerSide() -> m
+    void setInnerSide(int) -> i
+    java.lang.String getLineName() -> n
+    void setLineName(java.lang.String) -> e
+    java.lang.String getLineNumber() -> o
+    void setLineNumber(java.lang.String) -> f
+    java.lang.String getMeasureStartposition() -> p
+    void setMeasureStartposition(java.lang.String) -> g
     boolean equals(java.lang.Object) -> equals
     java.lang.String toString() -> toString
-com.wave.mzpad.model.MeasureResult -> com.wave.mzpad.d.d:
+com.wave.mzpad.model.MeasureResult -> com.wave.mzpad.e.d:
     java.lang.String COLUMN_TRAVEL_DISTANCE -> c
     java.lang.String COLUMN_PLATFORM_HIGH -> d
     java.lang.String COLUMN_PLATFORM_DISTANCE -> e
     java.lang.String COLUMN_DIP_ANGLE -> f
     java.lang.String COLUMN_RAINSHED_HIGH -> g
     java.lang.String COLUMN_PARAMID -> h
-    int travelDistance -> i
-    int platformHigh -> j
-    int platformDistance -> k
-    int dipAngle -> l
-    int rainshedHigh -> m
-    int paramId -> n
+    java.lang.String COLUMN_LIMIT_DEFAULT -> i
+    java.lang.String COLUMN_LIMIT_UPDATE -> j
+    int travelDistance -> k
+    int platformHigh -> l
+    int platformDistance -> m
+    int dipAngle -> n
+    int rainshedHigh -> o
+    int paramId -> p
+    int limitDefault -> q
+    int limitUpdate -> r
     int getTravelDistance() -> b
     void setTravelDistance(int) -> b
     int getPlatformHigh() -> c
@@ -5358,7 +5502,11 @@ com.wave.mzpad.model.MeasureResult -> com.wave.mzpad.d.d:
     boolean equals(java.lang.Object) -> equals
     java.lang.String toString() -> toString
     int compareTo(java.lang.Object) -> compareTo
-com.wave.mzpad.model.StandardData -> com.wave.mzpad.d.e:
+    int getLimitDefault() -> h
+    void setLimitDefault(int) -> h
+    int getLimitUpdate() -> i
+    void setLimitUpdate(int) -> i
+com.wave.mzpad.model.StandardData -> com.wave.mzpad.e.e:
     java.lang.String COLUMN_TRACK_HIGH -> c
     java.lang.String COLUMN_TRAIN_LIMIT -> d
     java.lang.String COLUMN_SECOND_LEVEL -> e
@@ -5379,6 +5527,12 @@ com.wave.mzpad.model.StandardData -> com.wave.mzpad.d.e:
     void setBuildRight(int) -> e
     int getBuildDevious() -> f
     void setBuildDevious(int) -> f
+com.wave.mzpad.service.AbstractCalResult -> com.wave.mzpad.service.AbstractCalResult:
+    float calInnerSideCoeft(int,int,int) -> calInnerSideCoeft
+    float calOuterSideCoeft(int,int,int) -> calOuterSideCoeft
+    float calLineLimit(com.wave.mzpad.model.MeasureResult,com.wave.mzpad.model.MeasureParam) -> calLineLimit
+    float calInnerSideLimit(com.wave.mzpad.model.MeasureResult,com.wave.mzpad.model.MeasureParam) -> calInnerSideLimit
+    float calOuterSideLimit(com.wave.mzpad.model.MeasureResult,com.wave.mzpad.model.MeasureParam) -> calOuterSideLimit
 com.wave.mzpad.service.BusinessDataBase -> com.wave.mzpad.service.BusinessDataBase:
     android.content.Context ctx -> ctx
     com.wave.mzpad.db.MeasureResultDAO measureResultDao -> measureResultDao
@@ -5389,15 +5543,12 @@ com.wave.mzpad.service.BusinessDataBase -> com.wave.mzpad.service.BusinessDataBa
     com.wave.mzpad.db.MeasureResultDAO getMeasureResultDao() -> getMeasureResultDao
     com.wave.mzpad.db.StandardDataDAO getStandardDataDAO() -> getStandardDataDAO
     java.util.List getMeasureResult(int) -> getMeasureResult
-    int calInnerSideCoeft(int,int,int) -> calInnerSideCoeft
-    int calOuterSideCoeft(int) -> calOuterSideCoeft
-    int calInnerSideLimit(com.wave.mzpad.model.MeasureResult,com.wave.mzpad.model.MeasureParam) -> calInnerSideLimit
-    int calOuterSideLimit(com.wave.mzpad.model.MeasureResult,com.wave.mzpad.model.MeasureParam) -> calOuterSideLimit
     void initData() -> initData
-    int calLimitValue(com.wave.mzpad.model.MeasureResult,com.wave.mzpad.model.MeasureParam) -> calLimitValue
+    float calLimitValue(com.wave.mzpad.model.MeasureResult,com.wave.mzpad.model.MeasureParam) -> calLimitValue
+    float calDiffResultValue(com.wave.mzpad.model.MeasureResult,com.wave.mzpad.model.MeasureParam) -> calDiffResultValue
     int[] calWarningLevelLimited(com.wave.mzpad.model.MeasureResult,com.wave.mzpad.model.MeasureParam) -> calWarningLevelLimited
     com.wave.mzpad.model.StandardData getStandardData(com.wave.mzpad.model.MeasureResult) -> getStandardData
-    int getCurveWidenValue(com.wave.mzpad.model.MeasureParam,com.wave.mzpad.model.MeasureResult) -> getCurveWidenValue
+    float getCurveWidenValue(com.wave.mzpad.model.MeasureParam,com.wave.mzpad.model.MeasureResult) -> getCurveWidenValue
 com.wave.mzpad.service.CommunicateServer -> com.wave.mzpad.service.CommunicateServer:
     java.lang.String TAG -> TAG
     android.os.Handler mHandler -> mHandler
@@ -5408,12 +5559,11 @@ com.wave.mzpad.service.CommunicateServer -> com.wave.mzpad.service.CommunicateSe
     int STOP -> STOP
     int CONNECTED -> CONNECTED
     com.wave.mzpad.service.CommunicateServer commServer -> commServer
-    android.hardware.usb.UsbManager mUsbManager -> mUsbManager
-    com.wave.mzpad.usbserial.UsbSerialPort sPort -> sPort
-    com.wave.mzpad.usbserial.SerialInputOutputManager mSerialIoManager -> mSerialIoManager
+    android.bluetooth.BluetoothSocket sPort -> sPort
+    com.wave.mzpad.bluetooth.BlueInOutputManager mBTManager -> mBTManager
     java.util.concurrent.ExecutorService mExecutor -> mExecutor
     com.wave.mzpad.service.HeartBeatThread heartBeatThread -> heartBeatThread
-    com.wave.mzpad.usbserial.SerialInputOutputManager$Listener mListener -> mListener
+    com.wave.mzpad.service.Listener mListener -> mListener
     com.wave.mzpad.service.CommunicateServer getInstance(android.app.Activity,android.os.Handler) -> getInstance
     void initSerialDevice(android.content.Context,android.os.Handler) -> initSerialDevice
     void resetSerialDevice() -> resetSerialDevice
@@ -5445,10 +5595,12 @@ com.wave.mzpad.service.CommunicateServer$1$1 -> com.wave.mzpad.service.Communica
     com.wave.mzpad.service.CommunicateServer$1 this$1 -> this$1
     byte[] val$data -> val$data
     void run() -> run
-com.wave.mzpad.service.DataUtils -> com.wave.mzpad.service.DataUtils:
-    java.lang.String app_filename -> app_filename
-    void setfirst(android.content.Context) -> setfirst
-    boolean isFirst(android.content.Context) -> isFirst
+com.wave.mzpad.service.GTCalResult -> com.wave.mzpad.service.GTCalResult:
+    float calInnerSideCoeft(int,int,int) -> calInnerSideCoeft
+    float calOuterSideCoeft(int,int,int) -> calOuterSideCoeft
+    float calLineLimit(com.wave.mzpad.model.MeasureResult,com.wave.mzpad.model.MeasureParam) -> calLineLimit
+    float calInnerSideLimit(com.wave.mzpad.model.MeasureResult,com.wave.mzpad.model.MeasureParam) -> calInnerSideLimit
+    float calOuterSideLimit(com.wave.mzpad.model.MeasureResult,com.wave.mzpad.model.MeasureParam) -> calOuterSideLimit
 com.wave.mzpad.service.HeartBeatThread -> com.wave.mzpad.service.HeartBeatThread:
     long startTime -> startTime
     java.util.Timer timer -> timer
@@ -5473,391 +5625,29 @@ com.wave.mzpad.service.HeartBeatThread -> com.wave.mzpad.service.HeartBeatThread
 com.wave.mzpad.service.HeartBeatThread$1 -> com.wave.mzpad.service.HeartBeatThread$1:
     com.wave.mzpad.service.HeartBeatThread this$0 -> this$0
     void run() -> run
-com.wave.mzpad.service.JxlExcelUtil -> com.wave.mzpad.service.JxlExcelUtil:
-    java.lang.String TAG -> TAG
-    android.content.Context ctx -> ctx
-    com.wave.mzpad.service.JxlExcelUtil$OperateExcel operateExcel -> operateExcel
-    void setOperateExcel(com.wave.mzpad.service.JxlExcelUtil$OperateExcel) -> setOperateExcel
-    void createExcel(java.lang.String,java.lang.String) -> createExcel
-    void copyAndupdateExcel(java.lang.String,java.lang.String,java.lang.String) -> copyAndupdateExcel
-    void updateLabelCell(jxl.write.WritableSheet,com.wave.mzpad.model.CellElement) -> updateLabelCell
-    void colseWritableWorkbook(jxl.write.WritableWorkbook) -> colseWritableWorkbook
-com.wave.mzpad.service.JxlExcelUtil$OperateExcel -> com.wave.mzpad.service.JxlExcelUtil$OperateExcel:
-    void updateExcel(jxl.write.WritableSheet) -> updateExcel
+com.wave.mzpad.service.Listener -> com.wave.mzpad.service.Listener:
+    void onNewData(byte[]) -> onNewData
+    void onRunError(java.lang.Exception) -> onRunError
+com.wave.mzpad.service.PuKuaiCalResult -> com.wave.mzpad.service.PuKuaiCalResult:
+    float calInnerSideCoeft(int,int,int) -> calInnerSideCoeft
+    float calOuterSideCoeft(int,int,int) -> calOuterSideCoeft
+    float calLineLimit(com.wave.mzpad.model.MeasureResult,com.wave.mzpad.model.MeasureParam) -> calLineLimit
+    float calInnerSideLimit(com.wave.mzpad.model.MeasureResult,com.wave.mzpad.model.MeasureParam) -> calInnerSideLimit
+    float calOuterSideLimit(com.wave.mzpad.model.MeasureResult,com.wave.mzpad.model.MeasureParam) -> calOuterSideLimit
 com.wave.mzpad.service.ServiceExportReport -> com.wave.mzpad.service.ServiceExportReport:
     java.lang.String TAG -> TAG
     com.wave.mzpad.model.MeasureParam abstractObject -> abstractObject
     java.util.List listAbstractObject -> listAbstractObject
-    com.wave.mzpad.service.JxlExcelUtil excelUtil -> excelUtil
+    com.wave.mzpad.common.JxlExcelUtil excelUtil -> excelUtil
     int startX -> startX
     int startY -> startY
     int colMax -> colMax
     com.wave.mzpad.service.BusinessDataBase businessDataBase -> businessDataBase
     void exportExcel() -> exportExcel
     void updateExcel(jxl.write.WritableSheet) -> updateExcel
+    void insertMeasureParam(jxl.write.WritableSheet) -> insertMeasureParam
     void insertColumnArray(jxl.write.WritableSheet,int,int,int) -> insertColumnArray
     void insertExcelLabel(jxl.write.WritableSheet,int,int,java.lang.String) -> insertExcelLabel
-com.wave.mzpad.usbserial.CdcAcmSerialDriver -> com.wave.mzpad.usbserial.CdcAcmSerialDriver:
-    java.lang.String TAG -> TAG
-    android.hardware.usb.UsbDevice mDevice -> mDevice
-    com.wave.mzpad.usbserial.UsbSerialPort mPort -> mPort
-    android.hardware.usb.UsbDevice getDevice() -> getDevice
-    java.util.List getPorts() -> getPorts
-    java.util.Map getSupportedDevices() -> getSupportedDevices
-    java.lang.String access$0(com.wave.mzpad.usbserial.CdcAcmSerialDriver) -> access$0
-com.wave.mzpad.usbserial.CdcAcmSerialDriver$CdcAdcmSerialPort -> com.wave.mzpad.usbserial.CdcAcmSerialDriver$CdcAdcmSerialPort:
-    android.hardware.usb.UsbInterface mControlInterface -> mControlInterface
-    android.hardware.usb.UsbInterface mDataInterface -> mDataInterface
-    android.hardware.usb.UsbEndpoint mControlEndpoint -> mControlEndpoint
-    android.hardware.usb.UsbEndpoint mReadEndpoint -> mReadEndpoint
-    android.hardware.usb.UsbEndpoint mWriteEndpoint -> mWriteEndpoint
-    boolean mRts -> mRts
-    boolean mDtr -> mDtr
-    int USB_RECIP_INTERFACE -> USB_RECIP_INTERFACE
-    int USB_RT_ACM -> USB_RT_ACM
-    int SET_LINE_CODING -> SET_LINE_CODING
-    int GET_LINE_CODING -> GET_LINE_CODING
-    int SET_CONTROL_LINE_STATE -> SET_CONTROL_LINE_STATE
-    int SEND_BREAK -> SEND_BREAK
-    com.wave.mzpad.usbserial.CdcAcmSerialDriver this$0 -> this$0
-    com.wave.mzpad.usbserial.UsbSerialDriver getDriver() -> getDriver
-    void open(android.hardware.usb.UsbDeviceConnection) -> open
-    int sendAcmControlMessage(int,int,byte[]) -> sendAcmControlMessage
-    void close() -> close
-    int read(byte[],int) -> read
-    int write(byte[],int) -> write
-    void setParameters(int,int,int,int) -> setParameters
-    boolean getCD() -> getCD
-    boolean getCTS() -> getCTS
-    boolean getDSR() -> getDSR
-    boolean getDTR() -> getDTR
-    void setDTR(boolean) -> setDTR
-    boolean getRI() -> getRI
-    boolean getRTS() -> getRTS
-    void setRTS(boolean) -> setRTS
-    void setDtrRts() -> setDtrRts
-com.wave.mzpad.usbserial.CommonUsbSerialPort -> com.wave.mzpad.usbserial.CommonUsbSerialPort:
-    int DEFAULT_READ_BUFFER_SIZE -> DEFAULT_READ_BUFFER_SIZE
-    int DEFAULT_WRITE_BUFFER_SIZE -> DEFAULT_WRITE_BUFFER_SIZE
-    android.hardware.usb.UsbDevice mDevice -> mDevice
-    android.hardware.usb.UsbDeviceConnection mConnection -> mConnection
-    java.lang.Object mReadBufferLock -> mReadBufferLock
-    java.lang.Object mWriteBufferLock -> mWriteBufferLock
-    byte[] mReadBuffer -> mReadBuffer
-    byte[] mWriteBuffer -> mWriteBuffer
-    android.hardware.usb.UsbDevice getDevice() -> getDevice
-    void setReadBufferSize(int) -> setReadBufferSize
-    void setWriteBufferSize(int) -> setWriteBufferSize
-    void open(android.hardware.usb.UsbDeviceConnection) -> open
-    void close() -> close
-    int read(byte[],int) -> read
-    int write(byte[],int) -> write
-    void setParameters(int,int,int,int) -> setParameters
-    boolean getCD() -> getCD
-    boolean getCTS() -> getCTS
-    boolean getDSR() -> getDSR
-    boolean getDTR() -> getDTR
-    void setDTR(boolean) -> setDTR
-    boolean getRI() -> getRI
-    boolean getRTS() -> getRTS
-    void setRTS(boolean) -> setRTS
-    boolean purgeHwBuffers(boolean,boolean) -> purgeHwBuffers
-com.wave.mzpad.usbserial.Cp21xxSerialDriver -> com.wave.mzpad.usbserial.Cp21xxSerialDriver:
-    java.lang.String TAG -> TAG
-    android.hardware.usb.UsbDevice mDevice -> mDevice
-    com.wave.mzpad.usbserial.UsbSerialPort mPort -> mPort
-    android.hardware.usb.UsbDevice getDevice() -> getDevice
-    java.util.List getPorts() -> getPorts
-    java.util.Map getSupportedDevices() -> getSupportedDevices
-    java.lang.String access$0() -> access$0
-com.wave.mzpad.usbserial.Cp21xxSerialDriver$Cp21xxSerialPort -> com.wave.mzpad.usbserial.Cp21xxSerialDriver$Cp21xxSerialPort:
-    int DEFAULT_BAUD_RATE -> DEFAULT_BAUD_RATE
-    int USB_WRITE_TIMEOUT_MILLIS -> USB_WRITE_TIMEOUT_MILLIS
-    int REQTYPE_HOST_TO_DEVICE -> REQTYPE_HOST_TO_DEVICE
-    int SILABSER_IFC_ENABLE_REQUEST_CODE -> SILABSER_IFC_ENABLE_REQUEST_CODE
-    int SILABSER_SET_BAUDDIV_REQUEST_CODE -> SILABSER_SET_BAUDDIV_REQUEST_CODE
-    int SILABSER_SET_LINE_CTL_REQUEST_CODE -> SILABSER_SET_LINE_CTL_REQUEST_CODE
-    int SILABSER_SET_MHS_REQUEST_CODE -> SILABSER_SET_MHS_REQUEST_CODE
-    int SILABSER_SET_BAUDRATE -> SILABSER_SET_BAUDRATE
-    int SILABSER_FLUSH_REQUEST_CODE -> SILABSER_FLUSH_REQUEST_CODE
-    int FLUSH_READ_CODE -> FLUSH_READ_CODE
-    int FLUSH_WRITE_CODE -> FLUSH_WRITE_CODE
-    int UART_ENABLE -> UART_ENABLE
-    int UART_DISABLE -> UART_DISABLE
-    int BAUD_RATE_GEN_FREQ -> BAUD_RATE_GEN_FREQ
-    int MCR_DTR -> MCR_DTR
-    int MCR_RTS -> MCR_RTS
-    int MCR_ALL -> MCR_ALL
-    int CONTROL_WRITE_DTR -> CONTROL_WRITE_DTR
-    int CONTROL_WRITE_RTS -> CONTROL_WRITE_RTS
-    android.hardware.usb.UsbEndpoint mReadEndpoint -> mReadEndpoint
-    android.hardware.usb.UsbEndpoint mWriteEndpoint -> mWriteEndpoint
-    com.wave.mzpad.usbserial.Cp21xxSerialDriver this$0 -> this$0
-    com.wave.mzpad.usbserial.UsbSerialDriver getDriver() -> getDriver
-    int setConfigSingle(int,int) -> setConfigSingle
-    void open(android.hardware.usb.UsbDeviceConnection) -> open
-    void close() -> close
-    int read(byte[],int) -> read
-    int write(byte[],int) -> write
-    void setBaudRate(int) -> setBaudRate
-    void setParameters(int,int,int,int) -> setParameters
-    boolean getCD() -> getCD
-    boolean getCTS() -> getCTS
-    boolean getDSR() -> getDSR
-    boolean getDTR() -> getDTR
-    void setDTR(boolean) -> setDTR
-    boolean getRI() -> getRI
-    boolean getRTS() -> getRTS
-    void setRTS(boolean) -> setRTS
-    boolean purgeHwBuffers(boolean,boolean) -> purgeHwBuffers
-com.wave.mzpad.usbserial.FtdiSerialDriver -> com.wave.mzpad.usbserial.FtdiSerialDriver:
-    android.hardware.usb.UsbDevice mDevice -> mDevice
-    com.wave.mzpad.usbserial.UsbSerialPort mPort -> mPort
-    android.hardware.usb.UsbDevice getDevice() -> getDevice
-    java.util.List getPorts() -> getPorts
-    java.util.Map getSupportedDevices() -> getSupportedDevices
-com.wave.mzpad.usbserial.FtdiSerialDriver$DeviceType -> com.wave.mzpad.usbserial.FtdiSerialDriver$DeviceType:
-    com.wave.mzpad.usbserial.FtdiSerialDriver$DeviceType TYPE_BM -> TYPE_BM
-    com.wave.mzpad.usbserial.FtdiSerialDriver$DeviceType TYPE_AM -> TYPE_AM
-    com.wave.mzpad.usbserial.FtdiSerialDriver$DeviceType TYPE_2232C -> TYPE_2232C
-    com.wave.mzpad.usbserial.FtdiSerialDriver$DeviceType TYPE_R -> TYPE_R
-    com.wave.mzpad.usbserial.FtdiSerialDriver$DeviceType TYPE_2232H -> TYPE_2232H
-    com.wave.mzpad.usbserial.FtdiSerialDriver$DeviceType TYPE_4232H -> TYPE_4232H
-    com.wave.mzpad.usbserial.FtdiSerialDriver$DeviceType[] ENUM$VALUES -> ENUM$VALUES
-    com.wave.mzpad.usbserial.FtdiSerialDriver$DeviceType[] values() -> values
-    com.wave.mzpad.usbserial.FtdiSerialDriver$DeviceType valueOf(java.lang.String) -> valueOf
-com.wave.mzpad.usbserial.FtdiSerialDriver$FtdiSerialPort -> com.wave.mzpad.usbserial.FtdiSerialDriver$FtdiSerialPort:
-    int USB_TYPE_STANDARD -> USB_TYPE_STANDARD
-    int USB_TYPE_CLASS -> USB_TYPE_CLASS
-    int USB_TYPE_VENDOR -> USB_TYPE_VENDOR
-    int USB_TYPE_RESERVED -> USB_TYPE_RESERVED
-    int USB_RECIP_DEVICE -> USB_RECIP_DEVICE
-    int USB_RECIP_INTERFACE -> USB_RECIP_INTERFACE
-    int USB_RECIP_ENDPOINT -> USB_RECIP_ENDPOINT
-    int USB_RECIP_OTHER -> USB_RECIP_OTHER
-    int USB_ENDPOINT_IN -> USB_ENDPOINT_IN
-    int USB_ENDPOINT_OUT -> USB_ENDPOINT_OUT
-    int USB_WRITE_TIMEOUT_MILLIS -> USB_WRITE_TIMEOUT_MILLIS
-    int USB_READ_TIMEOUT_MILLIS -> USB_READ_TIMEOUT_MILLIS
-    int SIO_RESET_REQUEST -> SIO_RESET_REQUEST
-    int SIO_MODEM_CTRL_REQUEST -> SIO_MODEM_CTRL_REQUEST
-    int SIO_SET_FLOW_CTRL_REQUEST -> SIO_SET_FLOW_CTRL_REQUEST
-    int SIO_SET_BAUD_RATE_REQUEST -> SIO_SET_BAUD_RATE_REQUEST
-    int SIO_SET_DATA_REQUEST -> SIO_SET_DATA_REQUEST
-    int SIO_RESET_SIO -> SIO_RESET_SIO
-    int SIO_RESET_PURGE_RX -> SIO_RESET_PURGE_RX
-    int SIO_RESET_PURGE_TX -> SIO_RESET_PURGE_TX
-    int FTDI_DEVICE_OUT_REQTYPE -> FTDI_DEVICE_OUT_REQTYPE
-    int FTDI_DEVICE_IN_REQTYPE -> FTDI_DEVICE_IN_REQTYPE
-    int MODEM_STATUS_HEADER_LENGTH -> MODEM_STATUS_HEADER_LENGTH
-    java.lang.String TAG -> TAG
-    com.wave.mzpad.usbserial.FtdiSerialDriver$DeviceType mType -> mType
-    int mInterface -> mInterface
-    int mMaxPacketSize -> mMaxPacketSize
-    boolean ENABLE_ASYNC_READS -> ENABLE_ASYNC_READS
-    com.wave.mzpad.usbserial.FtdiSerialDriver this$0 -> this$0
-    com.wave.mzpad.usbserial.UsbSerialDriver getDriver() -> getDriver
-    int filterStatusBytes(byte[],byte[],int,int) -> filterStatusBytes
-    void reset() -> reset
-    void open(android.hardware.usb.UsbDeviceConnection) -> open
-    void close() -> close
-    int read(byte[],int) -> read
-    int write(byte[],int) -> write
-    int setBaudRate(int) -> setBaudRate
-    void setParameters(int,int,int,int) -> setParameters
-    long[] convertBaudrate(int) -> convertBaudrate
-    boolean getCD() -> getCD
-    boolean getCTS() -> getCTS
-    boolean getDSR() -> getDSR
-    boolean getDTR() -> getDTR
-    void setDTR(boolean) -> setDTR
-    boolean getRI() -> getRI
-    boolean getRTS() -> getRTS
-    void setRTS(boolean) -> setRTS
-    boolean purgeHwBuffers(boolean,boolean) -> purgeHwBuffers
-com.wave.mzpad.usbserial.ProbeTable -> com.wave.mzpad.usbserial.ProbeTable:
-    java.util.Map mProbeTable -> mProbeTable
-    com.wave.mzpad.usbserial.ProbeTable addProduct(int,int,java.lang.Class) -> addProduct
-    com.wave.mzpad.usbserial.ProbeTable addDriver(java.lang.Class) -> addDriver
-    java.lang.Class findDriver(int,int) -> findDriver
-com.wave.mzpad.usbserial.ProlificSerialDriver -> com.wave.mzpad.usbserial.ProlificSerialDriver:
-    java.lang.String TAG -> TAG
-    android.hardware.usb.UsbDevice mDevice -> mDevice
-    com.wave.mzpad.usbserial.UsbSerialPort mPort -> mPort
-    java.util.List getPorts() -> getPorts
-    android.hardware.usb.UsbDevice getDevice() -> getDevice
-    java.util.Map getSupportedDevices() -> getSupportedDevices
-    java.lang.String access$0(com.wave.mzpad.usbserial.ProlificSerialDriver) -> access$0
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort -> com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort:
-    int USB_READ_TIMEOUT_MILLIS -> USB_READ_TIMEOUT_MILLIS
-    int USB_WRITE_TIMEOUT_MILLIS -> USB_WRITE_TIMEOUT_MILLIS
-    int USB_RECIP_INTERFACE -> USB_RECIP_INTERFACE
-    int PROLIFIC_VENDOR_READ_REQUEST -> PROLIFIC_VENDOR_READ_REQUEST
-    int PROLIFIC_VENDOR_WRITE_REQUEST -> PROLIFIC_VENDOR_WRITE_REQUEST
-    int PROLIFIC_VENDOR_OUT_REQTYPE -> PROLIFIC_VENDOR_OUT_REQTYPE
-    int PROLIFIC_VENDOR_IN_REQTYPE -> PROLIFIC_VENDOR_IN_REQTYPE
-    int PROLIFIC_CTRL_OUT_REQTYPE -> PROLIFIC_CTRL_OUT_REQTYPE
-    int WRITE_ENDPOINT -> WRITE_ENDPOINT
-    int READ_ENDPOINT -> READ_ENDPOINT
-    int INTERRUPT_ENDPOINT -> INTERRUPT_ENDPOINT
-    int FLUSH_RX_REQUEST -> FLUSH_RX_REQUEST
-    int FLUSH_TX_REQUEST -> FLUSH_TX_REQUEST
-    int SET_LINE_REQUEST -> SET_LINE_REQUEST
-    int SET_CONTROL_REQUEST -> SET_CONTROL_REQUEST
-    int CONTROL_DTR -> CONTROL_DTR
-    int CONTROL_RTS -> CONTROL_RTS
-    int STATUS_FLAG_CD -> STATUS_FLAG_CD
-    int STATUS_FLAG_DSR -> STATUS_FLAG_DSR
-    int STATUS_FLAG_RI -> STATUS_FLAG_RI
-    int STATUS_FLAG_CTS -> STATUS_FLAG_CTS
-    int STATUS_BUFFER_SIZE -> STATUS_BUFFER_SIZE
-    int STATUS_BYTE_IDX -> STATUS_BYTE_IDX
-    int DEVICE_TYPE_HX -> DEVICE_TYPE_HX
-    int DEVICE_TYPE_0 -> DEVICE_TYPE_0
-    int DEVICE_TYPE_1 -> DEVICE_TYPE_1
-    int mDeviceType -> mDeviceType
-    android.hardware.usb.UsbEndpoint mReadEndpoint -> mReadEndpoint
-    android.hardware.usb.UsbEndpoint mWriteEndpoint -> mWriteEndpoint
-    android.hardware.usb.UsbEndpoint mInterruptEndpoint -> mInterruptEndpoint
-    int mControlLinesValue -> mControlLinesValue
-    int mBaudRate -> mBaudRate
-    int mDataBits -> mDataBits
-    int mStopBits -> mStopBits
-    int mParity -> mParity
-    int mStatus -> mStatus
-    java.lang.Thread mReadStatusThread -> mReadStatusThread
-    java.lang.Object mReadStatusThreadLock -> mReadStatusThreadLock
-    boolean mStopReadStatusThread -> mStopReadStatusThread
-    java.io.IOException mReadStatusException -> mReadStatusException
-    com.wave.mzpad.usbserial.ProlificSerialDriver this$0 -> this$0
-    com.wave.mzpad.usbserial.UsbSerialDriver getDriver() -> getDriver
-    byte[] inControlTransfer(int,int,int,int,int) -> inControlTransfer
-    void outControlTransfer(int,int,int,int,byte[]) -> outControlTransfer
-    byte[] vendorIn(int,int,int) -> vendorIn
-    void vendorOut(int,int,byte[]) -> vendorOut
-    void resetDevice() -> resetDevice
-    void ctrlOut(int,int,int,byte[]) -> ctrlOut
-    void doBlackMagic() -> doBlackMagic
-    void setControlLines(int) -> setControlLines
-    void readStatusThreadFunction() -> readStatusThreadFunction
-    int getStatus() -> getStatus
-    boolean testStatusFlag(int) -> testStatusFlag
-    void open(android.hardware.usb.UsbDeviceConnection) -> open
-    void close() -> close
-    int read(byte[],int) -> read
-    int write(byte[],int) -> write
-    void setParameters(int,int,int,int) -> setParameters
-    boolean getCD() -> getCD
-    boolean getCTS() -> getCTS
-    boolean getDSR() -> getDSR
-    boolean getDTR() -> getDTR
-    void setDTR(boolean) -> setDTR
-    boolean getRI() -> getRI
-    boolean getRTS() -> getRTS
-    void setRTS(boolean) -> setRTS
-    boolean purgeHwBuffers(boolean,boolean) -> purgeHwBuffers
-    void access$0(com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort) -> access$0
-com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort$1 -> com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort$1:
-    com.wave.mzpad.usbserial.ProlificSerialDriver$ProlificSerialPort this$1 -> this$1
-    void run() -> run
-com.wave.mzpad.usbserial.SerialInputOutputManager -> com.wave.mzpad.usbserial.SerialInputOutputManager:
-    java.lang.String TAG -> TAG
-    boolean DEBUG -> DEBUG
-    int READ_WAIT_MILLIS -> READ_WAIT_MILLIS
-    int BUFSIZ -> BUFSIZ
-    com.wave.mzpad.usbserial.UsbSerialPort mDriver -> mDriver
-    java.nio.ByteBuffer mReadBuffer -> mReadBuffer
-    java.nio.ByteBuffer mWriteBuffer -> mWriteBuffer
-    java.lang.StringBuffer stringBuffer -> stringBuffer
-    com.wave.mzpad.usbserial.SerialInputOutputManager$State mState -> mState
-    com.wave.mzpad.usbserial.SerialInputOutputManager$Listener mListener -> mListener
-    void setListener(com.wave.mzpad.usbserial.SerialInputOutputManager$Listener) -> setListener
-    com.wave.mzpad.usbserial.SerialInputOutputManager$Listener getListener() -> getListener
-    void writeAsync(byte[]) -> writeAsync
-    void stop() -> stop
-    com.wave.mzpad.usbserial.SerialInputOutputManager$State getState() -> getState
-    void run() -> run
-    void step() -> step
-    void sendData() -> sendData
-    void write() -> write
-com.wave.mzpad.usbserial.SerialInputOutputManager$Listener -> com.wave.mzpad.usbserial.SerialInputOutputManager$Listener:
-    void onNewData(byte[]) -> onNewData
-    void onRunError(java.lang.Exception) -> onRunError
-com.wave.mzpad.usbserial.SerialInputOutputManager$State -> com.wave.mzpad.usbserial.SerialInputOutputManager$State:
-    com.wave.mzpad.usbserial.SerialInputOutputManager$State STOPPED -> STOPPED
-    com.wave.mzpad.usbserial.SerialInputOutputManager$State RUNNING -> RUNNING
-    com.wave.mzpad.usbserial.SerialInputOutputManager$State STOPPING -> STOPPING
-    com.wave.mzpad.usbserial.SerialInputOutputManager$State[] ENUM$VALUES -> ENUM$VALUES
-    com.wave.mzpad.usbserial.SerialInputOutputManager$State[] values() -> values
-    com.wave.mzpad.usbserial.SerialInputOutputManager$State valueOf(java.lang.String) -> valueOf
-com.wave.mzpad.usbserial.UsbId -> com.wave.mzpad.usbserial.UsbId:
-    int VENDOR_FTDI -> VENDOR_FTDI
-    int FTDI_FT232R -> FTDI_FT232R
-    int FTDI_FT231X -> FTDI_FT231X
-    int VENDOR_ATMEL -> VENDOR_ATMEL
-    int ATMEL_LUFA_CDC_DEMO_APP -> ATMEL_LUFA_CDC_DEMO_APP
-    int VENDOR_ARDUINO -> VENDOR_ARDUINO
-    int ARDUINO_UNO -> ARDUINO_UNO
-    int ARDUINO_MEGA_2560 -> ARDUINO_MEGA_2560
-    int ARDUINO_SERIAL_ADAPTER -> ARDUINO_SERIAL_ADAPTER
-    int ARDUINO_MEGA_ADK -> ARDUINO_MEGA_ADK
-    int ARDUINO_MEGA_2560_R3 -> ARDUINO_MEGA_2560_R3
-    int ARDUINO_UNO_R3 -> ARDUINO_UNO_R3
-    int ARDUINO_MEGA_ADK_R3 -> ARDUINO_MEGA_ADK_R3
-    int ARDUINO_SERIAL_ADAPTER_R3 -> ARDUINO_SERIAL_ADAPTER_R3
-    int ARDUINO_LEONARDO -> ARDUINO_LEONARDO
-    int VENDOR_VAN_OOIJEN_TECH -> VENDOR_VAN_OOIJEN_TECH
-    int VAN_OOIJEN_TECH_TEENSYDUINO_SERIAL -> VAN_OOIJEN_TECH_TEENSYDUINO_SERIAL
-    int VENDOR_LEAFLABS -> VENDOR_LEAFLABS
-    int LEAFLABS_MAPLE -> LEAFLABS_MAPLE
-    int VENDOR_SILABS -> VENDOR_SILABS
-    int SILABS_CP2102 -> SILABS_CP2102
-    int SILABS_CP2105 -> SILABS_CP2105
-    int SILABS_CP2108 -> SILABS_CP2108
-    int SILABS_CP2110 -> SILABS_CP2110
-    int VENDOR_PROLIFIC -> VENDOR_PROLIFIC
-    int PROLIFIC_PL2303 -> PROLIFIC_PL2303
-com.wave.mzpad.usbserial.UsbSerialDriver -> com.wave.mzpad.usbserial.UsbSerialDriver:
-    android.hardware.usb.UsbDevice getDevice() -> getDevice
-    java.util.List getPorts() -> getPorts
-com.wave.mzpad.usbserial.UsbSerialPort -> com.wave.mzpad.usbserial.UsbSerialPort:
-    int DATABITS_5 -> DATABITS_5
-    int DATABITS_6 -> DATABITS_6
-    int DATABITS_7 -> DATABITS_7
-    int DATABITS_8 -> DATABITS_8
-    int FLOWCONTROL_NONE -> FLOWCONTROL_NONE
-    int FLOWCONTROL_RTSCTS_IN -> FLOWCONTROL_RTSCTS_IN
-    int FLOWCONTROL_RTSCTS_OUT -> FLOWCONTROL_RTSCTS_OUT
-    int FLOWCONTROL_XONXOFF_IN -> FLOWCONTROL_XONXOFF_IN
-    int FLOWCONTROL_XONXOFF_OUT -> FLOWCONTROL_XONXOFF_OUT
-    int PARITY_NONE -> PARITY_NONE
-    int PARITY_ODD -> PARITY_ODD
-    int PARITY_EVEN -> PARITY_EVEN
-    int PARITY_MARK -> PARITY_MARK
-    int PARITY_SPACE -> PARITY_SPACE
-    int STOPBITS_1 -> STOPBITS_1
-    int STOPBITS_1_5 -> STOPBITS_1_5
-    int STOPBITS_2 -> STOPBITS_2
-    com.wave.mzpad.usbserial.UsbSerialDriver getDriver() -> getDriver
-    void open(android.hardware.usb.UsbDeviceConnection) -> open
-    void close() -> close
-    int read(byte[],int) -> read
-    int write(byte[],int) -> write
-    void setParameters(int,int,int,int) -> setParameters
-    boolean getCD() -> getCD
-    boolean getCTS() -> getCTS
-    boolean getDSR() -> getDSR
-    boolean getDTR() -> getDTR
-    void setDTR(boolean) -> setDTR
-    boolean getRI() -> getRI
-    boolean getRTS() -> getRTS
-    void setRTS(boolean) -> setRTS
-    boolean purgeHwBuffers(boolean,boolean) -> purgeHwBuffers
-com.wave.mzpad.usbserial.UsbSerialProber -> com.wave.mzpad.usbserial.UsbSerialProber:
-    com.wave.mzpad.usbserial.ProbeTable mProbeTable -> mProbeTable
-    com.wave.mzpad.usbserial.UsbSerialProber getDefaultProber() -> getDefaultProber
-    java.util.List findAllDrivers(android.hardware.usb.UsbManager) -> findAllDrivers
-com.wave.mzpad.usbserial.UsbSerialRuntimeException -> com.wave.mzpad.usbserial.UsbSerialRuntimeException:
 jxl.BooleanCell -> a.a:
     boolean getValue() -> g_
 jxl.BooleanFormulaCell -> a.b:
@@ -6812,8 +6602,6 @@ jxl.biff.XFRecord -> a.a.bd:
     boolean isDate() -> f
     boolean isNumber() -> g
     byte[] getData() -> a
-    void setXFLocked(boolean) -> a
-    void setXFCellOptions(int) -> a
     void setXFAlignment(jxl.format.Alignment) -> a
     void setXFVerticalAlignment(jxl.format.VerticalAlignment) -> a
     void setXFBorder(jxl.format.Border,jxl.format.BorderLineStyle,jxl.format.Colour) -> a
@@ -6829,9 +6617,9 @@ jxl.biff.XFRecord -> a.a.bd:
     void initializeFormatInformation() -> q
     int hashCode() -> hashCode
     boolean equals(java.lang.Object) -> equals
-    void setFormatIndex(int) -> b
+    void setFormatIndex(int) -> a
     int getFontIndex() -> p
-    void setFontIndex(int) -> c
+    void setFontIndex(int) -> b
     void setXFDetails(jxl.biff.XFRecord$XFType,int) -> a
     void rationalize(jxl.biff.IndexMapping) -> a
     void setFont(jxl.biff.FontRecord) -> a
@@ -9447,6 +9235,7 @@ jxl.write.WritableImage -> a.e.r:
 jxl.write.WritableSheet -> a.e.s:
     void addCell(jxl.write.WritableCell) -> a
     jxl.write.WritableCell getWritableCell(int,int) -> b
+    jxl.Range mergeCells(int,int,int,int) -> a
 jxl.write.WritableWorkbook -> a.e.t:
     jxl.write.WritableFont ARIAL_10_PT -> a
     jxl.write.WritableFont HYPERLINK_FONT -> b
@@ -9455,7 +9244,6 @@ jxl.write.WritableWorkbook -> a.e.t:
     jxl.write.WritableCellFormat HIDDEN_STYLE -> e
     jxl.write.WritableSheet getSheet(int) -> a
     void close() -> a
-    jxl.write.WritableSheet createSheet(java.lang.String,int) -> a
     void write() -> b
 jxl.write.WriteException -> a.e.u:
 jxl.write.biff.BOFRecord -> a.e.a.a:
@@ -9667,7 +9455,6 @@ jxl.write.biff.ExternalSheetRecord -> a.e.a.aj:
     byte[] getData() -> a
     int getSupbookIndex(int) -> a
     int getFirstTabIndex(int) -> b
-    void sheetInserted(int) -> c
 jxl.write.biff.ExternalSheetRecord$XTI -> a.e.a.ak:
     int supbookIndex -> a
     int firstTab -> b
@@ -10125,10 +9912,7 @@ jxl.write.biff.SheetWriter -> a.e.a.cv:
 jxl.write.biff.StringRecord -> a.e.a.cw:
     java.lang.String value -> a
     byte[] getData() -> a
-jxl.write.biff.StyleXFRecord -> a.e.a.cx:
-    void setCellOptions(int) -> d
-    void setLocked(boolean) -> b
-jxl.write.biff.Styles -> a.e.a.cy:
+jxl.write.biff.Styles -> a.e.a.cx:
     jxl.common.Logger logger -> a
     jxl.write.WritableFont arial10pt -> b
     jxl.write.WritableFont hyperlinkFont -> c
@@ -10136,18 +9920,18 @@ jxl.write.biff.Styles -> a.e.a.cy:
     jxl.write.WritableCellFormat hyperlinkStyle -> e
     jxl.write.WritableCellFormat hiddenStyle -> f
     jxl.write.WritableCellFormat defaultDateFormat -> g
-    void initNormalStyle() -> d
+    void initNormalStyle() -> c
     jxl.write.WritableCellFormat getNormalStyle() -> a
-    void initHiddenStyle() -> e
-    void initHyperlinkStyle() -> f
-    void initArial10Pt() -> g
-    jxl.write.WritableFont getArial10Pt() -> b
+    void initHiddenStyle() -> d
+    void initHyperlinkStyle() -> e
+    void initArial10Pt() -> f
+    jxl.write.WritableFont getArial10Pt() -> g
     void initHyperlinkFont() -> h
     jxl.write.WritableFont getHyperlinkFont() -> i
     void initDefaultDateFormat() -> j
-    jxl.write.WritableCellFormat getDefaultDateFormat() -> c
+    jxl.write.WritableCellFormat getDefaultDateFormat() -> b
     jxl.biff.XFRecord getFormat(jxl.biff.XFRecord) -> a
-jxl.write.biff.SupbookRecord -> a.e.a.cz:
+jxl.write.biff.SupbookRecord -> a.e.a.cy:
     jxl.common.Logger logger -> f
     jxl.write.biff.SupbookRecord$SupbookType type -> g
     byte[] data -> h
@@ -10168,41 +9952,39 @@ jxl.write.biff.SupbookRecord -> a.e.a.cz:
     java.lang.String getFileName() -> e
     int getSheetIndex(java.lang.String) -> a
     java.lang.String getSheetName(int) -> b
-jxl.write.biff.SupbookRecord$SupbookType -> a.e.a.da:
-jxl.write.biff.TabIdRecord -> a.e.a.db:
+jxl.write.biff.SupbookRecord$SupbookType -> a.e.a.cz:
+jxl.write.biff.TabIdRecord -> a.e.a.da:
     byte[] data -> a
     byte[] getData() -> a
-jxl.write.biff.TemplateRecord -> a.e.a.dc:
+jxl.write.biff.TemplateRecord -> a.e.a.db:
     byte[] getData() -> a
-jxl.write.biff.TopMarginRecord -> a.e.a.dd:
-jxl.write.biff.UsesElfsRecord -> a.e.a.de:
+jxl.write.biff.TopMarginRecord -> a.e.a.dc:
+jxl.write.biff.UsesElfsRecord -> a.e.a.dd:
     byte[] data -> a
     boolean usesElfs -> b
     byte[] getData() -> a
-jxl.write.biff.VerticalCentreRecord -> a.e.a.df:
+jxl.write.biff.VerticalCentreRecord -> a.e.a.de:
     byte[] data -> a
     boolean centre -> b
     byte[] getData() -> a
-jxl.write.biff.VerticalPageBreaksRecord -> a.e.a.dg:
+jxl.write.biff.VerticalPageBreaksRecord -> a.e.a.df:
     int[] columnBreaks -> a
     byte[] getData() -> a
-jxl.write.biff.Weird1Record -> a.e.a.dh:
+jxl.write.biff.Weird1Record -> a.e.a.dg:
     byte[] getData() -> a
-jxl.write.biff.Window1Record -> a.e.a.di:
+jxl.write.biff.Window1Record -> a.e.a.dh:
     byte[] data -> a
     int selectedSheet -> b
     byte[] getData() -> a
-jxl.write.biff.Window2Record -> a.e.a.dj:
+jxl.write.biff.Window2Record -> a.e.a.di:
     byte[] data -> a
     byte[] getData() -> a
-jxl.write.biff.WindowProtectRecord -> a.e.a.dk:
+jxl.write.biff.WindowProtectRecord -> a.e.a.dj:
     boolean protection -> a
     byte[] data -> b
     byte[] getData() -> a
-jxl.write.biff.WritableFontRecord -> a.e.a.dl:
-jxl.write.biff.WritableFonts -> a.e.a.dm:
-jxl.write.biff.WritableFormattingRecords -> a.e.a.dn:
-jxl.write.biff.WritableSheetImpl -> a.e.a.do:
+jxl.write.biff.WritableFontRecord -> a.e.a.dk:
+jxl.write.biff.WritableSheetImpl -> a.e.a.dl:
     jxl.common.Logger logger -> a
     java.lang.String name -> b
     jxl.write.biff.File outputFile -> c
@@ -10245,6 +10027,7 @@ jxl.write.biff.WritableSheetImpl -> a.e.a.do:
     jxl.write.biff.RowRecord getRowRecord(int) -> a
     void write() -> e
     void copy(jxl.Sheet) -> a
+    jxl.Range mergeCells(int,int,int,int) -> a
     jxl.SheetSettings getSettings() -> d
     jxl.WorkbookSettings getWorkbookSettings() -> f
     void checkMergedBorders() -> g
@@ -10258,10 +10041,10 @@ jxl.write.biff.WritableSheetImpl -> a.e.a.do:
     void addValidationCell(jxl.write.biff.CellValue) -> b
     jxl.biff.drawing.ComboBox getComboBox() -> j
     void setComboBox(jxl.biff.drawing.ComboBox) -> a
-jxl.write.biff.WritableSheetImpl$ColumnInfoComparator -> a.e.a.dp:
+jxl.write.biff.WritableSheetImpl$ColumnInfoComparator -> a.e.a.dm:
     boolean equals(java.lang.Object) -> equals
     int compare(java.lang.Object,java.lang.Object) -> compare
-jxl.write.biff.WritableWorkbookImpl -> a.e.a.dq:
+jxl.write.biff.WritableWorkbookImpl -> a.e.a.dn:
     jxl.common.Logger logger -> f
     jxl.biff.FormattingRecords formatRecords -> g
     jxl.write.biff.File outputFile -> h
@@ -10286,8 +10069,6 @@ jxl.write.biff.WritableWorkbookImpl -> a.e.a.dq:
     jxl.biff.XCTRecord[] xctRecords -> A
     jxl.write.WritableSheet getSheet(int) -> a
     void close() -> a
-    jxl.write.WritableSheet createSheet(java.lang.String,int,boolean) -> a
-    jxl.write.WritableSheet createSheet(java.lang.String,int) -> a
     void write() -> b
     void copyWorkbook(jxl.Workbook) -> a
     void rationalize() -> g
@@ -10303,6 +10084,6 @@ jxl.write.biff.WritableWorkbookImpl -> a.e.a.dq:
     jxl.write.biff.Styles getStyles() -> d
     void addNameArea(jxl.biff.BuiltInName,jxl.write.WritableSheet,int,int,int,int,boolean) -> a
     jxl.WorkbookSettings getSettings() -> f
-jxl.write.biff.WriteAccessRecord -> a.e.a.dr:
+jxl.write.biff.WriteAccessRecord -> a.e.a.do:
     byte[] data -> a
     byte[] getData() -> a
