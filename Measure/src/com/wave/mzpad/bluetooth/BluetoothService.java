@@ -1,6 +1,8 @@
 package com.wave.mzpad.bluetooth;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.lang.reflect.Method;
 import java.util.UUID;
 
@@ -31,7 +33,7 @@ public class BluetoothService {
 	private Handler mHandler;
 
 	// 蓝牙所处状态
-	private int mState;
+	private int mState , STATE_SUCCESS = 1 ,STATE_FAILED=0; //
 
 	/* 构建监听连接蓝牙设备的线程，正在连接蓝牙设备的线程，数据传输（接收与发送）的线程的对象 */
 	private ConnectThread mConnectThread;
@@ -75,30 +77,49 @@ public class BluetoothService {
 	}
 	
 	//开始ConnectThread，触发一个连接到一个远程设备的线程
-	public  void connect(BluetoothDevice device) {
+	public synchronized void connect(BluetoothDevice device) {
 		// 创建和启动给定的设备连接的线程
-		mConnectThread = new ConnectThread(device);
-		mConnectThread.start();
+		Log.i(TAG, "connect");
+		if(mState != STATE_SUCCESS){
+			Log.i(TAG, "connect");
+			if(mConnectThread == null){
+				mConnectThread = new ConnectThread(device);
+				mConnectThread.start();
+			}
+		}
 	}
 
 	//开始经营一个蓝牙连接 ，进行数据传输（接收数据与发送数据）
 	public  void connectSucessed() {
+		mState = STATE_SUCCESS ;
 		mHandler.sendMessage(mHandler.obtainMessage(Contants.REQUEST_SUCCESSED));
 	}
 
 	//关闭所有线程
-	public  void stop() {
+	public synchronized void stop() {
+		Log.i(TAG, "BLuetooth service stop");
 		// 试图建立连接的线程
 		if (mConnectThread != null) {
 			try {
 				if(btSocket != null){
-				  btSocket.close();
+				    InputStream is = btSocket.getInputStream();
+				    OutputStream os = btSocket.getOutputStream() ;
+				    is.close() ;
+				    is = null ;
+				    os.close();
+				    os = null ;
+				    btSocket.close(); 
+				    btSocket = null ;
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
+			}finally{
+				mConnectThread.interrupt();
+				mConnectThread = null ;
 			}
 		}
 		btSocket = null ;
+		mState = STATE_FAILED ;
 	}
 	
 	// 连接失败并在主界面通知

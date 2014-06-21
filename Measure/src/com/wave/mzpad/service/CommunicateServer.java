@@ -1,9 +1,13 @@
 package com.wave.mzpad.service;
 
+import java.util.Iterator;
+import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import android.app.Activity;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.Context;
 import android.os.Handler;
@@ -48,7 +52,7 @@ public class CommunicateServer {
 	/**
 	 *  串口对象
 	 */
-	private BluetoothSocket sPort = null;
+	private static BluetoothSocket sPort = null;
 
 	/**
 	 * 串口传输对象
@@ -147,6 +151,7 @@ public class CommunicateServer {
 		}else{
 			commServer.context = ctx ;
 			commServer.mHandler = handler;
+			
 		}
 		return commServer;
 	}
@@ -154,8 +159,9 @@ public class CommunicateServer {
 	public static void initSerialDevice(Context ctx,Handler handler){
 		Log.i(TAG, "initSerialDevice starting");
 		BluetoothService.getInstance().setmHandler(handler);
-		if(!Utility.isEmpty(MainFragment.blueDeviceAddr)){
-			BluetoothService.getInstance().connect(MainFragment.blueDeviceAddr);
+		BluetoothDevice  blueDeviceAddr = getDevice(); 
+		if(!Utility.isEmpty(blueDeviceAddr) && BluetoothService.getInstance().getState() == 0){
+			BluetoothService.getInstance().connect(blueDeviceAddr);
 		}else{
 			Log.i(TAG, "蓝牙设备未发现");
 			handler.sendMessage(handler.obtainMessage(Contants.SHOW_MSG, "设备未发现"));
@@ -165,7 +171,6 @@ public class CommunicateServer {
 	
 	public void resetSerialDevice(){
 		stopIoManager();
-		sPort = null;
 	}
 	
 	/**
@@ -288,8 +293,9 @@ public class CommunicateServer {
 			Log.i(TAG, "Stopping io manager ..");
 			mBTManager.stop();
 			mBTManager = null;
-			BluetoothService.getInstance().stop();
 		}
+		sPort = null;
+		BluetoothService.getInstance().stop();
 	}
 
 	public void startIoManager() {
@@ -369,6 +375,23 @@ public class CommunicateServer {
 		String cmd = Contants.COMMAND_FORMAT.replaceFirst("%S",  Utility.toHexString(Contants.COMMAND_NASK)+","+data);
 		cmd = cmd.replace("%S", Utility.getCheckCodeHexByString(cmd));
 		sendCommand(cmd);
+	}
+	
+	public static BluetoothDevice getDevice() {
+		Set<BluetoothDevice> setBTD = BluetoothAdapter.getDefaultAdapter().getBondedDevices() ;
+		if(!Utility.isEmpty(setBTD)){
+			Iterator<BluetoothDevice> iterator = setBTD.iterator() ;
+			if(!Utility.isEmpty(iterator)){
+				try {
+					return iterator.next() ;
+				} catch (Exception e) {
+					Log.i(TAG, "exception exp:"+e.getMessage()) ;
+				}
+			}
+		}else{
+			Log.i(TAG, "blueDeviceAddr is null ") ;
+		}
+		return null ;
 	}
 	
 }

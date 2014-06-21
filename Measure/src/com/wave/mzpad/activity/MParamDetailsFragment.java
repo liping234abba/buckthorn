@@ -73,6 +73,7 @@ public class MParamDetailsFragment extends Fragment {
 		public void handleMessage(android.os.Message msg) {
 			switch (msg.what) {
 			case Contants.REQUEST_SUCCESSED:
+				Log.i(TAG, "REQUEST_SUCCESSED");
 				sendMessage(obtainMessage(Contants.TOAST_MSG, "连接成功"));
 				sendMessage(obtainMessage(Contants.SHOW_MSG, "连接成功！"));
 				server.startIoManager();
@@ -102,14 +103,21 @@ public class MParamDetailsFragment extends Fragment {
 		};
 	};
 
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		mActivity = getActivity();
 		businessDataBase = new BusinessDataBase(mActivity);
-		server = CommunicateServer.getInstance(mActivity, mHandler);
 	}
-
+	
+    @Override
+    public void onStart() {
+    	super.onStart();
+    	Log.i(TAG, " Details onStart");
+    	server = CommunicateServer.getInstance(mActivity, mHandler);
+    }
+	
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
