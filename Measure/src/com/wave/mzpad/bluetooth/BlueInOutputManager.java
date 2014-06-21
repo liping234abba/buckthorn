@@ -159,25 +159,35 @@ public class BlueInOutputManager implements Runnable {
               mReadBuffer.get(data, 0, len);
               stringBuffer.append(new String(data));
               mReadBuffer.clear();
-              sendData();    
+              if(stringBuffer.length()>=24){
+            	  sendData(); 
+              }
         }else{
         	if(stringBuffer.length()>0){
         		 sendData() ;
         	}
+        	Thread.currentThread().sleep(10);
         }
     }
 
 	private void sendData() {
-		int startIndex = stringBuffer.indexOf("0x55") ;
+		  int startIndex = stringBuffer.indexOf("0x55") ;
 		  int endIndex = stringBuffer.indexOf("0xaa") ;
 		  Log.i(TAG, "startIndex:"+startIndex + " endIndex:"+ endIndex + "StringBuffer:"+ stringBuffer.toString());
 		  if(startIndex>=0 && endIndex>startIndex){
-		    	String dataStr = stringBuffer.substring(startIndex, endIndex+4);
-		    	final Listener listener = getListener();
+		      String dataStr = stringBuffer.substring(startIndex, endIndex+4);
+		      final Listener listener = getListener();
 		      if (listener != null) {
 		           listener.onNewData(dataStr.getBytes());
 		      }
 		      stringBuffer.replace(0, endIndex+4, "");
+		  }else{
+			  if(endIndex == -1){
+				  int lastStartIndex = stringBuffer.lastIndexOf("0x55");
+				  if(lastStartIndex>startIndex){
+					  stringBuffer.replace(0, lastStartIndex, "");
+				  }
+			  }
 		  }
 	}
    // Handle outgoing data.

@@ -252,7 +252,6 @@ public class Utility {
 		String result ="第%S米" ;
 		int mod = td/100 ;
 		String modValue =  mod/10 + "." + mod%10 ;
-		Log.i("wave", "td:"+td + " modvalue:"+modValue);
 		return result.replace("%S", modValue) ;
 	}
 	

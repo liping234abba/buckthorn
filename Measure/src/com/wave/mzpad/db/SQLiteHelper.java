@@ -16,11 +16,6 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     private static SQLiteHelper INSTANCE;
 
     /**
-     * 上下文
-     */
-    private Context mContext;
-
-    /**
      * 数据库名称
      */
     private static String dataBaseName = "wave_mzpad.db";
@@ -37,7 +32,6 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     private SQLiteHelper(Context pContext,String dbName,CursorFactory cursor, int dbVersion) {
     	super(pContext, dbName, cursor, dbVersion);
     	Log.i(TAG , " SQLiteHelper: version" + dbVersion + "dbName:" +dbName );
-        mContext = pContext;
         getWritableDatabase();
     }
 
@@ -85,6 +79,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     				+"platform_distance INTEGER  DEFAULT 0,"
     				+"dip_angle  INTEGER  DEFAULT 0,"
     				+"rainshed_high  INTEGER  DEFAULT 0,"
+    				+"limit_default  INTEGER  DEFAULT 0,"
+    				+"limit_update  INTEGER  DEFAULT 0,"
     				+"param_id  INTEGER );";
     		Log.i(TAG, "create_sql:"+create_sql);
       pDataBase.execSQL(create_sql);

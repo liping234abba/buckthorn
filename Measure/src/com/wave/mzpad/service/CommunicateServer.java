@@ -13,7 +13,6 @@ import android.content.Context;
 import android.os.Handler;
 
 import com.wave.mzpad.activity.MParamDetailsFragment;
-import com.wave.mzpad.activity.MainFragment;
 import com.wave.mzpad.bluetooth.BlueInOutputManager;
 import com.wave.mzpad.bluetooth.BluetoothService;
 import com.wave.mzpad.common.Contants;
@@ -308,8 +307,8 @@ public class CommunicateServer {
 			}else{
 				mBTManager.setmBTDriver(sPort);
 			}
-			/*heartBeatThread = new HeartBeatThread(this, mHandler);
-			heartBeatThread.start() ;*/
+			heartBeatThread = new HeartBeatThread(this, mHandler);
+			heartBeatThread.start() ;
 		}
 	}
 	
@@ -337,7 +336,8 @@ public class CommunicateServer {
 		}
 		
 		if(!dataArray[length-2].equals("0xff")){
-			Log.i(TAG, "checkData result is incorrect middle not ff charator ");	
+			Log.i(TAG, "checkData result is incorrect middle not ff charator ");
+			return null ;
 		}
 		//校验码
 		String checkStr = data.substring(0, data.indexOf("0xff"));
@@ -350,10 +350,13 @@ public class CommunicateServer {
 		Log.i(TAG, "sumData:"+sumData  + " checkValue:"+checkValue);
 		if((byte)sumData != (byte)checkValue){
 			Log.i(TAG, "checkData result is incorrect the sumData ");
-			sendNoASK(dataArray[1]);
+		//	sendNoASK(dataArray[1]);
 			return null;
 		}
-		sendASK(dataArray[1]);
+		int ask = Integer.parseInt(dataArray[1].replace("0x", ""));
+		if( !( ask== Contants.COMMAND_ASK || ask == Contants.COMMAND_NASK)){
+			sendASK(dataArray[1]);
+		}
 		return dataArray ;
 	}
 	

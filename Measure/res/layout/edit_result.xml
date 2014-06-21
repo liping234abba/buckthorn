@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="500dp"
     android:layout_height="400dp"
+    android:paddingTop="15dp"
     android:orientation="vertical" >
 
     <TextView
@@ -9,54 +10,16 @@
         style="@style/list_textview"
         android:layout_width="fill_parent"
         android:text="@string/update_result"
+        android:layout_marginBottom="10dp"
+        android:textSize="25sp"
         android:textColor="@color/white" />
-
-    <LinearLayout
-        android:id="@+id/tv_rainshed_high"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/top"
-        android:layout_marginTop="20dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal" >
-
-        <TextView
-            style="@style/list_textview"
-            android:layout_marginTop="30dp"
-            android:text="@string/report_index5"
-            android:textColor="@color/white" />
-
-        <EditText
-            android:id="@+id/et_rainshed_high"
-            style="@style/app_editview_number"
-             />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/tv_platform_distance"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:layout_below="@id/tv_rainshed_high"
-        android:orientation="horizontal" >
-
-        <TextView
-            style="@style/list_textview"
-            android:layout_marginTop="20dp"
-            android:text="@string/report_index8"
-            android:textColor="@color/white" />
-
-        <EditText
-            android:id="@+id/et_platform_distance"
-            style="@style/app_editview_number" />
-    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/tv_platform_high"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:layout_below="@id/tv_platform_distance"
+        android:layout_below="@id/top"
         android:orientation="horizontal" >
 
         <TextView
@@ -68,13 +31,31 @@
             android:id="@+id/et_platform_high"
             style="@style/app_editview_number" />
     </LinearLayout>
+    
+    <LinearLayout
+        android:id="@+id/tv_platform_distance"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:layout_below="@id/tv_platform_high"
+        android:orientation="horizontal" >
+
+        <TextView
+            style="@style/list_textview"
+            android:text="@string/report_index8"
+            android:textColor="@color/white" />
+
+        <EditText
+            android:id="@+id/et_platform_distance"
+            style="@style/app_editview_number" />
+    </LinearLayout>
 
    <LinearLayout
         android:id="@+id/tv_platform_limit"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:layout_below="@id/tv_platform_high"
+        android:layout_below="@id/tv_platform_distance"
         android:orientation="horizontal" >
 
         <TextView

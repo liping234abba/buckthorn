@@ -18,10 +18,8 @@ com.wave.mzpad.bluetooth.BlueInOutputManager:
     70:71:public BlueInOutputManager(android.bluetooth.BluetoothSocket)
     82:83:public synchronized void setListener(com.wave.mzpad.service.Listener)
 com.wave.mzpad.bluetooth.BluetoothService:
-    private int mState
-    60:60:public android.os.Handler getmHandler()
-    69:70:public synchronized void setState(int)
-    74:74:public int getState()
+    62:62:public android.os.Handler getmHandler()
+    71:72:public synchronized void setState(int)
 com.wave.mzpad.common.Contants:
     public static final int REQUEST_TIMEOUT
     public static final int REPEAT_TIME
@@ -92,7 +90,7 @@ com.wave.mzpad.db.StandardDataDAO:
     89:89:public boolean deleteStandardData(java.lang.String)
     99:100:public boolean updateStandardData(java.lang.String,com.wave.mzpad.model.StandardData)
     110:110:public boolean updateStandardData(java.lang.String,android.content.ContentValues)
-    129:141:protected boolean isExistObject(com.wave.mzpad.model.AbstractObject)
+    128:140:protected boolean isExistObject(com.wave.mzpad.model.AbstractObject)
 com.wave.mzpad.model.CellElement:
     30:30:public int getX()
     34:35:public void setX(int)
@@ -100,6 +98,17 @@ com.wave.mzpad.model.CellElement:
     42:43:public void setY(int)
     46:46:public java.lang.String getValue()
     50:51:public void setValue(java.lang.String)
+com.wave.mzpad.service.AbstractCalResult:
+    public abstract float calInnerSideCoeft(int,int,int)
+    public abstract float calOuterSideCoeft(int,int,int)
+com.wave.mzpad.service.BusinessDataBase:
+    221:233:public float getCurveWidenValue(com.wave.mzpad.model.MeasureParam,com.wave.mzpad.model.MeasureResult)
+com.wave.mzpad.service.CommunicateServer:
+    public static final int START
+    public static final int PAUSE
+    public static final int STOP
+    public static final int CONNECTED
+    379:382:public void sendNoASK(java.lang.String)
 com.wave.mzpad.test.TestAndroid
 jxl.Cell:
     public abstract boolean isHidden()

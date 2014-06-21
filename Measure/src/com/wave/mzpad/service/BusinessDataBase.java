@@ -54,7 +54,7 @@ public class BusinessDataBase {
 	 * 根据参数Id获取采集数据
 	 */
 	public List<MeasureResult> getMeasureResult(int paramId){
-		String sql = " where param_id=" + paramId ;
+		String sql = " where param_id=" + paramId + " order by id desc " ;
 		return measureResultDao.getMeasureResult(sql);
 	}
 	
@@ -180,7 +180,7 @@ public class BusinessDataBase {
 		diffResult = measureResult.getLimitUpdate() ;
 		//根据不同差别计算级别
 		if(diffResult>0){
-			if(secondLimit -(firstValue - diffResult)  <0){
+			if(secondLimit -(firstValue - diffResult) > 0){
 				isLimited = 2 ;
 			}else{
 				isLimited = 1 ;

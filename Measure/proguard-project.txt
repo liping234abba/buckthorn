@@ -74,5 +74,4 @@
   public static final android.os.Parcelable$Creator *;   
 } 
 
--keep class com.wave.mzpad.service.** {*; }
 

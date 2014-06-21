@@ -21,7 +21,7 @@ public class UpdatePopWindow {
 
 	private PopupWindow updateWindow;
 
-	private EditText et_rh,et_pd,et_ph,et_limit;
+	private EditText et_pd,et_ph,et_limit;
 	
 	private MeasureResultAdapter mra ;
 	
@@ -45,11 +45,10 @@ public class UpdatePopWindow {
 		this.mr = tempMr ;
 		if (updateWindow == null) {
 			View view = View.inflate(ctx, R.layout.edit_result, null);
-			updateWindow = new PopupWindow(view, 500, 480);
+			updateWindow = new PopupWindow(view, 500, 430);
 			updateWindow.setFocusable(true);
 			updateWindow.setBackgroundDrawable(ctx.getResources().getDrawable(R.drawable.bg_popup_window));
 			updateWindow.setOutsideTouchable(false);
-			et_rh = (EditText)view.findViewById(R.id.et_rainshed_high);
 			et_pd = (EditText)view.findViewById(R.id.et_platform_distance);
 			et_ph = (EditText)view.findViewById(R.id.et_platform_high);
 			et_limit = (EditText)view.findViewById(R.id.et_platform_limit);
@@ -57,7 +56,6 @@ public class UpdatePopWindow {
 			saveBtn.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					mr.setRainshedHigh(Integer.parseInt(et_rh.getText().toString()));
 					mr.setPlatformDistance(Integer.parseInt(et_pd.getText().toString()));
 					mr.setPlatformHigh(Integer.parseInt(et_ph.getText().toString()));
 				    int calLimitValue = Math.round(dataBase.calDiffResultValue(mr, mp));
@@ -73,12 +71,10 @@ public class UpdatePopWindow {
 				}
 			});
 		}else{
-			et_rh = (EditText) updateWindow.getContentView().findViewById(R.id.et_rainshed_high);
 			et_pd = (EditText) updateWindow.getContentView().findViewById(R.id.et_platform_distance);
 			et_ph = (EditText) updateWindow.getContentView().findViewById(R.id.et_platform_high);
 			et_limit = (EditText)updateWindow.getContentView().findViewById(R.id.et_platform_limit);
 		}
-		et_rh.setText(tempMr.getRainshedHigh()+"");
 		et_pd.setText(tempMr.getPlatformDistance()+"");
 		et_ph.setText(tempMr.getPlatformHigh()+"");
 		et_limit.setText(tempMr.getLimitUpdate()+"");

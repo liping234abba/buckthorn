@@ -5107,6 +5107,7 @@ com.wave.mzpad.activity.MParamDetailsFragment -> com.wave.mzpad.activity.MParamD
     com.wave.mzpad.adpter.MeasureResultAdapter measureResultAdapter -> E
     java.util.List results -> F
     void onCreate(android.os.Bundle) -> onCreate
+    void onStart() -> onStart
     void onDestroy() -> onDestroy
     com.wave.mzpad.activity.MParamDetailsFragment newInstance(com.wave.mzpad.model.MeasureParam) -> a
     android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> onCreateView
@@ -5114,15 +5115,16 @@ com.wave.mzpad.activity.MParamDetailsFragment -> com.wave.mzpad.activity.MParamD
     void onPause() -> onPause
     void initImmediatelyStatus(boolean) -> a
     void showDialog(int) -> a
-    com.wave.mzpad.service.CommunicateServer access$0(com.wave.mzpad.activity.MParamDetailsFragment) -> a
-    void access$1(com.wave.mzpad.activity.MParamDetailsFragment,java.lang.String[]) -> a
-    android.widget.TextView access$2(com.wave.mzpad.activity.MParamDetailsFragment) -> b
-    android.app.Activity access$3(com.wave.mzpad.activity.MParamDetailsFragment) -> c
-    void access$4(com.wave.mzpad.activity.MParamDetailsFragment,boolean) -> a
-    void access$5(com.wave.mzpad.activity.MParamDetailsFragment) -> d
+    java.lang.String access$0(com.wave.mzpad.activity.MParamDetailsFragment) -> a
+    com.wave.mzpad.service.CommunicateServer access$1(com.wave.mzpad.activity.MParamDetailsFragment) -> b
+    void access$2(com.wave.mzpad.activity.MParamDetailsFragment,java.lang.String[]) -> a
+    android.widget.TextView access$3(com.wave.mzpad.activity.MParamDetailsFragment) -> c
+    android.app.Activity access$4(com.wave.mzpad.activity.MParamDetailsFragment) -> d
+    void access$5(com.wave.mzpad.activity.MParamDetailsFragment,boolean) -> a
     void access$6(com.wave.mzpad.activity.MParamDetailsFragment) -> e
-    com.wave.mzpad.adpter.MeasureResultAdapter access$7(com.wave.mzpad.activity.MParamDetailsFragment) -> f
-    com.wave.mzpad.service.BusinessDataBase access$8(com.wave.mzpad.activity.MParamDetailsFragment) -> g
+    void access$7(com.wave.mzpad.activity.MParamDetailsFragment) -> f
+    com.wave.mzpad.adpter.MeasureResultAdapter access$8(com.wave.mzpad.activity.MParamDetailsFragment) -> g
+    com.wave.mzpad.service.BusinessDataBase access$9(com.wave.mzpad.activity.MParamDetailsFragment) -> h
 com.wave.mzpad.activity.MParamDetailsFragment$1 -> com.wave.mzpad.activity.a:
     com.wave.mzpad.activity.MParamDetailsFragment this$0 -> a
     void handleMessage(android.os.Message) -> handleMessage
@@ -5175,9 +5177,10 @@ com.wave.mzpad.activity.MParamListFragment$UpdateListBroadcastReceiver -> com.wa
     com.wave.mzpad.activity.MParamListFragment this$0 -> a
     void onReceive(android.content.Context,android.content.Intent) -> onReceive
 com.wave.mzpad.activity.MainFragment -> com.wave.mzpad.activity.MainFragment:
-    android.bluetooth.BluetoothDevice blueDeviceAddr -> a
-    java.lang.String TAG -> b
+    java.lang.String TAG -> a
     void onCreate(android.os.Bundle) -> onCreate
+    void onStart() -> onStart
+    void onPause() -> onPause
 com.wave.mzpad.activity.ReportActivity -> com.wave.mzpad.activity.ReportActivity:
     android.widget.EditText dir_path -> a
     android.widget.Button export -> b
@@ -5304,18 +5307,22 @@ com.wave.mzpad.bluetooth.BluetoothService -> com.wave.mzpad.b.c:
     java.util.UUID MY_UUID -> b
     android.bluetooth.BluetoothAdapter mAdapter -> c
     android.os.Handler mHandler -> d
-    com.wave.mzpad.bluetooth.BluetoothService$ConnectThread mConnectThread -> e
-    com.wave.mzpad.bluetooth.BluetoothService bluetoothService -> f
-    android.bluetooth.BluetoothSocket btSocket -> g
+    int mState -> e
+    int STATE_SUCCESS -> f
+    int STATE_FAILED -> g
+    com.wave.mzpad.bluetooth.BluetoothService$ConnectThread mConnectThread -> h
+    com.wave.mzpad.bluetooth.BluetoothService bluetoothService -> i
+    android.bluetooth.BluetoothSocket btSocket -> j
     com.wave.mzpad.bluetooth.BluetoothService getInstance() -> a
     void setmHandler(android.os.Handler) -> a
+    int getState() -> b
     void connect(android.bluetooth.BluetoothDevice) -> a
-    void connectSucessed() -> b
-    void stop() -> c
-    android.bluetooth.BluetoothSocket getBTSocket() -> d
-    java.lang.String access$0() -> e
+    void connectSucessed() -> c
+    void stop() -> d
+    android.bluetooth.BluetoothSocket getBTSocket() -> e
+    java.lang.String access$0() -> f
     android.bluetooth.BluetoothAdapter access$1(com.wave.mzpad.bluetooth.BluetoothService) -> a
-    java.util.UUID access$2() -> f
+    java.util.UUID access$2() -> g
     void access$3(com.wave.mzpad.bluetooth.BluetoothService,android.bluetooth.BluetoothSocket) -> a
     android.bluetooth.BluetoothSocket access$4(com.wave.mzpad.bluetooth.BluetoothService) -> b
     void access$5(com.wave.mzpad.bluetooth.BluetoothService) -> c
@@ -5339,7 +5346,7 @@ com.wave.mzpad.common.JxlExcelUtil -> com.wave.mzpad.c.c:
     void updateLabelCell(jxl.write.WritableSheet,com.wave.mzpad.model.CellElement) -> a
     void updateLabelCell$208c9626(jxl.write.WritableSheet,com.wave.mzpad.model.CellElement) -> b
 com.wave.mzpad.common.JxlExcelUtil$OperateExcel -> com.wave.mzpad.c.d:
-    void updateExcel(jxl.write.WritableSheet) -> updateExcel
+    void updateExcel(jxl.write.WritableSheet) -> a
 com.wave.mzpad.common.Log -> com.wave.mzpad.c.e:
     boolean mLogGrade -> a
     void e(java.lang.String,java.lang.String) -> a
@@ -5527,127 +5534,109 @@ com.wave.mzpad.model.StandardData -> com.wave.mzpad.e.e:
     void setBuildRight(int) -> e
     int getBuildDevious() -> f
     void setBuildDevious(int) -> f
-com.wave.mzpad.service.AbstractCalResult -> com.wave.mzpad.service.AbstractCalResult:
-    float calInnerSideCoeft(int,int,int) -> calInnerSideCoeft
-    float calOuterSideCoeft(int,int,int) -> calOuterSideCoeft
-    float calLineLimit(com.wave.mzpad.model.MeasureResult,com.wave.mzpad.model.MeasureParam) -> calLineLimit
-    float calInnerSideLimit(com.wave.mzpad.model.MeasureResult,com.wave.mzpad.model.MeasureParam) -> calInnerSideLimit
-    float calOuterSideLimit(com.wave.mzpad.model.MeasureResult,com.wave.mzpad.model.MeasureParam) -> calOuterSideLimit
-com.wave.mzpad.service.BusinessDataBase -> com.wave.mzpad.service.BusinessDataBase:
-    android.content.Context ctx -> ctx
-    com.wave.mzpad.db.MeasureResultDAO measureResultDao -> measureResultDao
-    com.wave.mzpad.db.MeasureParamDAO measureParadmDao -> measureParadmDao
-    com.wave.mzpad.db.StandardDataDAO standardDataDAO -> standardDataDAO
-    java.lang.String TAG -> TAG
-    com.wave.mzpad.db.MeasureParamDAO getMeasureParadmDao() -> getMeasureParadmDao
-    com.wave.mzpad.db.MeasureResultDAO getMeasureResultDao() -> getMeasureResultDao
-    com.wave.mzpad.db.StandardDataDAO getStandardDataDAO() -> getStandardDataDAO
-    java.util.List getMeasureResult(int) -> getMeasureResult
-    void initData() -> initData
-    float calLimitValue(com.wave.mzpad.model.MeasureResult,com.wave.mzpad.model.MeasureParam) -> calLimitValue
-    float calDiffResultValue(com.wave.mzpad.model.MeasureResult,com.wave.mzpad.model.MeasureParam) -> calDiffResultValue
-    int[] calWarningLevelLimited(com.wave.mzpad.model.MeasureResult,com.wave.mzpad.model.MeasureParam) -> calWarningLevelLimited
-    com.wave.mzpad.model.StandardData getStandardData(com.wave.mzpad.model.MeasureResult) -> getStandardData
-    float getCurveWidenValue(com.wave.mzpad.model.MeasureParam,com.wave.mzpad.model.MeasureResult) -> getCurveWidenValue
-com.wave.mzpad.service.CommunicateServer -> com.wave.mzpad.service.CommunicateServer:
-    java.lang.String TAG -> TAG
-    android.os.Handler mHandler -> mHandler
-    int currStatus -> currStatus
-    android.app.Activity context -> context
-    int START -> START
-    int PAUSE -> PAUSE
-    int STOP -> STOP
-    int CONNECTED -> CONNECTED
-    com.wave.mzpad.service.CommunicateServer commServer -> commServer
-    android.bluetooth.BluetoothSocket sPort -> sPort
-    com.wave.mzpad.bluetooth.BlueInOutputManager mBTManager -> mBTManager
-    java.util.concurrent.ExecutorService mExecutor -> mExecutor
-    com.wave.mzpad.service.HeartBeatThread heartBeatThread -> heartBeatThread
-    com.wave.mzpad.service.Listener mListener -> mListener
-    com.wave.mzpad.service.CommunicateServer getInstance(android.app.Activity,android.os.Handler) -> getInstance
-    void initSerialDevice(android.content.Context,android.os.Handler) -> initSerialDevice
-    void resetSerialDevice() -> resetSerialDevice
-    void sendStart() -> sendStart
-    void sendPause() -> sendPause
-    void sendStop() -> sendStop
-    void sendImmediately() -> sendImmediately
-    void sendHeartBeat() -> sendHeartBeat
-    boolean sendCommand(java.lang.String) -> sendCommand
-    int getCurrStatus() -> getCurrStatus
-    void stopIoManager() -> stopIoManager
-    void startIoManager() -> startIoManager
-    java.lang.String[] checkData(java.lang.String) -> checkData
-    void sendASK(java.lang.String) -> sendASK
-    void sendNoASK(java.lang.String) -> sendNoASK
-    java.lang.String access$0() -> access$0
-    android.app.Activity access$1(com.wave.mzpad.service.CommunicateServer) -> access$1
-    com.wave.mzpad.service.HeartBeatThread access$2(com.wave.mzpad.service.CommunicateServer) -> access$2
-    com.wave.mzpad.service.CommunicateServer access$3() -> access$3
-    android.os.Handler access$4(com.wave.mzpad.service.CommunicateServer) -> access$4
-    void access$5(com.wave.mzpad.service.CommunicateServer,com.wave.mzpad.service.HeartBeatThread) -> access$5
-    void access$6(com.wave.mzpad.service.CommunicateServer,int) -> access$6
-com.wave.mzpad.service.CommunicateServer$1 -> com.wave.mzpad.service.CommunicateServer$1:
-    com.wave.mzpad.service.CommunicateServer this$0 -> this$0
-    void onRunError(java.lang.Exception) -> onRunError
-    void onNewData(byte[]) -> onNewData
-    com.wave.mzpad.service.CommunicateServer access$0(com.wave.mzpad.service.CommunicateServer$1) -> access$0
-com.wave.mzpad.service.CommunicateServer$1$1 -> com.wave.mzpad.service.CommunicateServer$1$1:
-    com.wave.mzpad.service.CommunicateServer$1 this$1 -> this$1
-    byte[] val$data -> val$data
+com.wave.mzpad.service.AbstractCalResult -> com.wave.mzpad.f.a:
+    float calLineLimit$c1ec94b(com.wave.mzpad.model.MeasureResult) -> a
+    float calInnerSideLimit(com.wave.mzpad.model.MeasureResult,com.wave.mzpad.model.MeasureParam) -> a
+    float calOuterSideLimit(com.wave.mzpad.model.MeasureResult,com.wave.mzpad.model.MeasureParam) -> b
+com.wave.mzpad.service.BusinessDataBase -> com.wave.mzpad.f.b:
+    android.content.Context ctx -> a
+    com.wave.mzpad.db.MeasureResultDAO measureResultDao -> b
+    com.wave.mzpad.db.MeasureParamDAO measureParadmDao -> c
+    com.wave.mzpad.db.StandardDataDAO standardDataDAO -> d
+    java.lang.String TAG -> e
+    com.wave.mzpad.db.MeasureParamDAO getMeasureParadmDao() -> a
+    com.wave.mzpad.db.MeasureResultDAO getMeasureResultDao() -> b
+    java.util.List getMeasureResult(int) -> a
+    void initData() -> c
+    float calDiffResultValue(com.wave.mzpad.model.MeasureResult,com.wave.mzpad.model.MeasureParam) -> a
+    int[] calWarningLevelLimited(com.wave.mzpad.model.MeasureResult,com.wave.mzpad.model.MeasureParam) -> b
+    com.wave.mzpad.model.StandardData getStandardData(com.wave.mzpad.model.MeasureResult) -> a
+com.wave.mzpad.service.CommunicateServer -> com.wave.mzpad.f.c:
+    java.lang.String TAG -> a
+    android.os.Handler mHandler -> b
+    int currStatus -> c
+    android.app.Activity context -> d
+    com.wave.mzpad.service.CommunicateServer commServer -> e
+    android.bluetooth.BluetoothSocket sPort -> f
+    com.wave.mzpad.bluetooth.BlueInOutputManager mBTManager -> g
+    java.util.concurrent.ExecutorService mExecutor -> h
+    com.wave.mzpad.service.HeartBeatThread heartBeatThread -> i
+    com.wave.mzpad.service.Listener mListener -> j
+    com.wave.mzpad.service.CommunicateServer getInstance(android.app.Activity,android.os.Handler) -> a
+    void initSerialDevice$c5fba5d(android.os.Handler) -> a
+    void resetSerialDevice() -> a
+    void sendStart() -> b
+    void sendPause() -> c
+    void sendStop() -> d
+    void sendImmediately() -> e
+    void sendHeartBeat() -> f
+    boolean sendCommand(java.lang.String) -> b
+    int getCurrStatus() -> g
+    void stopIoManager() -> h
+    void startIoManager() -> i
+    java.lang.String[] checkData(java.lang.String) -> a
+    android.bluetooth.BluetoothDevice getDevice() -> l
+    java.lang.String access$0() -> j
+    android.app.Activity access$1(com.wave.mzpad.service.CommunicateServer) -> a
+    com.wave.mzpad.service.HeartBeatThread access$2(com.wave.mzpad.service.CommunicateServer) -> b
+    com.wave.mzpad.service.CommunicateServer access$3() -> k
+    android.os.Handler access$4(com.wave.mzpad.service.CommunicateServer) -> c
+    void access$5(com.wave.mzpad.service.CommunicateServer,com.wave.mzpad.service.HeartBeatThread) -> a
+    void access$6(com.wave.mzpad.service.CommunicateServer,int) -> a
+com.wave.mzpad.service.CommunicateServer$1 -> com.wave.mzpad.f.d:
+    com.wave.mzpad.service.CommunicateServer this$0 -> a
+    void onRunError$698b7e31() -> a
+    void onNewData(byte[]) -> a
+com.wave.mzpad.service.CommunicateServer$1$1 -> com.wave.mzpad.f.e:
+    com.wave.mzpad.service.CommunicateServer$1 this$1 -> a
+    byte[] val$data -> b
     void run() -> run
-com.wave.mzpad.service.GTCalResult -> com.wave.mzpad.service.GTCalResult:
-    float calInnerSideCoeft(int,int,int) -> calInnerSideCoeft
-    float calOuterSideCoeft(int,int,int) -> calOuterSideCoeft
-    float calLineLimit(com.wave.mzpad.model.MeasureResult,com.wave.mzpad.model.MeasureParam) -> calLineLimit
-    float calInnerSideLimit(com.wave.mzpad.model.MeasureResult,com.wave.mzpad.model.MeasureParam) -> calInnerSideLimit
-    float calOuterSideLimit(com.wave.mzpad.model.MeasureResult,com.wave.mzpad.model.MeasureParam) -> calOuterSideLimit
-com.wave.mzpad.service.HeartBeatThread -> com.wave.mzpad.service.HeartBeatThread:
-    long startTime -> startTime
-    java.util.Timer timer -> timer
-    java.util.TimerTask timerTask -> timerTask
-    com.wave.mzpad.service.CommunicateServer communicateServer -> communicateServer
-    android.os.Handler handler -> handler
-    int status -> status
-    int START -> START
-    int STOP -> STOP
-    java.lang.String TAG -> TAG
+com.wave.mzpad.service.GTCalResult -> com.wave.mzpad.f.f:
+    float calLineLimit$c1ec94b(com.wave.mzpad.model.MeasureResult) -> a
+    float calInnerSideLimit(com.wave.mzpad.model.MeasureResult,com.wave.mzpad.model.MeasureParam) -> a
+    float calOuterSideLimit(com.wave.mzpad.model.MeasureResult,com.wave.mzpad.model.MeasureParam) -> b
+com.wave.mzpad.service.HeartBeatThread -> com.wave.mzpad.f.g:
+    long startTime -> c
+    java.util.Timer timer -> d
+    java.util.TimerTask timerTask -> e
+    com.wave.mzpad.service.CommunicateServer communicateServer -> f
+    android.os.Handler handler -> g
+    int status -> h
+    int START -> a
+    int STOP -> b
+    java.lang.String TAG -> i
     void run() -> run
-    void setStartTime(long) -> setStartTime
-    void setStatus(int) -> setStatus
-    void startTime() -> startTime
-    void stopTime() -> stopTime
-    void init() -> init
-    int access$0(com.wave.mzpad.service.HeartBeatThread) -> access$0
-    long access$1(com.wave.mzpad.service.HeartBeatThread) -> access$1
-    java.lang.String access$2(com.wave.mzpad.service.HeartBeatThread) -> access$2
-    android.os.Handler access$3(com.wave.mzpad.service.HeartBeatThread) -> access$3
-    com.wave.mzpad.service.CommunicateServer access$4(com.wave.mzpad.service.HeartBeatThread) -> access$4
-com.wave.mzpad.service.HeartBeatThread$1 -> com.wave.mzpad.service.HeartBeatThread$1:
-    com.wave.mzpad.service.HeartBeatThread this$0 -> this$0
+    void setStartTime(long) -> a
+    void startTime() -> a
+    void stopTime() -> b
+    int access$0(com.wave.mzpad.service.HeartBeatThread) -> a
+    long access$1(com.wave.mzpad.service.HeartBeatThread) -> b
+    java.lang.String access$2(com.wave.mzpad.service.HeartBeatThread) -> c
+    android.os.Handler access$3(com.wave.mzpad.service.HeartBeatThread) -> d
+    com.wave.mzpad.service.CommunicateServer access$4(com.wave.mzpad.service.HeartBeatThread) -> e
+com.wave.mzpad.service.HeartBeatThread$1 -> com.wave.mzpad.f.h:
+    com.wave.mzpad.service.HeartBeatThread this$0 -> a
     void run() -> run
-com.wave.mzpad.service.Listener -> com.wave.mzpad.service.Listener:
-    void onNewData(byte[]) -> onNewData
-    void onRunError(java.lang.Exception) -> onRunError
-com.wave.mzpad.service.PuKuaiCalResult -> com.wave.mzpad.service.PuKuaiCalResult:
-    float calInnerSideCoeft(int,int,int) -> calInnerSideCoeft
-    float calOuterSideCoeft(int,int,int) -> calOuterSideCoeft
-    float calLineLimit(com.wave.mzpad.model.MeasureResult,com.wave.mzpad.model.MeasureParam) -> calLineLimit
-    float calInnerSideLimit(com.wave.mzpad.model.MeasureResult,com.wave.mzpad.model.MeasureParam) -> calInnerSideLimit
-    float calOuterSideLimit(com.wave.mzpad.model.MeasureResult,com.wave.mzpad.model.MeasureParam) -> calOuterSideLimit
-com.wave.mzpad.service.ServiceExportReport -> com.wave.mzpad.service.ServiceExportReport:
-    java.lang.String TAG -> TAG
-    com.wave.mzpad.model.MeasureParam abstractObject -> abstractObject
-    java.util.List listAbstractObject -> listAbstractObject
-    com.wave.mzpad.common.JxlExcelUtil excelUtil -> excelUtil
-    int startX -> startX
-    int startY -> startY
-    int colMax -> colMax
-    com.wave.mzpad.service.BusinessDataBase businessDataBase -> businessDataBase
-    void exportExcel() -> exportExcel
-    void updateExcel(jxl.write.WritableSheet) -> updateExcel
-    void insertMeasureParam(jxl.write.WritableSheet) -> insertMeasureParam
-    void insertColumnArray(jxl.write.WritableSheet,int,int,int) -> insertColumnArray
-    void insertExcelLabel(jxl.write.WritableSheet,int,int,java.lang.String) -> insertExcelLabel
+com.wave.mzpad.service.Listener -> com.wave.mzpad.f.i:
+    void onNewData(byte[]) -> a
+    void onRunError$698b7e31() -> a
+com.wave.mzpad.service.PuKuaiCalResult -> com.wave.mzpad.f.j:
+    float calLineLimit$c1ec94b(com.wave.mzpad.model.MeasureResult) -> a
+    float calInnerSideLimit(com.wave.mzpad.model.MeasureResult,com.wave.mzpad.model.MeasureParam) -> a
+    float calOuterSideLimit(com.wave.mzpad.model.MeasureResult,com.wave.mzpad.model.MeasureParam) -> b
+com.wave.mzpad.service.ServiceExportReport -> com.wave.mzpad.f.k:
+    java.lang.String TAG -> a
+    com.wave.mzpad.model.MeasureParam abstractObject -> b
+    java.util.List listAbstractObject -> c
+    com.wave.mzpad.common.JxlExcelUtil excelUtil -> d
+    int startX -> e
+    int startY -> f
+    int colMax -> g
+    com.wave.mzpad.service.BusinessDataBase businessDataBase -> h
+    void exportExcel() -> a
+    void updateExcel(jxl.write.WritableSheet) -> a
+    void insertColumnArray(jxl.write.WritableSheet,int,int,int) -> a
+    void insertExcelLabel(jxl.write.WritableSheet,int,int,java.lang.String) -> a
 jxl.BooleanCell -> a.a:
     boolean getValue() -> g_
 jxl.BooleanFormulaCell -> a.b:

@@ -32,7 +32,7 @@
      <style name="app_editview_number">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:minWidth">120dp</item>
+        <item name="android:minWidth">140dp</item>
         <item name="android:text">1</item>
         <item name="android:textSize">20sp</item>
         <item name="android:inputType">number</item>

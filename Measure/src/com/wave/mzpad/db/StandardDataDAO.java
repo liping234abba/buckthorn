@@ -5,7 +5,6 @@ import java.util.List;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import com.wave.mzpad.common.Log;
 
 import com.wave.mzpad.common.Utility;
 import com.wave.mzpad.model.AbstractObject;
@@ -120,7 +119,6 @@ public class StandardDataDAO extends DAOBase {
         if (!Utility.isEmpty(pCondition)) {
             _SqlText = _SqlText + pCondition;
         }
-        Log.i(TAG, "SQL:"+_SqlText);
         return getList(_SqlText);
     }
    

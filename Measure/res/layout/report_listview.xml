@@ -22,7 +22,9 @@
  -->
         <TextView
             style="@style/list_textview"
-            android:text="@string/report_index5" />
+            android:text="@string/report_index5" 
+            android:visibility="gone"
+            />
 
         <TextView
             style="@style/list_textview"
@@ -36,7 +38,7 @@
 
         <TextView
             style="@style/list_textview"
-            android:layout_width="80dp"
+            android:layout_width="100dp"
             android:text="@string/report_index9" />
 
         <TextView

@@ -17,7 +17,9 @@
  	-->
     <TextView
         android:id="@+id/rainshed_high"
-        style="@style/list_textview" />
+        style="@style/list_textview" 
+        android:visibility="gone"
+        />
 
     <TextView
         android:id="@+id/platform_high"
@@ -33,7 +35,7 @@
     <TextView
         android:id="@+id/outlimit_value"
         style="@style/list_textview"
-        android:layout_width="80dp" />
+        android:layout_width="100dp" />
 
     <TextView
         android:id="@+id/outlimited"
