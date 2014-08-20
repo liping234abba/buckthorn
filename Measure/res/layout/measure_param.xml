@@ -140,7 +140,7 @@
 
             <EditText
                 android:id="@+id/sample_interval"
-                style="@style/app_editview_text" />
+                style="@style/app_editview_number" />
         </LinearLayout>
 
         <LinearLayout

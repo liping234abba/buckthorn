@@ -74,7 +74,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     	pDataBase.execSQL(create_sql);
     		create_sql = "CREATE TABLE " + MeasureResultDAO.TABLE_MEASURERESULT
     				+"(id INTEGER PRIMARY KEY AUTOINCREMENT,"
-    				+"travel_distance INTEGER  DEFAULT 0,"
+    				+"travel_distance  TEXT DEFAULT '0.0',"
     				+"platform_high INTEGER  DEFAULT 0,"
     				+"platform_distance INTEGER  DEFAULT 0,"
     				+"dip_angle  INTEGER  DEFAULT 0,"

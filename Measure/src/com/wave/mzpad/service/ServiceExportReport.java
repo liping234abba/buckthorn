@@ -214,7 +214,8 @@ public class ServiceExportReport implements OperateExcel {
 		String cellValue = index + "" ;
 		insertExcelLabel(ws, pointY, pointX, cellValue);
 		//测量点
-		cellValue = measureResult.getTravelDistance()/1000 + "."+ measureResult.getTravelDistance()%1000/100 +  "" ;
+//		cellValue = measureResult.getTravelDistance()/1000 + "."+ measureResult.getTravelDistance()%1000/100 +  "" ;
+		cellValue = measureResult.getTravelDistance() ;
 		insertExcelLabel(ws, pointY, pointX + 1, cellValue);
 		//距轨顶面断面测量高度
 		cellValue = measureResult.getPlatformHigh() +  "" ;

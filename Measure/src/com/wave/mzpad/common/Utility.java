@@ -249,10 +249,20 @@ public class Utility {
 	 * @return
 	 */
 	public static String getTravelDistance(int td){
-		String result ="第%S米" ;
+		String result ="%S" ;
 		int mod = td/100 ;
 		String modValue =  mod/10 + "." + mod%10 ;
 		return result.replace("%S", modValue) ;
+	}
+	
+	/**
+	 * 计算行进距离
+	 * @param td
+	 * @return
+	 */
+	public static String getTravelDistance(String td){
+		String result ="第%S米" ;
+		return result.replace("%S", td) ;
 	}
 	
 }

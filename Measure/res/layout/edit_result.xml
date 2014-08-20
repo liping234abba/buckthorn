@@ -14,12 +14,30 @@
         android:textSize="25sp"
         android:textColor="@color/white" />
 
+     <LinearLayout
+        android:id="@+id/tv_travel_distance"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:layout_below="@id/top"
+        android:orientation="horizontal" >
+
+        <TextView
+            style="@style/list_textview"
+            android:text="@string/report_index1"
+            android:textColor="@color/white" />
+
+        <EditText
+            android:id="@+id/et_travel_distance"
+            style="@style/app_editview_text" />
+    </LinearLayout>
+    
     <LinearLayout
         android:id="@+id/tv_platform_high"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:layout_below="@id/top"
+        android:layout_below="@id/tv_travel_distance"
         android:orientation="horizontal" >
 
         <TextView

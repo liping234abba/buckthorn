@@ -344,7 +344,8 @@ public class MParamDetailsFragment extends Fragment {
 		_result.setParamId(measureParam.getId());
 		//返回数据顺序：行进距离,、月台高度、月台距离、倾角、雨棚高度
 		try{
-			_result.setTravelDistance(Utility.strToInt(data[0]));
+			
+			_result.setTravelDistance(Utility.getTravelDistance(Utility.strToInt(data[0])));
 			_result.setPlatformHigh(Utility.strToInt(data[1]));
 			_result.setPlatformDistance(Utility.strToInt(data[2]));
 			_result.setDipAngle(Utility.strToInt(data[3]));

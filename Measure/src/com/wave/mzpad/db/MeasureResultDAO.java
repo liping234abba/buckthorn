@@ -43,7 +43,7 @@ public class MeasureResultDAO extends DAOBase {
         if (!Utility.isEmpty(pCursor)) {
             _measureResult = new MeasureResult();
             _measureResult.setId(pCursor.getInt(pCursor.getColumnIndex("id")));
-            _measureResult.setTravelDistance(pCursor.getInt(pCursor.getColumnIndex("travel_distance")));
+            _measureResult.setTravelDistance(pCursor.getString(pCursor.getColumnIndex("travel_distance")));
             _measureResult.setPlatformHigh(pCursor.getInt(pCursor.getColumnIndex("platform_high")));
             _measureResult.setPlatformDistance(pCursor.getInt(pCursor.getColumnIndex("platform_distance")));
             _measureResult.setDipAngle(pCursor.getInt(pCursor.getColumnIndex("dip_angle")));

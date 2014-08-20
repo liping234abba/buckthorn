@@ -21,7 +21,7 @@ public class UpdatePopWindow {
 
 	private PopupWindow updateWindow;
 
-	private EditText et_pd,et_ph,et_limit;
+	private EditText et_td,et_pd,et_ph,et_limit;
 	
 	private MeasureResultAdapter mra ;
 	
@@ -45,17 +45,20 @@ public class UpdatePopWindow {
 		this.mr = tempMr ;
 		if (updateWindow == null) {
 			View view = View.inflate(ctx, R.layout.edit_result, null);
-			updateWindow = new PopupWindow(view, 500, 430);
+			updateWindow = new PopupWindow(view, 500, 470);
 			updateWindow.setFocusable(true);
 			updateWindow.setBackgroundDrawable(ctx.getResources().getDrawable(R.drawable.bg_popup_window));
 			updateWindow.setOutsideTouchable(false);
 			et_pd = (EditText)view.findViewById(R.id.et_platform_distance);
 			et_ph = (EditText)view.findViewById(R.id.et_platform_high);
 			et_limit = (EditText)view.findViewById(R.id.et_platform_limit);
+			et_td = (EditText)view.findViewById(R.id.et_travel_distance);
 			Button saveBtn = (Button)view.findViewById(R.id.save_data);
 			saveBtn.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
+					String td = et_td.getText().toString() ;
+					mr.setTravelDistance(td);
 					String pd = Utility.isEmpty(et_pd.getText().toString())?"0":et_pd.getText().toString(); 
 					mr.setPlatformDistance(Integer.parseInt(pd));
 					String ph = Utility.isEmpty(et_ph.getText().toString())?"0":et_ph.getText().toString() ;
@@ -74,10 +77,12 @@ public class UpdatePopWindow {
 				}
 			});
 		}else{
+			et_td = (EditText)updateWindow.getContentView().findViewById(R.id.et_travel_distance);
 			et_pd = (EditText) updateWindow.getContentView().findViewById(R.id.et_platform_distance);
 			et_ph = (EditText) updateWindow.getContentView().findViewById(R.id.et_platform_high);
 			et_limit = (EditText)updateWindow.getContentView().findViewById(R.id.et_platform_limit);
 		}
+		et_td.setText(tempMr.getTravelDistance()+"");
 		et_pd.setText(tempMr.getPlatformDistance()+"");
 		et_ph.setText(tempMr.getPlatformHigh()+"");
 		et_limit.setText(tempMr.getLimitUpdate()+"");

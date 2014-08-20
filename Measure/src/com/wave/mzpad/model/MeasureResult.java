@@ -19,7 +19,7 @@ public class MeasureResult extends AbstractObject implements Comparable {
 	public  String COLUMN_LIMIT_UPDATE = "limit_update";
 	
 
-	private int travelDistance = 0;// 行进距离
+	private String travelDistance = "";// 行进距离
 	private int platformHigh = 0; // 月台高度
 	private int platformDistance = 0;//月台距离
 	private int dipAngle = 0;//倾角
@@ -28,10 +28,10 @@ public class MeasureResult extends AbstractObject implements Comparable {
 	
 	private int limitDefault = 0 ,limitUpdate = 0 ; //原始值，修改值
 	
-	public int getTravelDistance() {
+	public String getTravelDistance() {
 		return travelDistance;
 	}
-	public void setTravelDistance(int travelDistance) {
+	public void setTravelDistance(String travelDistance) {
 		this.travelDistance = travelDistance;
 	}
 	public int getPlatformHigh() {

@@ -48,11 +48,11 @@ public class TestAndroid extends AndroidTestCase {
 		for(int i = 0 ; i < 20 ; i++){
 			measureResult.setDipAngle(0);
 			measureResult.setParamId(1);
-			measureResult.setTravelDistance(i*1000);
+			measureResult.setTravelDistance(i +"1000");
 			measureResult.setPlatformDistance(1155);
 			measureResult.setPlatformHigh(1798);
 			measureResult.setRainshedHigh(30);
-			measureResult.setTravelDistance(100);
+			measureResult.setTravelDistance(100 + "");
 			businessDataBase.getMeasureResultDao().insertMeasureResult(measureResult);
 		}
 	}
@@ -84,7 +84,7 @@ public class TestAndroid extends AndroidTestCase {
 		measureResult.setPlatformDistance(1155);
 		measureResult.setPlatformHigh(1798);
 		measureResult.setRainshedHigh(30);
-		measureResult.setTravelDistance(100);
+		measureResult.setTravelDistance(100+"");
 		int[] result = businessDataBase.calWarningLevelLimited(measureResult, measureParam);
 		Log.i(TAG, "result :0"+ result[0] + " 1:"+result[1]);
 	}
