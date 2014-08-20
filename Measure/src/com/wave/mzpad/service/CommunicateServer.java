@@ -177,14 +177,6 @@ public class CommunicateServer {
 	 * @return
 	 */
 	public void sendStart() {
-		String cmd = Contants.COMMAND_FORMAT.replaceFirst("%S", Utility.toHexString(Contants.COMMAND_START));
-		cmd = cmd.replace("%S", Utility.getCheckCodeHexByString(cmd));
-		if(sendCommand(cmd)){
-			mHandler.sendMessage(mHandler.obtainMessage(Contants.SHOW_MSG, "连接成功！"));	
-		}
-		if(!Utility.isEmpty(heartBeatThread)){
-			heartBeatThread.startTime();
-		}
 		//发送采样间隔
 		if(Utility.isEmpty(MParamDetailsFragment.measureParam)){
 			mHandler.sendMessage(mHandler.obtainMessage(Contants.SHOW_MSG, "当前设置参数为空!"));
@@ -198,7 +190,22 @@ public class CommunicateServer {
 		}
 		String cmdSample = Contants.COMMAND_FORMAT.replaceFirst("%S", Utility.toHexString(Contants.COMMAND_SAMPLE_INTERVAL)+","+MParamDetailsFragment.measureParam.getSampleInterval());
 		cmdSample = cmdSample.replace("%S", Utility.getCheckCodeHexByString(cmdSample));
-		sendCommand(cmdSample);
+		if(!sendCommand(cmdSample)){
+			return ;
+		}
+		try {
+			Thread.sleep(100);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		String cmd = Contants.COMMAND_FORMAT.replaceFirst("%S", Utility.toHexString(Contants.COMMAND_START));
+		cmd = cmd.replace("%S", Utility.getCheckCodeHexByString(cmd));
+		if(sendCommand(cmd)){
+			mHandler.sendMessage(mHandler.obtainMessage(Contants.SHOW_MSG, "连接成功！"));	
+		}
+		if(!Utility.isEmpty(heartBeatThread)){
+			heartBeatThread.startTime();
+		}
 	}
 
 	/**
@@ -307,8 +314,8 @@ public class CommunicateServer {
 			}else{
 				mBTManager.setmBTDriver(sPort);
 			}
-			heartBeatThread = new HeartBeatThread(this, mHandler);
-			heartBeatThread.start() ;
+		/*	heartBeatThread = new HeartBeatThread(this, mHandler);
+			heartBeatThread.start() ;*/
 		}
 	}
 	

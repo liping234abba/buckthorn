@@ -353,11 +353,16 @@ public class MParamDetailsFragment extends Fragment {
 			_result.setLimitDefault(limitValue);
 			_result.setLimitUpdate(limitValue);
 			_result = businessDataBase.getMeasureResultDao().insertMeasureResult(_result);
+			//转换失败保存listview中
+			int measurePoint  =  (Utility.strToInt(data[0])/1000) ;
+			sendMessage(Contants.SHOW_MSG, "测量点: "+measurePoint+" 接收成功");
+			Log.i(TAG, "results size():"+ results.size() + ",_result:"+_result);
+			measureResultAdapter.updateData(_result);
 		}catch(Exception exp){
 			Log.i(TAG, "整型转换出错  :data:"+ exp.getMessage());	
 			sendMessage(Contants.TOAST_MSG, "整型转换出错!");
 		}
-		if(Utility.isEmpty(_result)){
+		/*if(Utility.isEmpty(_result)){
 			Log.i(TAG, "插入失败  :data:"+ data);
 		}else{
 		    Log.i(TAG, "results size():"+ results.size() + ",_result:"+_result);
@@ -370,7 +375,7 @@ public class MParamDetailsFragment extends Fragment {
 		  Log.i(TAG, "整型转换出错  :data:"+ exp.getMessage());	
 		  sendMessage(Contants.TOAST_MSG, "整型转换出错");
 	    }
-		sendMessage(Contants.SHOW_MSG, "测量点: "+measurePoint+" 接收成功");
+		sendMessage(Contants.SHOW_MSG, "测量点: "+measurePoint+" 接收成功");*/
 	}
 	
 	private void exportExcel(){

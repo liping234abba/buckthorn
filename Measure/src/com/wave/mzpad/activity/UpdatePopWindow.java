@@ -56,11 +56,14 @@ public class UpdatePopWindow {
 			saveBtn.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					mr.setPlatformDistance(Integer.parseInt(et_pd.getText().toString()));
-					mr.setPlatformHigh(Integer.parseInt(et_ph.getText().toString()));
+					String pd = Utility.isEmpty(et_pd.getText().toString())?"0":et_pd.getText().toString(); 
+					mr.setPlatformDistance(Integer.parseInt(pd));
+					String ph = Utility.isEmpty(et_ph.getText().toString())?"0":et_ph.getText().toString() ;
+					mr.setPlatformHigh(Integer.parseInt(ph));
 				    int calLimitValue = Math.round(dataBase.calDiffResultValue(mr, mp));
 				    mr.setLimitDefault(calLimitValue);
-				    int limitEditValue = Integer.parseInt(et_limit.getText().toString()) ;
+				    String limit = Utility.isEmpty(et_limit.getText().toString())?"0":et_limit.getText().toString();
+				    int limitEditValue = Integer.parseInt(limit) ;
 				    if(limitEditValue == mr.getLimitUpdate()){
 				      mr.setLimitUpdate(calLimitValue);
 				    }else{

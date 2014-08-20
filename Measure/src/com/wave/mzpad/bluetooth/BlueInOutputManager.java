@@ -123,6 +123,7 @@ public class BlueInOutputManager implements Runnable {
         try {
             while (true) {
                 if (getState() != State.RUNNING) {
+                	Thread.currentThread().sleep(10);
                     Log.i(TAG, "Stopping mState=" + getState());
                     break;
                 }

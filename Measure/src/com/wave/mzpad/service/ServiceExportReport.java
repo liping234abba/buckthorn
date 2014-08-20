@@ -57,8 +57,9 @@ public class ServiceExportReport implements OperateExcel {
 	}
 	
 	public void exportExcel(){
-		String prefix = abstractObject.getLineName() + "-" + abstractObject.getLineNumber() ;
-		String fileName = new DateFormat().format("yyyy-MM-dd", new Date()) +"("+ prefix + ").xls" ; // new DateFormat().format("yyyy-MM-dd-hhmmss", new Date()) + ".xls";
+//		String prefix = abstractObject.getLineName() + "-" + abstractObject.getLineNumber() ;
+		String prefix = abstractObject.getStandName() ;
+		String fileName = prefix + "-" +new DateFormat().format("yyyy-MM-dd", new Date()) + ".xls" ; // new DateFormat().format("yyyy-MM-dd-hhmmss", new Date()) + ".xls";
 		String desFile = Environment.getExternalStorageDirectory() + File.separator + Contants.EXPORT_EXCEL_FILEPATH ;
 		File desFileDir = new File(desFile);
 		if(!desFileDir.exists()){
